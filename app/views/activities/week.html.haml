@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-md-12
+      - @weeks.each do |week|
+        %h1
+          = week.name
+        .row
+          - week.days.each do |day|
+            .col-md-2
+              %h3
+                = day.name

@@ -5,3 +5,48 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+week1 = Week.new
+week1.number = 1
+week1.name = "Aprendiendo a aprender"
+week1.save
+
+week2 = Week.new
+week2.number = 2
+week2.name = "No me hagas pensar!"
+week2.save
+
+week3 = Week.new
+week3.number = 3
+week3.name = "Flujo y control, algoritmos"
+week3.save
+
+day = Day.new
+day.number = 1
+day.name = "HTML 1"
+day.week = week1
+day.save
+
+day = Day.new
+day.number = 2
+day.name = "HTML 2"
+day.week = week1
+day.save
+
+day = Day.new
+day.number = 3
+day.name = "CSS 1"
+day.week = week1
+day.save
+
+day = Day.new
+day.number = 4
+day.name = "CSS 2"
+day.week = week1
+day.save
+
+day = Day.new
+day.number = 5
+day.name = "Bootstrap 1"
+day.week = week1
+day.save

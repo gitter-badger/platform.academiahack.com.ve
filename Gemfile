@@ -15,3 +15,5 @@ gem 'devise', '~> 3.4.1'
 gem 'haml', '~> 4.0.6'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'formtastic', '~> 3.1.3'
+gem 'better_errors', '~> 2.1.1', group: :development
+gem "binding_of_caller", group: :development
