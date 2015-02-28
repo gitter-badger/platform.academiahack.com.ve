@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224231640) do
+ActiveRecord::Schema.define(version: 20150228234204) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150224231640) do
     t.integer  "week_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   add_index "days", ["week_id"], name: "index_days_on_week_id"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150224231640) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
 end
