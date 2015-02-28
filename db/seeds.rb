@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+user = User.new
+user.email = 'rramos@4geeks.co'
+user.password = '12345678'
+user.save
+
 week1 = Week.new
 week1.number = 1
 week1.name = "Aprendiendo a aprender"
