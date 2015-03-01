@@ -15,3 +15,12 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+	if ($(".alert").width() == 0) {
+		$(".alert").css("display", "none")
+	}
+	if ($(".notice").width() == 0) {
+		$(".notice").css("display", "none")
+	}
+});
