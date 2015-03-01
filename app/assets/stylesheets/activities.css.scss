@@ -3,15 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .day_box {
-	width:231px;
-	height:265px;
-	position:relative;
-	float: left;
+	width: 20%;
+	position: relative;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0 -8px;
 }
 
-.day_img {
-	width:233px;
-	height:auto;
+.day_box img {
+	height: auto;
+	max-width: 100%;
 }
 
 .day_overlay {
@@ -23,4 +24,53 @@
 body.mosaic {
 	background-image: url(/assets/fondo_mosaico.jpg);
 	color: #fff;
+}
+
+#breadcrumb {
+	background-color: #D8DDE1;
+	padding: 2px 5px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-top: 1px solid #AAAFB3;
+	border-right: 1px solid #CBD0D5;
+	border-left: 1px solid #CBD0D5;
+	border-bottom: 1px solid #fff;
+	margin: 40px auto;
+	display: table;
+}
+
+.next-prev {
+	border: none;
+	background-color: transparent;
+	background-image: url(/assets/breadcumb-off.png);
+	background-position-x: -5px;
+	width: 37px;
+	height: 41px;
+	color: #0D4F99;
+	vertical-align: top;
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.carousel-indicators {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	width: auto;
+	left: 0;
+	bottom: 0;
+}
+
+.carousel-indicators li {
+	text-indent: 0;
+	border: none;
+	background-color: transparent;
+	background-image: url(/assets/breadcumb-off.png);
+	background-position-x: -5px;
+	width: 37px;
+	height: 41px;
+	line-height: 38px;
+	color: #0D4F99;
+	vertical-align: top;
 }
