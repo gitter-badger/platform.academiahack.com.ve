@@ -1,77 +1,37 @@
-/ <div id="badges_carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-/   <div class="carousel-inner">
-/     <div class="item " name="sprint-11">
-/       <h1 class="text-center">
-/         Refactor + Testing
-/       </h1>
-/       <div class="badges">
-/         <a class="left carousel-control" href="#badges_carousel" role="button" data-slide="prev">
-/           <img class="img-responsive" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/arrow-left.png" alt="">
-/         </a>
-/         <a class="right carousel-control" href="#badges_carousel" role="button" data-slide="next">
-/           <img class="img-responsive" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/arrow-right.png" alt="">
-/         </a>
-
-/         <div class="badge-container">
-/          <img class="img-responsive badge-img" title="Refactoring + Buenas practicas, Code Review!" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/cat/51.png" alt="">
-/          <img class="img-responsive lockedBG" title="Refactoring + Buenas practicas, Code Review!" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/black_hexagon.png">
-/          <img class="img-responsive locked" title="Refactoring + Buenas practicas, Code Review!" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/locked.png">
-/        </div>
-
-/        <div class="badge-container">
-/          <img class="img-responsive badge-img" title="Pruebas integrales, pruebas de volumen y stress" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/cat/52.png" alt="">
-/          <img class="img-responsive lockedBG" title="Pruebas integrales, pruebas de volumen y stress" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/black_hexagon.png">
-/          <img class="img-responsive locked" title="Pruebas integrales, pruebas de volumen y stress" src="http://plataforma.hack4geeks.co/wp-content/themes/HackRoots/assets/img/locked.png">
-/        </div>
-/      </div>
-/    </div>
-
-/  </div>
-/  <div class="text-center">
-/   <div class="badge-title" id="badge-title">Servicios REST 1</div>
-/ </div>
-/ <div id="breadcrumb">
-/   <a class="next-prev" data-target="#badges_carousel" data-slide="prev"><div class="arrow-left"></div></a>
-/   <ol class="carousel-indicators">
-
-/    <li data-target="#badges_carousel" data-slide-to="0">1</li>
-/    <li data-target="#badges_carousel" data-slide-to="1">2</li>
-/    <li data-target="#badges_carousel" data-slide-to="2">3</li>
-/    <li data-target="#badges_carousel" data-slide-to="3">4</li>
-/    <li data-target="#badges_carousel" data-slide-to="4">5</li>
-/    <li data-target="#badges_carousel" data-slide-to="5">6</li>
-/    <li data-target="#badges_carousel" data-slide-to="6">7</li>
-/    <li data-target="#badges_carousel" data-slide-to="7">8</li>
-/    <li data-target="#badges_carousel" data-slide-to="8">9</li>
-/    <li data-target="#badges_carousel" data-slide-to="9">10</li>
-/    <li data-target="#badges_carousel" data-slide-to="10" class="active">11</li>
-/    <li data-target="#badges_carousel" data-slide-to="11">12</li>
-
-/  </ol>
-/  <a class="next-prev" data-target="#badges_carousel" data-slide="next">
-/    <div class="arrow-right"></div>
-/  </a>
-/ </div>
-/ </div>
-
-.container
-  .row
-    .col-md-12
-      - @weeks.each do |week|
-        %h1.text-center
-          = week.name
-        .row
-          - week.days.each do |day|
-            .day_box
-              - if day.active?
-                = image_tag day.image.url, class: "day_img"
-              - elsif day.blocked?
-                = image_tag day.image.url, class: "day_img"
-                .day_overlay
-                  = image_tag "locked.png", class: "day_img"
-              - elsif day.done?
-                = image_tag day.image.url, class: "day_img"
-                .day_overlay
-                  = image_tag "fullfilled.png", class: "day_img"
-              - else
-                = image_tag "0.png", class: "day_img"
+.badges
+  #badges_carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "false"}
+    .carousel-inner
+      - @weeks.each_with_index do |week, i|
+        %a.left.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "prev"}
+          = image_tag 'arrow-left.png'
+        %a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
+          = image_tag 'arrow-right.png'
+        .item{class: ("active" unless i != 0)}
+          .row
+            .col-md-12
+              %h1.text-center
+                = week.name
+              .row.text-center
+                - week.days.each do |day|
+                  .day_box
+                    - if day.active?
+                      = image_tag day.image.url
+                    - elsif day.blocked?
+                      = image_tag day.image.url
+                      .day_overlay
+                        = image_tag "locked.png"
+                    - elsif day.done?
+                      = image_tag day.image.url
+                      .day_overlay
+                        = image_tag "fullfilled.png"
+                    - else
+                      = image_tag "0.png"
+    #breadcrumb
+      %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
+        .arrow-left
+      %ol.carousel-indicators
+        - @weeks.each_with_index do |week, i|
+          %li{"data-target" => "#badges_carousel", "data-slide-to" => i}
+            = i + 1
+      %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}
+        .arrow-right
