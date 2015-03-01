@@ -19,3 +19,4 @@ gem "binding_of_caller", group: :development
 #gem 'spring-commands-rspec'
 gem 'activeadmin', github: 'activeadmin'
 gem 'paperclip', '~> 4.2.1'
+gem 'chosen-rails'
