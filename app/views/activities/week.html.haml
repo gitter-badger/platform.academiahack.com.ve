@@ -1,7 +1,11 @@
-.container
+.badges
   #badges_carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "false"}
     .carousel-inner
       - @weeks.each_with_index do |week, i|
+        %a.left.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "prev"}
+          = image_tag 'arrow-left.png'
+        %a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
+          = image_tag 'arrow-right.png'
         .item{class: ("active" unless i != 0)}
           .row
             .col-md-12
@@ -26,6 +30,8 @@
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
         .arrow-left
       %ol.carousel-indicators
-        %li{"data-target" => "#badges_carousel", "data-slide-to" => "0"}
+        - @weeks.each_with_index do |week, i|
+          %li{"data-target" => "#badges_carousel", "data-slide-to" => i}
+            = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}
-        .arrow-left
+        .arrow-right

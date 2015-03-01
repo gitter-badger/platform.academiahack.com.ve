@@ -28,7 +28,7 @@ body.mosaic {
 
 #breadcrumb {
 	background-color: #D8DDE1;
-	padding: 2px 5px;
+	padding: 5px 5px 2px;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -51,6 +51,46 @@ body.mosaic {
 	vertical-align: top;
 	display: inline-block;
 	margin: 0 5px;
+	transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+.next-prev:hover {
+	background-image: url(/assets/breadcumb-on.png);
+	cursor: pointer;
+}
+
+.next-prev:hover .arrow-right {
+	border-left: 8px solid #fff;
+}
+
+.next-prev:hover .arrow-left {
+	border-right: 8px solid #fff;
+}
+
+.next-prev .arrow-left {
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: 8px solid #0D4F99;
+	margin: 10px auto;
+	transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+.next-prev .arrow-right {
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 8px solid #0D4F99;
+	margin: 11px 18px;
+	transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
 }
 
 .carousel-indicators {
@@ -73,4 +113,53 @@ body.mosaic {
 	line-height: 38px;
 	color: #0D4F99;
 	vertical-align: top;
+}
+
+.carousel-indicators .active {
+	background-image: url(/assets/breadcumb-on.png);
+	color: #fff;
+	width: 37px;
+	height: 41px;
+	background-color: transparent;
+}
+
+.carousel-inner {
+	padding: 0 20px;
+}
+
+.carousel-control {
+	z-index: 999;
+}
+
+.carousel-control.left, .carousel-control.right {
+	background: transparent;
+}
+
+.carousel-control.left {
+	left: 0;
+}
+
+.carousel-control.left img {
+	left: 0;
+}
+
+.carousel-control.right {
+	right: 0;
+}
+
+.carousel-control.right img {
+	right: 0;
+}
+
+.carousel-control img {
+	position: absolute;
+	margin-top: 100%;
+	z-index: 5;
+	display: inline-block;
+	width: 20px;
+}
+
+.badges {
+	padding: 20px;
+	position: relative;
 }
