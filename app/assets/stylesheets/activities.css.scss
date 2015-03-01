@@ -155,6 +155,7 @@ body.mosaic {
 
 .carousel-control {
 	z-index: 999;
+	display: inline-block;
 }
 
 .carousel-control.left, .carousel-control.right {
