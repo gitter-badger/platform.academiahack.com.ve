@@ -13,10 +13,11 @@
                 = week.name
               .row.text-center
                 - week.days.each do |day|
-                  .day_box
+                  .day_box{'data-name' => day.name}
                     - if day.active?
-                      = image_tag 'black_hexagon.png', class: 'off'
-                      = image_tag day.image.url
+                      = link_to activities_day_path(day.id) do
+                        = image_tag 'black_hexagon.png', class: 'off'
+                        = image_tag day.image.url
                     - elsif day.blocked?
                       = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag day.image.url
@@ -28,8 +29,10 @@
                         = image_tag 'black_hexagon.png', class: 'locked'
                         = image_tag "fullfilled.png", class: 'fullfilled'
                     - else
-                      = image_tag 'black_hexagon.png', class: 'off'
+                      = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
+    .text-center
+      .badge-title
     #breadcrumb
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
         .arrow-left
