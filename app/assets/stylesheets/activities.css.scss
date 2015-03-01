@@ -62,7 +62,7 @@ body.mosaic {
 	border-right: 1px solid #CBD0D5;
 	border-left: 1px solid #CBD0D5;
 	border-bottom: 1px solid #fff;
-	margin: 40px auto;
+	margin: 30px auto;
 	display: table;
 }
 
@@ -165,7 +165,7 @@ body.mosaic {
 .carousel-control.left {
 	left: 0;
 	width: 20px;
-	margin-top: 14.5%;
+	margin-top: 15%;
 }
 
 .carousel-control.left img {
@@ -175,7 +175,7 @@ body.mosaic {
 .carousel-control.right {
 	right: 0;
 	width: 20px;
-	margin-top: 14.5%;
+	margin-top: 15%;
 }
 
 .carousel-control.right img {
@@ -190,6 +190,24 @@ body.mosaic {
 }
 
 .badges {
-	padding: 20px;
+	padding: 20px 50px;
 	position: relative;
+}
+
+#badges_carousel h1 {
+	color: #fff;
+	margin: 0 0 30px;
+	font-size: 45px;
+}
+
+.badge-title {
+	background-color: #A7BACB;
+	color: #1A5E9D;
+	padding: 5px 10px;
+	font-size: 24px;
+	display: table;
+	margin: 30px auto 0;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 }
