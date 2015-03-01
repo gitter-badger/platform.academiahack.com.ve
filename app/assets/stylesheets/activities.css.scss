@@ -1,6 +1,11 @@
 // Place all the styles related to the activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .day {
 	font-size: 20px;
+}
+
+body.mosaic {
+	background-image: url(/assets/fondo_mosaico.jpg);
 }

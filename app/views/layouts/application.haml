@@ -1,0 +1,38 @@
+!!! 5
+%html
+%head
+  %title
+    Plataforma Hack
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+%body
+  
+  %header.navbar.navbar-default.navbar-fixed-top
+    .container.caret-box
+      .navbar-header
+        %a.navbar-brand{href: '#'}
+          = image_tag "logo.png"
+      %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
+        %ul.nav.navbar-nav.navbar-right
+          %li.active.menu-login
+            %a{href: '#'}
+              Login
+              .caret_header
+                %span
+          %li.menu-registro
+            %a{href: '#'}
+              Registro
+              .caret_header
+                %span
+      %button.navbar-toggle.collapsed{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .caret_header_2
+  %p.notice
+    = notice
+  %p.alert
+    = alert
+  = yield
