@@ -15,16 +15,20 @@
                 - week.days.each do |day|
                   .day_box
                     - if day.active?
+                      = image_tag 'black_hexagon.png', class: 'off'
                       = image_tag day.image.url
                     - elsif day.blocked?
+                      = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag day.image.url
                       .day_overlay
                         = image_tag "locked.png"
                     - elsif day.done?
                       = image_tag day.image.url
                       .day_overlay
-                        = image_tag "fullfilled.png"
+                        = image_tag 'black_hexagon.png', class: 'locked'
+                        = image_tag "fullfilled.png", class: 'fullfilled'
                     - else
+                      = image_tag 'black_hexagon.png', class: 'off'
                       = image_tag "0.png"
     #breadcrumb
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
