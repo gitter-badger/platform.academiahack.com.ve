@@ -2,8 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.day {
-	font-size: 20px;
+.day_box {
+	width:231px;
+	height:265px;
+	position:relative;
+	float: left;
+}
+
+.day_img {
+	width:233px;
+	height:auto;
+}
+
+.day_overlay {
+	position: absolute;
+	left: 0px;
+	top: 0px;
 }
 
 body.mosaic {

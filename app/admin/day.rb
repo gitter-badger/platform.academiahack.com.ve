@@ -3,7 +3,7 @@ ActiveAdmin.register Day do
   # Don't forget to add the image attribute (here thumbnails) to permitted_params
   controller do
     def permitted_params
-      params.permit day: [:number, :name, :description, :image]
+      params.permit day: [:number, :name, :description, :image, :status]
     end
   end
 
@@ -11,17 +11,28 @@ ActiveAdmin.register Day do
     f.inputs "Detalles del día" do
       f.input :number
       f.input :name
+      f.input :status, as: :select, collection: Day.statuses.keys
       f.input :image, :as => :file, :hint => f.template.image_tag(f.object.image.url(:thumb))
       # Will preview the image when the object is edited
     end
     f.actions
   end
 
+  index do
+     column :number
+     column :name
+     column :status
+     column :week
+     column :image do |day|
+       image_tag(day.image.url(:thumb))
+     end
+     actions
+  end
+
   show do |ad|
     attributes_table do
       row :number
       row :name
-      row :description
       row :image do
         image_tag(ad.image.url(:thumb))
       end

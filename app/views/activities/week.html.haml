@@ -62,6 +62,16 @@
           = week.name
         .row
           - week.days.each do |day|
-            .col-md-2
-              %h3
-                = day.name
+            .day_box
+              - if day.active?
+                = image_tag day.image.url, class: "day_img"
+              - elsif day.blocked?
+                = image_tag day.image.url, class: "day_img"
+                .day_overlay
+                  = image_tag "locked.png", class: "day_img"
+              - elsif day.done?
+                = image_tag day.image.url, class: "day_img"
+                .day_overlay
+                  = image_tag "fullfilled.png", class: "day_img"
+              - else
+                = image_tag "0.png", class: "day_img"
