@@ -1,5 +1,6 @@
 class Day < ActiveRecord::Base
   belongs_to :week
+  has_many :challenges
   enum status: [ :blocked, :active, :done ]
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }

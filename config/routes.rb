@@ -2,12 +2,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+
   get 'activities/week'
-
   get 'activities/day/:id' => 'activities#day', as: :activities_day
-
   get 'activities/challenge/:id' => 'activities#challenge', as: :activities_challenge
-
+  get 'activities/error' => 'activities#error', as: :activities_error
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
