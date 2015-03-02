@@ -11,6 +11,11 @@ user.email = 'rramos@4geeks.co'
 user.password = '12345678'
 user.save
 
+user = AdminUser.new
+user.email = 'admin@example.com'
+user.password = 'password'
+user.save
+
 week1 = Week.new
 week1.number = 1
 week1.name = "Algoritmos + Ruby"
@@ -78,40 +83,40 @@ week13.save
 
 # *********************** SEMANA1 ***********************
 
-day = Day.new
-day.number = 1
-day.name = "CARNAVAL"
-day.week = week1
-day.status = 2
-day.save
+day1 = Day.new
+day1.number = 1
+day1.name = "CARNAVAL"
+day1.week = week1
+day1.status = 2
+day1.save
 
-day = Day.new
-day.number = 2
-day.name = "CARNAVAL"
-day.week = week1
-day.status = 2
-day.save
+day2 = Day.new
+day2.number = 2
+day2.name = "CARNAVAL"
+day2.week = week1
+day2.status = 2
+day2.save
 
-day = Day.new
-day.number = 3
-day.name = "Vagrant, entornos,comandos"
-day.week = week1
-day.status = 2
-day.save
+day3 = Day.new
+day3.number = 3
+day3.name = "Vagrant, entornos,comandos"
+day3.week = week1
+day3.status = 2
+day3.save
 
-day = Day.new
-day.number = 4
-day.name = "Variables, estructura de control"
-day.week = week1
-day.status = 2
-day.save
+day4 = Day.new
+day4.number = 4
+day4.name = "Variables, estructura de control"
+day4.week = week1
+day4.status = 2
+day4.save
 
-day = Day.new
-day.number = 5
-day.name = "Tipos de dato, estructura iterativas"
-day.week = week1
-day.status = 2
-day.save
+day5 = Day.new
+day5.number = 5
+day5.name = "Tipos de dato, estructura iterativas"
+day5.week = week1
+day5.status = 2
+day5.save
 
 # *********************** SEMANA1 ***********************
 
@@ -120,35 +125,35 @@ day.save
 day = Day.new
 day.number = 6
 day.name = "Estructuras iterativas, arreglos"
-day.week = week1
+day.week = week2
 day.status = 2
 day.save
 
 day = Day.new
 day.number = 7
 day.name = "Arreglos multidimensionales, funciones"
-day.week = week1
+day.week = week2
 day.status = 2
 day.save
 
 day = Day.new
 day.number = 8
 day.name = "Funciones, programacion estructurada"
-day.week = week1
+day.week = week2
 day.status = 2
 day.save
 
 day = Day.new
 day.number = 9
 day.name = "Practica de algoritmos"
-day.week = week1
+day.week = week2
 day.status = 2
 day.save
 
 day = Day.new
 day.number = 10
 day.name = "Ordenamiento en arreglos"
-day.week = week1
+day.week = week2
 day.status = 2
 day.save
 
@@ -159,36 +164,36 @@ day.save
 day = Day.new
 day.number = 11
 day.name = "Battleship 1"
-day.week = week1
-day.status = 2
+day.week = week3
+day.status = 1
 day.save
 
 day = Day.new
 day.number = 12
 day.name = "Battleship 2"
-day.week = week1
-day.status = 2
+day.week = week3
+day.status = 1
 day.save
 
 day = Day.new
 day.number = 13
 day.name = "Entrega Battleship"
-day.week = week1
-day.status = 2
+day.week = week3
+day.status = 1
 day.save
 
 day = Day.new
 day.number = 14
 day.name = "Objetos en Ruby 1"
-day.week = week1
-day.status = 2
+day.week = week3
+day.status = 1
 day.save
 
 day = Day.new
 day.number = 15
 day.name = "Objetos en Ruby 2"
-day.week = week1
-day.status = 2
+day.week = week3
+day.status = 1
 day.save
 
 # *********************** SEMANA3 ***********************
@@ -214,32 +219,37 @@ challenge.time = 'mañana'
 challenge.title = 'Titulo del reto 1'
 challenge.description = 'Contenido del reto 1'
 challenge.category = category1
-challege.day = day1
+challenge.day = day1
+challenge.save
 
 challenge = Challenge.new
 challenge.time = 'mañana'
 challenge.title = 'Titulo del reto 2'
 challenge.description = 'Contenido del reto 2'
 challenge.category = category2
-challege.day = day1
+challenge.day = day1
+challenge.save
 
 challenge = Challenge.new
 challenge.time = 'mañana'
 challenge.title = 'Titulo del reto 3'
 challenge.description = 'Contenido del reto 3'
 challenge.category = category3
-challege.day = day1
+challenge.day = day1
+challenge.save
 
 challenge = Challenge.new
 challenge.time = 'mañana'
 challenge.title = 'Titulo del reto 4'
 challenge.description = 'Contenido del reto 4'
 challenge.category = category4
-challege.day = day1
+challenge.day = day1
+challenge.save
 
 challenge = Challenge.new
 challenge.time = 'mañana'
 challenge.title = 'Titulo del reto 4'
 challenge.description = 'Contenido del reto 4'
 challenge.category = category1
-challege.day = day1
+challenge.day = day1
+challenge.save
