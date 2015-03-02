@@ -1,30 +1,31 @@
 .badges
-  .row
-    .col-md-12
-      .row.text-center
-        - @days.each do |day|
-          .day_box{'data-name' => day.name}
-            - if day.active?
-              -if @day.id == day.id
-                = image_tag 'black_hexagon.png', class: 'on'
-                = image_tag day.image.url
-              - else
-                = link_to activities_day_path(day.id) do
-                  = image_tag 'black_hexagon.png', class: 'off'
+  .item
+    .row
+      .col-md-12
+        .row.text-center
+          - @days.each do |day|
+            .day_box{'data-name' => day.name}
+              - if day.active?
+                -if @day.id == day.id
+                  = image_tag 'black_hexagon.png', class: 'on'
                   = image_tag day.image.url
-            - elsif day.blocked?
-              = image_tag 'black_hexagon.png', class: 'locked'
-              = image_tag day.image.url
-              .day_overlay
-                = image_tag "locked.png"
-            - elsif day.done?
-              = image_tag day.image.url
-              .day_overlay
+                - else
+                  = link_to activities_day_path(day.id) do
+                    = image_tag 'black_hexagon.png', class: 'off'
+                    = image_tag day.image.url
+              - elsif day.blocked?
                 = image_tag 'black_hexagon.png', class: 'locked'
-                = image_tag "fullfilled.png", class: 'fullfilled'
-            - else
-              = image_tag 'black_hexagon.png', class: 'locked'
-              = image_tag "0.png"
+                = image_tag day.image.url
+                .day_overlay
+                  = image_tag "locked.png"
+              - elsif day.done?
+                = image_tag day.image.url
+                .day_overlay
+                  = image_tag 'black_hexagon.png', class: 'locked'
+                  = image_tag "fullfilled.png", class: 'fullfilled'
+              - else
+                = image_tag 'black_hexagon.png', class: 'locked'
+                = image_tag "0.png"
 .content-white
   .container
     %h1.blue-text.text-center

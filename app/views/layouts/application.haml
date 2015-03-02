@@ -31,8 +31,6 @@
         %span.icon-bar
         %span.icon-bar
       .caret_header_2
-  %p.notice
-    = notice
-  %p.alert
-    = alert
+  - flash.each do |name, msg|
+    = content_tag :p, msg, class: "alert alert-info"
   = yield
