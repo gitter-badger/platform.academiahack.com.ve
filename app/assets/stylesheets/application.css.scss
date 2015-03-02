@@ -191,6 +191,17 @@ header.navbar-default {
   left: -2000%;
 }
 
+#categorias ul li:last-child:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2000%;
+  height: 20px;
+  background-color: #eee;
+  bottom: -21px;
+  right: -2000%;
+}
+
 .alert {
   padding: 10px 15px;
   margin: 5px 20px;

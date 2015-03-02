@@ -1,11 +1,11 @@
 .badges
   #badges_carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "false"}
     .carousel-inner
+      %a.left.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "prev"}
+        = image_tag 'arrow-left.png'
+      %a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
+        = image_tag 'arrow-right.png'
       - @weeks.each_with_index do |week, i|
-        %a.left.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "prev"}
-          = image_tag 'arrow-left.png'
-        %a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
-          = image_tag 'arrow-right.png'
         .item{class: ("active" unless i != 0)}
           .row
             .col-md-12
