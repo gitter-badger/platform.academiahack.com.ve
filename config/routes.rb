@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  get 'activities/week'
+  get 'activities/' => 'activities#week', as: :activities_week
   get 'activities/day/:id' => 'activities#day', as: :activities_day
   get 'activities/challenge/:id' => 'activities#challenge', as: :activities_challenge
   get 'activities/error' => 'activities#error', as: :activities_error

@@ -18,52 +18,52 @@ user.save
 
 week1 = Week.new
 week1.number = 1
-week1.name = "Algoritmos + Ruby"
+week1.name = "Algoritmos en ruby 1"
 week1.save
 
 week2 = Week.new
 week2.number = 2
-week2.name = "Ruby + Objetos"
+week2.name = "Algoritmos en ruby 2"
 week2.save
 
 week3 = Week.new
 week3.number = 3
-week3.name = "Objetos + HTTP"
+week3.name = "Battleship + Objetos en ruby"
 week3.save
 
 week4 = Week.new
 week4.number = 4
-week4.name = "BD + Rails"
+week4.name = "Objetos en ruby + HTTP"
 week4.save
 
 week5 = Week.new
 week5.number = 5
-week5.name = "JSON + Rails MC"
+week5.name = "BD + Rails"
 week5.save
 
 week6 = Week.new
 week6.number = 6
-week6.name = "Service App"
+week6.name = "JSON + Rails MC"
 week6.save
 
 week7 = Week.new
 week7.number = 7
-week7.name = "HTML + CSS + Bootstrap"
+week7.name = "Service App"
 week7.save
 
 week8 = Week.new
 week8.number = 8
-week8.name = "Javascript"
+week8.name = "HTML + CSS + Bootstrap"
 week8.save
 
 week9 = Week.new
 week9.number = 9
-week9.name = "Javascript + jQuery"
+week9.name = "Javascript"
 week9.save
 
 week10 = Week.new
 week10.number = 10
-week10.name = "AngularJS"
+week10.name = "Javascript + jQuery"
 week10.save
 
 week11 = Week.new
@@ -80,6 +80,11 @@ week13 = Week.new
 week13.number = 13
 week13.name = "AngularJS"
 week13.save
+
+week14 = Week.new
+week14.number = 14
+week14.name = "AngularJS"
+week14.save
 
 # *********************** SEMANA1 ***********************
 
