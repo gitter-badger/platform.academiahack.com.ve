@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 @weeks = []
 @days = []
 @categories = []
@@ -80,7 +72,7 @@ create_week 13, "AngularJS"
 create_day 1, "CARNAVAL 1", @weeks[0], 2
 create_day 2, "CARNAVAL 2", @weeks[0], 2
 create_day 3, "Vagrant, entornos,comandos", @weeks[0], 2, '16.png'
-create_day 4, "Variables, estructura de control", @weeks[0], 2, '16.png'
+create_day 4, "Variables, estructura de control", @weeks[0], 2, '11.png'
 create_day 5, "Tipos de dato, estructura iterativas", @weeks[0], 2, '11.png'
 
 # *********************** SEMANA2 ***********************
@@ -93,11 +85,11 @@ create_day 10, "Ordenamiento en arreglos", @weeks[1], 2, '13.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Battleship 1", @weeks[2], 1
-create_day 12, "Battleship 2", @weeks[2], 1
-create_day 13, "Entrega Battleship", @weeks[2], 1
-create_day 14, "Objetos en Ruby 1", @weeks[2], 1
-create_day 15, "Objetos en Ruby 2", @weeks[2], 1
+create_day 11, "Battleship 1", @weeks[2], 1, '26.png'
+create_day 12, "Battleship 2", @weeks[2], 1, '26.png'
+create_day 13, "Entrega Battleship", @weeks[2], 1, '26.png'
+create_day 14, "Objetos en Ruby 1", @weeks[2], 1, '26.png'
+create_day 15, "Objetos en Ruby 2", @weeks[2], 1, '26.png'
 
 # *********************** SEMANA3 ***********************
 
@@ -106,8 +98,4 @@ create_category "Diseño", 'design.png'
 create_category "Construccion", 'construct.png'
 create_category "Bug", 'bug.png'
 
-create_challenge 'manana', 'Titulo del reto 1', 'Contenido del reto 1', @categories[0], @days[10]
-create_challenge 'manana', 'Titulo del reto 2', 'Contenido del reto 2', @categories[1], @days[10]
-create_challenge 'manana', 'Titulo del reto 3', 'Contenido del reto 3', @categories[2], @days[10]
-create_challenge 'manana', 'Titulo del reto 4', 'Contenido del reto 4', @categories[3], @days[10]
-create_challenge 'manana', 'Titulo del reto 5', 'Contenido del reto 5', @categories[1], @days[10]
+create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @categories[2], @days[12]

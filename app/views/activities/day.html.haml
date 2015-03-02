@@ -31,13 +31,19 @@
     %h1.blue-text.text-center
       = @day.name
     .row
-      - @day.challenges.each do |challenge|
-        .col-md-4.text-center
-          .challenge-box
-            %h3
-              = challenge.title
-            .image
-              = image_tag challenge.category.image.url
-          %a.btn.btn-primary.btn-block.btn-flat.btn-large{href: '#'}
-            = image_tag 'list-hexagon.png'
-            ¡Hazlo!
+      - if @day.challenges.length > 0
+        - @day.challenges.each do |challenge|
+          .col-md-4.text-center
+            .challenge-box
+              %h3
+                = challenge.title
+              .image
+                = image_tag challenge.category.image.url
+            %a.btn.btn-primary.btn-block.btn-flat.btn-large{href: '#'}
+              = image_tag 'list-hexagon.png'
+              ¡Hazlo!
+      - else
+        %h1.text-center
+          Hoy no hay retos, pero siempre hay mucho que hacer!
+          %h4.text-center
+            Aprovecha y haz preguntas claves a los mentores!
