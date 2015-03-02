@@ -25,6 +25,15 @@
               Actividades
               .caret_header
                 %span
+        - if user_signed_in?
+          %ul#menu-logged-menu.nav.navbar-nav.navbar-right
+            %li.perfilLink.menu-username
+              %a{href: '#'}
+                = current_user.email
+            %li.outperfil.pull-right.menu-salir
+              = link_to destroy_user_session_path, method: 'delete' do
+                %span.glyphicon.glyphicon-off
+
       %button.navbar-toggle.collapsed{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
