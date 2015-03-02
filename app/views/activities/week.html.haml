@@ -38,7 +38,7 @@
         .arrow-left
       %ol.carousel-indicators
         - @weeks.each_with_index do |week, i|
-          %li{"data-target" => "#badges_carousel", "data-slide-to" => i}
+          %li{"data-target" => "#badges_carousel", "data-slide-to" => i, class: ("active" unless i != 0)}
             = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}
         .arrow-right
