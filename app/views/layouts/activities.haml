@@ -7,11 +7,11 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body.mosaic
-  
+
   %header.navbar.navbar-default.navbar-fixed-top
     .container.caret-box
       .navbar-header
-        %a.navbar-brand{href: '#'}
+        = link_to root_path, class: 'navbar-brand' do
           = image_tag "logo.png"
       %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
         %ul.nav.navbar-nav
@@ -21,7 +21,7 @@
               .caret_header
                 %span
           %li.active.menu-registro
-            %a{href: '#'}
+            = link_to activities_week_path do
               Actividades
               .caret_header
                 %span
