@@ -34,6 +34,9 @@ class ActivitiesController < ApplicationController
   end
 
   def challenge
+    puts params[:id]
+    @challenge = Challenge.find params[:id]
+
   end
 
   private
