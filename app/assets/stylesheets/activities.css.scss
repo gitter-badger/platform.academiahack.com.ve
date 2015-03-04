@@ -321,6 +321,18 @@ body.mosaic {
 	display: inline-block;
 }
 
+.challenge_box {
+	position:relative;
+	background-color:white;
+	color: black;
+}
+
+.challenge_description {
+	min-height:600px;
+}
+
 .disqus_box {
 	background-color:white;
+	color: black;
+	width: 100%;
 }

@@ -6,14 +6,16 @@ ActiveAdmin.register Challenge do
     end
   end
 
-  # form do |f|
-  #   f.inputs "Detalles del día" do
-  #     f.input :title
-  #     f.input :time, as: :select, collection: {day:'mañana', afternoon:'tarde'}
-  #     f.input :description
-  #   end
-  #   f.actions
-  # end
+  form do |f|
+    f.inputs "Detalles del reto" do
+      f.input :day
+      f.input :category
+      f.input :title
+      f.input :time, as: :select, collection: {day:'mañana', afternoon:'tarde'}
+      f.input :description, as: :text
+    end
+    f.actions
+  end
 
   # index do
   #    column :title

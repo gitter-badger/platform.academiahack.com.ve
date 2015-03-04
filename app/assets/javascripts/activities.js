@@ -3,6 +3,8 @@ var disqus_shortname = 'hack4geeks';
 $(function(){
 	var name;
 	var dsq;
+	var convert;
+	var challenge;
 
 	name = $('.day_box').first().attr('data-name');
 	$('.badge-title').html(name);
@@ -27,4 +29,5 @@ $(function(){
 	};
 
 	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	tinymce.init({selector:'textarea'});
 });

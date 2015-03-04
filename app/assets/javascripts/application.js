@@ -15,8 +15,9 @@
 //= require bootstrap
 //= require chosen-jquery
 //= require turbolinks
+//= require tinymce/tinymce.min
 //= require_tree .
 
 $(function(){
 
-});  
+});
