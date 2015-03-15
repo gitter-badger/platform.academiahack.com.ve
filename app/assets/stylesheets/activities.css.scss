@@ -61,7 +61,7 @@
 }
 
 body.mosaic {
-	background-image: url(/assets/fondo_mosaico.jpg);
+	background-image: asset-url("fondo_mosaico.jpg");
 	color: #fff;
 }
 
@@ -82,7 +82,7 @@ body.mosaic {
 .next-prev {
 	border: none;
 	background-color: transparent;
-	background-image: url(/assets/breadcumb-off.png);
+	background-image: asset-url("breadcumb-off.png");
 	background-position-x: -5px;
 	width: 37px;
 	height: 41px;
@@ -96,7 +96,7 @@ body.mosaic {
 }
 
 .next-prev:hover {
-	background-image: url(/assets/breadcumb-on.png);
+	background-image: asset-url("breadcumb-on.png");
 	cursor: pointer;
 }
 
@@ -145,7 +145,7 @@ body.mosaic {
 	text-indent: 0;
 	border: none;
 	background-color: transparent;
-	background-image: url(/assets/breadcumb-off.png);
+	background-image: asset-url("breadcumb-off.png");
 	background-position-x: -5px;
 	width: 37px;
 	height: 41px;
@@ -155,7 +155,7 @@ body.mosaic {
 }
 
 .carousel-indicators .active {
-	background-image: url(/assets/breadcumb-on.png);
+	background-image: asset-url("breadcumb-on.png");
 	color: #fff;
 	width: 37px;
 	height: 41px;
