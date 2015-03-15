@@ -13,8 +13,8 @@ development:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password: vagrant
+  username: platform
+  password: blanked
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev
 
@@ -29,7 +29,7 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
+  username: platform
   password: blanked
   socket: /var/run/mysqld/mysqld.sock
   database: platform
