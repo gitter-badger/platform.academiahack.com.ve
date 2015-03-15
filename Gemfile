@@ -19,3 +19,7 @@ gem "binding_of_caller", group: :development
 gem 'activeadmin', github: 'activeadmin'
 gem 'paperclip', '~> 4.2.1'
 gem 'chosen-rails'
+gem 'capistrano'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rvm', github: "capistrano/rvm"
