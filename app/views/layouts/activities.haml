@@ -4,7 +4,6 @@
   %title
     Plataforma Hack
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body.mosaic
 
@@ -43,3 +42,4 @@
   - flash.each do |name, msg|
     = content_tag :p, msg, class: "alert alert-info"
   = yield
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
