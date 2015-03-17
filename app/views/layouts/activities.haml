@@ -5,7 +5,7 @@
     Plataforma Hack
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = csrf_meta_tags
-%body.mosaic
+%body{class: ['mosaic', controller_name, action_name]}
 
   %header.navbar.navbar-default.navbar-fixed-top
     .container.caret-box

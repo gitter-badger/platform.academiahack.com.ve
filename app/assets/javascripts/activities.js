@@ -1,8 +1,9 @@
 var disqus_shortname = 'hack4geeks';
 
-$(function(){
+$(document).ready(function(){
 	var name;
 	var dsq;
+	var disqus_config;
 	var convert;
 	var challenge;
 
@@ -19,15 +20,22 @@ $(function(){
 		$('.badge-title').html(name);
 	});
 
-	dsq = document.createElement('script');
-	dsq.type = 'text/javascript';
-	dsq.async = true;
-	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	if($(".activities.challenge").length > 0) {
+		//En la pagina de challenges!
+		dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
-	var disqus_config = function () {
-  	this.language = "es_ES";
-	};
+		disqus_config = function () {
+	  	this.language = "es_ES";
+		};
 
-	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+
+	}
+
+
 	tinymce.init({selector:'textarea'});
 });
