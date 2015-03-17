@@ -16,7 +16,8 @@
           = simple_format @challenge.description
     .row
       .col-md-9.col-offset-md2
-        %form{action: "#", class:'dropzone'}
+        %form{action: "submit", id:'challengeUpload', class: 'dropzone'}
+          %input{name:"authenticity_token", type:"hidden", value:"#{form_authenticity_token}"}
           .fallback
             %input{name:'file', type:'file'}
   .container.disqus_box

@@ -33,6 +33,10 @@ $(document).ready(function(){
 
 		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
+		Dropzone.options.challengeUpload = {
+		  paramName: "file", // The name that will be used to transfer the file
+			dictDefaultMessage: "Arrastra archivos aqui para subirlos."
+		};
 
 	}
 

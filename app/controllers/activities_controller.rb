@@ -39,6 +39,11 @@ class ActivitiesController < ApplicationController
 
   end
 
+  def submit_challenge
+    #IMPLEMENTACION DE CARGA DE RETO!
+    render json:{status: "OK"}
+  end
+
   private
 
   def complete_days day_number, repeat = 0, position = 'none'
