@@ -10,10 +10,13 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: 5
-  timeout: 5000
-  database: db/development.db
+  username: platform
+  password: blanked
+  socket: /var/run/mysqld/mysqld.sock
+  database: platform_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
