@@ -20,6 +20,8 @@
           %input{name:"authenticity_token", type:"hidden", value:"#{form_authenticity_token}"}
           .fallback
             %input{name:'file', type:'file'}
+          #preview-template{style:"display: none;"}
+            Probando!
   .container.disqus_box
     .row
       .col-md-12

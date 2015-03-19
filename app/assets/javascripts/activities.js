@@ -1,4 +1,5 @@
 var disqus_shortname = 'hack4geeks';
+Dropzone.options.challengeUpload = false;
 
 $(document).ready(function(){
 	var name;
@@ -6,6 +7,7 @@ $(document).ready(function(){
 	var disqus_config;
 	var convert;
 	var challenge;
+	var myDropzone;
 
 	name = $('.day_box').first().attr('data-name');
 	$('.badge-title').html(name);
@@ -33,10 +35,11 @@ $(document).ready(function(){
 
 		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
-		Dropzone.options.challengeUpload = {
-		  paramName: "file", // The name that will be used to transfer the file
+
+		myDropzone = new Dropzone("#challengeUpload", {
+			url: "submit",
 			dictDefaultMessage: "Arrastra archivos aqui para subirlos."
-		};
+		});
 
 	}
 
