@@ -2,7 +2,7 @@ ActiveAdmin.register Day do
 
   controller do
     def permitted_params
-      params.permit day: [:number, :name, :image, :status]
+      params.permit day: [:number, :name, :image, :status, :week_id]
     end
   end
 
