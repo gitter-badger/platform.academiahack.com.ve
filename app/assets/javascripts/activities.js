@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 		myDropzone = new Dropzone("#challengeUpload", {
 			url: "submit",
-			dictDefaultMessage: "Arrastra archivos aqui para subirlos."
+			dictDefaultMessage: "Entrega de retos (en desarrollo...)"
 		});
 
 	}
