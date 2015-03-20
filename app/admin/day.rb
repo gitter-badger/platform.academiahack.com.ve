@@ -10,6 +10,7 @@ ActiveAdmin.register Day do
     f.inputs "Detalles del día" do
       f.input :number
       f.input :name
+      f.input :week, as: :select
       f.input :status, as: :select, collection: Day.statuses.keys, input_html: { class: 'chosen-select' }
       f.input :image, :as => :file, :hint => f.template.image_tag(f.object.image.url(:thumb))
     end

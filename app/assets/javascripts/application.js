@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require chosen-jquery
+//= require dropzone
 //= require turbolinks
 //= require tinymce/tinymce.min
 //= require_tree .

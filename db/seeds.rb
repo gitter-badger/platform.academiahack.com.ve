@@ -49,7 +49,15 @@ def create_user email, password, devise_class
 end
 
 create_user 'rramos@4geeks.co', '12345678', User
-create_user 'admin@example.com', 'password', AdminUser
+
+create_user 'rramos@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'oarocha@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'etirado@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'despinoza@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'mgomez@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'agonzalez@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
 
 
 create_week 1, "Algoritmos en ruby 1"
