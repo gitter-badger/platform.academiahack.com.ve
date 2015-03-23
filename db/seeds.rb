@@ -48,7 +48,23 @@ def create_user email, password, devise_class
   user.save
 end
 
-create_user 'rramos@4geeks.co', '12345678', User
+# *********************** PROMO 2 ***********************
+
+create_user 'mentores@hack4geeks.co', 'Hack2015', User
+create_user 'maldonmarco@gmail.com', '16433730', User
+create_user 'anggelica.virtlife.jt@gmail.com', '19500768', User
+create_user 'gen.reyest@gmail.com', '23592193', User
+create_user 'gamezh81@gmail.com', '21601011', User
+create_user 'jamm@jmartinezm.org', '18619519', User
+create_user 'samuel_021093@hotmail.com', '22694771', User
+create_user 'locke_din15@hotmail.com', '20089538', User
+create_user 'luisdavidrn@gmail.com', '20116194', User
+create_user 'hector12j@gmail.com', '23644389', User
+create_user 'alexballera@gmail.com', '8983523', User
+create_user 'galindezj2@gmail.com', '24843057', User
+create_user 'mariiromero17@gmail.com', '22017982', User
+
+# *********************** PROMO 2 ***********************
 
 create_user 'rramos@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'oarocha@hack4geeks.co', 'Hack2015', AdminUser
