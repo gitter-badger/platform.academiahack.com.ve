@@ -50,7 +50,7 @@ class ActivitiesController < ApplicationController
     day_min = day_number - 2
     day_max = day_number + 2
 
-    days = Day.where("number >= ? AND number <= ?", day_min, day_max)
+    days = Day.where("number >= ? AND number <= ?", day_min, day_max).order(:number)
     add_days days, repeat, position
   end
 

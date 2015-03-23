@@ -93,13 +93,35 @@ create_day 10, "Ordenamiento en arreglos", @weeks[1], 2, '13.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Battleship 1", @weeks[2], 1, '26.png'
-create_day 12, "Battleship 2", @weeks[2], 1, '26.png'
-create_day 13, "Entrega Battleship", @weeks[2], 1, '26.png'
-create_day 14, "Objetos en Ruby 1", @weeks[2], 1, '26.png'
-create_day 15, "Objetos en Ruby 2", @weeks[2], 1, '26.png'
+create_day 11, "Battleship 1", @weeks[2], 2, '26.png'
+create_day 12, "Battleship 2", @weeks[2], 2, '26.png'
+create_day 13, "Entrega Battleship", @weeks[2], 2, '26.png'
+create_day 14, "Objetos en Ruby 1", @weeks[2], 2, '26.png'
+create_day 15, "Objetos en Ruby 2", @weeks[2], 2, '26.png'
 
-# *********************** SEMANA3 ***********************
+# *********************** SEMANA 4 ***********************
+
+create_day 16, "Objetos vs hashes en ruby", @weeks[3], 2, '27.png'
+create_day 17, "Practica de orientacion a objetos", @weeks[3], 2, '27.png'
+create_day 18, "RubyWarriors", @weeks[3], 2, '27.png'
+create_day 19, "Inicio HTTP", @weeks[3], 2, '17.png'
+create_day 20, "Practica HTTP + POSTMAN", @weeks[3], 2, '18.png'
+
+# *********************** SEMANA 5 ***********************
+
+create_day 21, "Modelado de datos", @weeks[4], 2, '22.png'
+create_day 22, "Introduccion a SQL", @weeks[4], 2, '23.png'
+create_day 23, "SQL 2", @weeks[4], 2, '23.png'
+create_day 24, "MVC, Frameworks, Rails", @weeks[4], 2, '32.png'
+create_day 25, "Modelos en rails 1", @weeks[4], 2, '32.png'
+
+# *********************** SEMANA 6 ***********************
+
+create_day 26, "Modelos en rails 2", @weeks[5], 1, '32.png'
+create_day 27, "Git", @weeks[5], 1, '19.png'
+create_day 28, "Controladores en Rails", @weeks[5], 1, '32.png'
+create_day 29, "Modelos + Controladores en Rails", @weeks[5], 1, '32.png'
+create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 1, '33.png'
 
 create_category "Analisis", 'analisis.png'
 create_category "Diseño", 'design.png'
