@@ -67,6 +67,9 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -219,6 +222,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -229,6 +233,7 @@ DEPENDENCIES
   activeadmin!
   better_errors (~> 2.1.1)
   binding_of_caller
+  bullet
   capistrano
   capistrano-bundler (~> 1.1.2)
   capistrano-rails (~> 1.1.1)
