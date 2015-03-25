@@ -4,6 +4,8 @@ class ActivitiesController < ApplicationController
 
   def week
     @weeks = Week.all
+    parameter = Parameter.find_by_key :current_week
+    @current_week_index = parameter.value.to_i - 1
   end
 
   def day

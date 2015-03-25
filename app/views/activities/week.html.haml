@@ -6,7 +6,7 @@
       %a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
         = image_tag 'arrow-right.png'
       - @weeks.each_with_index do |week, i|
-        .item{class: ("active" unless i != 0)}
+        .item{class: ("active" if i == @current_week_index)}
           .row
             .col-md-12
               %h1.text-center
@@ -38,7 +38,7 @@
         .arrow-left
       %ol.carousel-indicators
         - @weeks.each_with_index do |week, i|
-          %li{"data-target" => "#badges_carousel", "data-slide-to" => i, class: ("active" unless i != 0)}
+          %li{"data-target" => "#badges_carousel", "data-slide-to" => i, class: ("active" if i == @current_week_index)}
             = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}
         .arrow-right
