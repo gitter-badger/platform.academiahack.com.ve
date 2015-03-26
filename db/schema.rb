@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301161710) do
+ActiveRecord::Schema.define(version: 20150325213130) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -59,15 +59,15 @@ ActiveRecord::Schema.define(version: 20150301161710) do
   create_table "challenges", force: true do |t|
     t.string   "time"
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "day_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "challenges", ["category_id"], name: "index_challenges_on_category_id"
-  add_index "challenges", ["day_id"], name: "index_challenges_on_day_id"
+  add_index "challenges", ["category_id"], name: "index_challenges_on_category_id", using: :btree
+  add_index "challenges", ["day_id"], name: "index_challenges_on_day_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "text"
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["challege_id"], name: "index_comments_on_challege_id"
-  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["challege_id"], name: "index_comments_on_challege_id", using: :btree
+  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "days", force: true do |t|
     t.integer  "number"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "image_updated_at"
   end
 
-  add_index "days", ["week_id"], name: "index_days_on_week_id"
+  add_index "days", ["week_id"], name: "index_days_on_week_id", using: :btree
 
   create_table "deliveries", force: true do |t|
     t.integer  "challenge_id"
@@ -104,8 +104,15 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "updated_at"
   end
 
-  add_index "deliveries", ["challenge_id"], name: "index_deliveries_on_challenge_id"
-  add_index "deliveries", ["user_id"], name: "index_deliveries_on_user_id"
+  add_index "deliveries", ["challenge_id"], name: "index_deliveries_on_challenge_id", using: :btree
+  add_index "deliveries", ["user_id"], name: "index_deliveries_on_user_id", using: :btree
+
+  create_table "parameters", force: true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -122,8 +129,8 @@ ActiveRecord::Schema.define(version: 20150301161710) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "weeks", force: true do |t|
     t.integer  "number"

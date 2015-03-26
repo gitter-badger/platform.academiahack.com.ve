@@ -1,9 +1,16 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
-  layout "activities"
+  layout 'activities'
 
   def week
     @weeks = Week.all
+    parameter = Parameter.find_by_key :current_week
+    if parameter
+      @current_week_index = parameter.value.to_i - 1
+    else
+      @current_week_index = 0
+    end
+
   end
 
   def day
@@ -41,20 +48,20 @@ class ActivitiesController < ApplicationController
 
   def submit_challenge
     #IMPLEMENTACION DE CARGA DE RETO!
-    render json:{status: "OK"}
+    render json:{status: 'OK'}
   end
 
   private
 
-  def complete_days day_number, repeat = 0, position = 'none'
+  def complete_days(day_number, repeat = 0, position = 'none')
     day_min = day_number - 2
     day_max = day_number + 2
 
-    days = Day.where("number >= ? AND number <= ?", day_min, day_max).order(:number)
+    days = Day.where('number >= ? AND number <= ?', day_min, day_max).order(:number)
     add_days days, repeat, position
   end
 
-  def add_days days, repeat, position
+  def add_days(days, repeat, position)
     repeat.times do
       aux_day = Day.new
       aux_day.number = -1
