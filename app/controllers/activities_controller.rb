@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
     if parameter
       @current_week_index = parameter.value.to_i - 1
     else
-      @current_week_index = 1
+      @current_week_index = 0
     end
 
   end
