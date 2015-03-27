@@ -2,6 +2,7 @@
 @days = []
 @categories = []
 @challenges = []
+@parameters = []
 
 def create_week number, name
   week = Week.new
@@ -44,8 +45,20 @@ end
 def create_user email, password, devise_class
   user = devise_class.new
   user.email = email
-  user.password = password
-  user.save
+  if password.length >= 8
+    user.password = password
+    user.save
+  else
+    puts 'El password debe ser mayor a 8 caracteres'
+  end
+end
+
+def create_parameter key, value
+  param = Parameter.new
+  param.key = key
+  param.value = value
+  param.save
+  @parameters.push param
 end
 
 # *********************** PROMO 2 ***********************
@@ -60,7 +73,7 @@ create_user 'samuel_021093@hotmail.com', '22694771', User
 create_user 'locke_din15@hotmail.com', '20089538', User
 create_user 'luisdavidrn@gmail.com', '20116194', User
 create_user 'hector12j@gmail.com', '23644389', User
-create_user 'alexballera@gmail.com', '8983523', User
+create_user 'alexballera@gmail.com', '08983523', User
 create_user 'galindezj2@gmail.com', '24843057', User
 create_user 'mariiromero17@gmail.com', '22017982', User
 
@@ -144,4 +157,10 @@ create_category "Diseño", 'design.png'
 create_category "Construccion", 'construct.png'
 create_category "Bug", 'bug.png'
 
+# *********************** CHALLENGES ***********************
+
 create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @categories[2], @days[12]
+
+# *********************** PARAMETERS ***********************
+
+create_parameter "current_week", "6"
