@@ -156,11 +156,11 @@ create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 1, '33.png'
 
 # *********************** EXTRA! SEMANA 7 ***********************
 
-create_day 26, "[EXTRA] Algoritmos basicos", @weeks[5], 1, '32.png'
-create_day 27, "[EXTRA] Algoritmos intermedio", @weeks[5], 1, '19.png'
-create_day 28, "[EXTRA] HTTP en ruby", @weeks[5], 1, '32.png'
-create_day 29, "[EXTRA] Modelado de una BD", @weeks[5], 1, '32.png'
-create_day 30, "[EXTRA] CRUD API en Rails", @weeks[5], 1, '33.png'
+create_day 26, "[EXTRA] Algoritmos basicos", @weeks[6], 1, '11.png'
+create_day 27, "[EXTRA] Algoritmos intermedio", @weeks[6], 1, '12.png'
+create_day 28, "[EXTRA] HTTP en ruby", @weeks[6], 1, '17.png'
+create_day 29, "[EXTRA] Modelado de una BD", @weeks[6], 1, '22.png'
+create_day 30, "[EXTRA] CRUD API en Rails", @weeks[6], 1, '33.png'
 
 create_category "Analisis", 'analisis.png'
 create_category "Diseño", 'design.png'
