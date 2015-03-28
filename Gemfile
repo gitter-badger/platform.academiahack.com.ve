@@ -25,3 +25,4 @@ gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: "capistrano/rvm"
 gem 'mysql2'
 gem 'bullet'
+gem 'acts_as_list'

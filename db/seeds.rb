@@ -4,10 +4,11 @@
 @challenges = []
 @parameters = []
 
-def create_week number, name
+def create_week number, name, position
   week = Week.new
   week.number = number
   week.name = name
+  week.position = position
   week.save
   @weeks.push week
 end
@@ -89,19 +90,20 @@ create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
 
 
-create_week 1, "Algoritmos en ruby 1"
-create_week 2, "Algoritmos en ruby 2"
-create_week 3, "Battleship + Objetos en ruby"
-create_week 4, "Objetos en ruby + HTTP"
-create_week 5, "BD + Rails"
-create_week 6, "JSON + Rails MC"
-create_week 7, "Service App"
-create_week 8, "HTML + CSS + Bootstrap"
-create_week 9, "Javascript"
-create_week 10, "Javascript + jQuery"
-create_week 11, "AngularJS"
-create_week 12, "AngularJS"
-create_week 13, "AngularJS"
+create_week 1, "Algoritmos en ruby 1", 1
+create_week 2, "Algoritmos en ruby 2", 2
+create_week 3, "Battleship + Objetos en ruby", 3
+create_week 4, "Objetos en ruby + HTTP", 4
+create_week 5, "BD + Rails", 5
+create_week 6, "JSON + Rails MC", 6
+create_week 7, "Semana Santa", 7
+create_week 8, "Service App", 8
+create_week 9, "HTML + CSS + Bootstrap", 9
+create_week 10, "Javascript", 10
+create_week 11, "Javascript + jQuery", 11
+create_week 12, "AngularJS", 12
+create_week 13, "AngularJS", 13
+create_week 14, "AngularJS", 14
 
 
 # *********************** SEMANA1 ***********************
@@ -152,6 +154,14 @@ create_day 28, "Controladores en Rails", @weeks[5], 1, '32.png'
 create_day 29, "Modelos + Controladores en Rails", @weeks[5], 1, '32.png'
 create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 1, '33.png'
 
+# *********************** EXTRA! SEMANA 7 ***********************
+
+create_day 26, "[EXTRA] Algoritmos basicos", @weeks[5], 1, '32.png'
+create_day 27, "[EXTRA] Algoritmos intermedio", @weeks[5], 1, '19.png'
+create_day 28, "[EXTRA] HTTP en ruby", @weeks[5], 1, '32.png'
+create_day 29, "[EXTRA] Modelado de una BD", @weeks[5], 1, '32.png'
+create_day 30, "[EXTRA] CRUD API en Rails", @weeks[5], 1, '33.png'
+
 create_category "Analisis", 'analisis.png'
 create_category "Diseño", 'design.png'
 create_category "Construccion", 'construct.png'
@@ -163,4 +173,4 @@ create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @cat
 
 # *********************** PARAMETERS ***********************
 
-create_parameter "current_week", "6"
+create_parameter "current_week", "7"

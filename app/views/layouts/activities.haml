@@ -39,6 +39,6 @@
         %span.icon-bar
       .caret_header_2
   - flash.each do |name, msg|
-    = content_tag :p, msg, class: "alert alert-info"
+    = content_tag :p, msg, class: "alert alert-info feedback-alert"
   = yield
   = javascript_include_tag 'application', 'data-turbolinks-track' => true

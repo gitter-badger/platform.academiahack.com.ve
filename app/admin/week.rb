@@ -2,7 +2,7 @@ ActiveAdmin.register Week do
 
   controller do
     def permitted_params
-      params.permit week: [:number, :name]
+      params.permit week: [:number, :name, :position]
     end
   end
 

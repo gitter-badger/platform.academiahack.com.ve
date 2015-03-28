@@ -20,5 +20,10 @@
 //= require_tree .
 
 $(function(){
-
+    var $feedback;
+    if($feedback = $(".feedback-alert") ) {
+        $feedback.slideUp(500, function(){
+            $(this).alert('close');
+        });
+    }
 });

@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'activities#week'
 
+  # resources :weeks, shallow: true do
+  #   resources :days, shallow: true do
+  #     resources :challenges
+  #   end
+  # end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
