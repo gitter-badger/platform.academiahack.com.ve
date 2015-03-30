@@ -15,6 +15,13 @@
         %p
           = simple_format @challenge.description
     .row
+      .col-md-12
+        - if @challenge_repo
+          = @challenge_repo
+        - else
+          %h4
+            Debes agregar tu usuario de github a tu perfil
+    .row
       .col-md-8.col-md-offset-2
         %form{action: "submit", id:'challengeUpload', class: 'dropzone'}
           %input{name:"authenticity_token", type:"hidden", value:"#{form_authenticity_token}"}
