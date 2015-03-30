@@ -1,0 +1,275 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+  font-family: "Dosis Light";
+  src: asset-url('dosis.otf');
+}
+
+body {
+  font-family: "Dosis Light";
+}
+
+header {
+  background-image: asset-url('blue_background.jpg');
+  background-size: 20%;
+  padding: 20px 0;
+  color: #fff;
+}
+
+header h1 {
+  margin: 0;
+}
+
+section.dark {
+  background-color: #000B1C;
+  padding: 10px 0;
+  color: #fff;
+}
+
+.diagram {
+  margin: 0 auto -70px;
+}
+
+.diagram span {
+  font-family: "Dosis Light" !important;
+  font-size: 30px !important;
+  font-weight: bold;
+}
+
+.diagram img {
+  margin: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.diagram span {
+  font-size: 22px !important;
+  line-height: 50px !important;
+}
+
+.no-percentage .diagram span {
+  display: none !important;
+}
+
+section.white {
+  background-color: #fff;
+  padding: 120px 0 40px;
+}
+
+.diagram .diagram {
+  margin-top: 10px;
+}
+
+.percentage {
+  margin: 0 0 5px;
+  font-weight: bold;
+  position: relative;
+}
+
+.percentage span {
+  position: absolute;
+  width: 275px;
+  right: -250px;
+  height: 1px;
+  background-color: #000;
+  top: 50%;
+  z-index: 2;
+}
+
+.percentage span:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  right: 0;
+  position: absolute;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  z-index: 2;
+  background-color: #000;
+  top: -3px;
+}
+
+.percentage.front {
+  color: #859ACE;
+}
+
+.percentage.devops {
+  color: #1461B9;
+}
+
+.percentage.back {
+  color: #000B1C;
+}
+
+.circle {
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  padding: 10px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.nav-tabs li .circle {
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  padding: 10px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+}
+
+.circle.light-blue {
+  background-color: #859ACE;
+}
+
+.circle.blue {
+  background-color: #1461B9;
+}
+
+.circle.dark-blue {
+  background-color: #000B1C;
+}
+
+.nav-tabs {
+  border: none;
+  margin: 100px auto 20px;
+  display: table;
+}
+
+.nav-tabs>li>a {
+  margin: 0 15px;
+}
+
+.nav-tabs>li>.circle.circle.light-blue,
+.nav-tabs>li>.circle.circle.light-blue:hover,
+.nav-tabs>li>.circle.circle.light-blue:focus,
+.nav-tabs>li.active>.circle.circle.light-blue,
+.nav-tabs>li.active>.circle.circle.light-blue:hover,
+.nav-tabs>li.active>.circle.circle.light-blue:focus {
+  background-color: #859ACE;
+  border: none;
+}
+
+.nav-tabs>li>.circle.circle.blue,
+.nav-tabs>li>.circle.circle.blue:hover,
+.nav-tabs>li>.circle.circle.blue:focus,
+.nav-tabs>li.active>.circle.circle.blue,
+.nav-tabs>li.active>.circle.circle.blue:hover,
+.nav-tabs>li.active>.circle.circle.blue:focus {
+  background-color: #1461B9;
+  border: none;
+}
+
+.nav-tabs>li>.circle.circle.dark-blue,
+.nav-tabs>li>.circle.circle.dark-blue:hover,
+.nav-tabs>li>.circle.circle.dark-blue:focus,
+.nav-tabs>li.active>.circle.circle.dark-blue,
+.nav-tabs>li.active>.circle.circle.dark-blue:hover,
+.nav-tabs>li.active>.circle.circle.dark-blue:focus {
+  background-color: #000B1C;
+  border: none;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.diagram .logo-diagram {
+  margin: 60px;
+}
+
+.progress {
+  height: 35px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  background: transparent;
+  box-shadow: 0 0 0 transparent;
+}
+
+.progress .progress-bar {
+  line-height: 35px;
+  text-align: left;
+  padding: 0 10px;
+  font-size: 16px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+}
+
+.progress .progress-bar.blue {
+  background-color: #156AC7;
+}
+
+.progress .progress-bar.dark-blue {
+  background-color: #000B1C;
+}
+
+
+.progress .progress-bar.light-blue {
+  background-color: #57A4DC;
+}
+
+.line-35 {
+  line-height: 35px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+section.blue {
+  padding: 40px 0;
+  background-image: asset-url('blue_background.jpg');
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  min-height: 570px;
+}
+
+.hands {
+  position: absolute;
+}
+
+section.gray {
+  padding: 40px 0;
+  background-image: asset-url('white_background.jpg');
+  color: #fff;
+  position: relative;
+  color: #353535;
+}
+
+.gray-banner {
+  background-color: #353535;
+  color: #fff;
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+#observaciones {
+  position: relative;
+}
+
+#observaciones .text {
+  width: 381px;
+  height: 288px;
+  position: absolute;
+  background: #fff;
+  padding: 10px;
+  top: 21px;
+  left: 87px;
+  color: #222;
+  font-size: 18px;
+  overflow: auto;
+}
+
+.container	{
+  width: 1170px;
+}

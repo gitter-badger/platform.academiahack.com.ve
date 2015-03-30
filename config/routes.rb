@@ -1,25 +1,19 @@
 Rails.application.routes.draw do
+  root 'weeks#index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
 
-  get 'activities/' => 'activities#week', as: :activities_week
-  get 'activities/day/:id' => 'activities#day', as: :activities_day
-  get 'activities/challenge/:id' => 'activities#challenge', as: :activities_challenge
-  post 'activities/challenge/submit' => 'activities#submit_challenge', as: :submit_challenge
+  devise_for :users
+  resources :users, only: [:show]
+
   get 'activities/error' => 'activities#error', as: :activities_error
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'activities#week'
-
-  # resources :weeks, shallow: true do
-  #   resources :days, shallow: true do
-  #     resources :challenges
-  #   end
-  # end
+  resources :weeks, shallow: true do
+    resources :days, shallow: true do
+      resources :challenges
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

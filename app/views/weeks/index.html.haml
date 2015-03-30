@@ -15,7 +15,7 @@
                 - week.days.each do |day|
                   .day_box{'data-name' => day.name}
                     - if day.active?
-                      = link_to activities_day_path(day.id) do
+                      = link_to day_path(day.id) do
                         = image_tag 'black_hexagon.png', class: 'off'
                         = image_tag day.image.url
                     - elsif day.blocked?

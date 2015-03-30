@@ -26,4 +26,6 @@ $(function(){
             $(this).alert('close');
         });
     }
+
+    tinymce.init({selector:'textarea'});
 });

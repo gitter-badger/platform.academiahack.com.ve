@@ -10,7 +10,7 @@
                   = image_tag 'black_hexagon.png', class: 'on'
                   = image_tag day.image.url
                 - else
-                  = link_to activities_day_path(day.id) do
+                  = link_to day_path(day.id) do
                     = image_tag 'black_hexagon.png', class: 'off'
                     = image_tag day.image.url
               - elsif day.blocked?
@@ -39,7 +39,7 @@
                 = challenge.title
               .image
                 = image_tag challenge.category.image.url
-            = link_to activities_challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
               = image_tag 'list-hexagon.png'
               ¡Hazlo!
       - else

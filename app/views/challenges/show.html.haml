@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-4.col-md-offset-8
+    .col-md-5.col-md-offset-7
       %h3
         = @challenge.day.name
         = image_tag @challenge.day.image.url :thumb
@@ -20,13 +20,7 @@
           = @challenge_repo
         - else
           %h4
-            Debes agregar tu usuario de github a tu perfil
-    .row
-      .col-md-8.col-md-offset-2
-        %form{action: "submit", id:'challengeUpload', class: 'dropzone'}
-          %input{name:"authenticity_token", type:"hidden", value:"#{form_authenticity_token}"}
-          .fallback
-            %input{name:'file', type:'file'}
+            Para entregar debes agregar tu usuario de github a tu perfil.
   .container.disqus_box
     .row
       .col-md-12

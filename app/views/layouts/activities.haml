@@ -19,15 +19,14 @@
               .caret_header
                 %span
           %li.active.menu-registro
-            = link_to activities_week_path do
+            = link_to weeks_path do
               Actividades
               .caret_header
                 %span
         - if user_signed_in?
           %ul#menu-logged-menu.nav.navbar-nav.navbar-right
             %li.perfilLink.menu-username
-              %a{href: '#'}
-                = current_user.email
+              = link_to current_user.email, current_user
             %li.outperfil.pull-right.menu-salir
               = link_to destroy_user_session_path, method: 'delete' do
                 %span.glyphicon.glyphicon-off
