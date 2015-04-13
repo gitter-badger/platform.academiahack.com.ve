@@ -162,6 +162,63 @@ create_day 33, "[EXTRA] HTTP en ruby", @weeks[6], 1, '17.png'
 create_day 34, "[EXTRA] Modelado de una BD", @weeks[6], 1, '22.png'
 create_day 35, "[EXTRA] CRUD API en Rails", @weeks[6], 1, '33.png'
 
+# *********************** SEMANA 8 ***********************
+
+create_day 36, "Lunes", @weeks[7], 0
+create_day 37, "Martes", @weeks[7], 0
+create_day 38, "Miercoles", @weeks[7], 0
+create_day 39, "Jueves", @weeks[7], 0
+create_day 40, "Viernes", @weeks[7], 0
+
+# *********************** SEMANA 9 ***********************
+
+create_day 41, "Lunes", @weeks[8], 0
+create_day 42, "Martes", @weeks[8], 0
+create_day 43, "Miercoles", @weeks[8], 0
+create_day 44, "Jueves", @weeks[8], 0
+create_day 45, "Viernes", @weeks[8], 0
+
+# *********************** SEMANA 10 ***********************
+
+create_day 46, "Lunes", @weeks[9], 0
+create_day 47, "Martes", @weeks[9], 0
+create_day 48, "Miercoles", @weeks[9], 0
+create_day 49, "Jueves", @weeks[9], 0
+create_day 50, "Viernes", @weeks[9], 0
+
+# *********************** SEMANA 11 ***********************
+
+create_day 51, "Lunes", @weeks[10], 0
+create_day 52, "Martes", @weeks[10], 0
+create_day 53, "Miercoles", @weeks[10], 0
+create_day 54, "Jueves", @weeks[10], 0
+create_day 55, "Viernes", @weeks[10], 0
+
+# *********************** SEMANA 12 ***********************
+
+create_day 56, "Lunes", @weeks[11], 0
+create_day 57, "Martes", @weeks[11], 0
+create_day 58, "Miercoles", @weeks[11], 0
+create_day 59, "Jueves", @weeks[11], 0
+create_day 60, "Viernes", @weeks[11], 0
+
+# *********************** SEMANA 13 ***********************
+
+create_day 61, "Lunes", @weeks[12], 0
+create_day 62, "Martes", @weeks[12], 0
+create_day 63, "Miercoles", @weeks[12], 0
+create_day 64, "Jueves", @weeks[12], 0
+create_day 65, "Viernes", @weeks[12], 0
+
+# *********************** SEMANA 14 ***********************
+
+create_day 66, "Lunes", @weeks[13], 0
+create_day 67, "Martes", @weeks[13], 0
+create_day 68, "Miercoles", @weeks[13], 0
+create_day 69, "Jueves", @weeks[13], 0
+create_day 70, "Viernes", @weeks[13], 0
+
+
 create_category "Analisis", 'analisis.png'
 create_category "Diseño", 'design.png'
 create_category "Construccion", 'construct.png'
