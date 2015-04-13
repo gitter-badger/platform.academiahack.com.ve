@@ -15,16 +15,4 @@ class ChallengesController < ApplicationController
       @challenge_url = "https://github.com/Academia-Hack-Promo2/#{@challenge_repo}"
     end
   end
-
-  def mentor_select_day
-    @weeks = Week.all
-  end
-
-  def mentor_create_challenge
-    @day = Day.find params[:id]
-  end
-
-  def mentor_new_challenge
-    @challenge = Challenge.new
-  end
 end

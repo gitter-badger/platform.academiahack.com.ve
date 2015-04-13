@@ -9,10 +9,6 @@ Rails.application.routes.draw do
 
   get 'activities/error' => 'activities#error', as: :activities_error
 
-  get 'mentors/challenge/create' => 'challenges#mentor_select_day'
-  get 'mentors/challenge/create/day/:id' => 'challenges#mentor_create_challenge', as: :mentor_create_challenge
-  post 'mentors/challenge/new' => 'challenges#mentor_new_challenge'
-
   resources :weeks, shallow: true do
     resources :days, shallow: true do
       resources :challenges
