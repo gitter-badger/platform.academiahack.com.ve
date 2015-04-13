@@ -43,10 +43,13 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
-def create_user email, password, devise_class
+def create_user email, password, devise_class, github_user=nil
   user = devise_class.new
   user.email = email
   if password.length >= 8
+    if github_user != nil
+      user.github_user = github_user
+    end
     user.password = password
     user.save
   else
@@ -65,18 +68,18 @@ end
 # *********************** PROMO 2 ***********************
 
 create_user 'mentores@hack4geeks.co', 'Hack2015', User
-create_user 'maldonmarco@gmail.com', '16433730', User
-create_user 'anggelica.virtlife.jt@gmail.com', '19500768', User
-create_user 'gen.reyest@gmail.com', '23592193', User
-create_user 'gamezh81@gmail.com', '21601011', User
-create_user 'jamm@jmartinezm.org', '18619519', User
-create_user 'samuel_021093@hotmail.com', '22694771', User
-create_user 'locke_din15@hotmail.com', '20089538', User
-create_user 'luisdavidrn@gmail.com', '20116194', User
-create_user 'hector12j@gmail.com', '23644389', User
-create_user 'alexballera@gmail.com', '08983523', User
-create_user 'galindezj2@gmail.com', '24843057', User
-create_user 'mariiromero17@gmail.com', '22017982', User
+create_user 'maldonmarco@gmail.com', '16433730', User, 'mmaldonado730'
+create_user 'anggelica.virtlife.jt@gmail.com', '19500768', User, 'aherrera768'
+create_user 'gen.reyest@gmail.com', '23592193', User, 'greyes193'
+create_user 'gamezh81@gmail.com', '21601011', User, 'hgamez011'
+create_user 'jamm@jmartinezm.org', '18619519', User, 'jmartinez519'
+create_user 'samuel_021093@hotmail.com', '22694771', User, 'smelgarejo771'
+create_user 'locke_din15@hotmail.com', '20089538', User, 'llopez538'
+create_user 'luisdavidrn@gmail.com', '20116194', User, 'lrodriguez194'
+create_user 'hector12j@gmail.com', '23644389', User, 'hcarreno389'
+create_user 'alexballera@gmail.com', '08983523', User, 'aballera523'
+create_user 'galindezj2@gmail.com', '24843057', User, 'jgalindez057'
+create_user 'mariiromero17@gmail.com', '22017982', User, 'mromero942'
 
 # *********************** PROMO 2 ***********************
 

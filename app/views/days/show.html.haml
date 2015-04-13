@@ -29,21 +29,55 @@
 .content-white
   .container
     %h1.blue-text.text-center
-      = @day.name
+      %span.day-title
+        = @day.name
+      -#%buton.btn.btn-default.btn-xs.day-name-edit
+      -#  %span.glyphicon.glyphicon-pencil{'aria-hidden'=>'true'}
     .row
       - if @day.challenges.length > 0
-        - @day.challenges.each do |challenge|
-          .col-md-4.text-center
-            .challenge-box
-              %h3
-                = challenge.title
-              .image
-                = image_tag challenge.category.image.url
-            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-              = image_tag 'list-hexagon.png'
-              ¡Hazlo!
+        .row
+          %h2
+            Retos en clase
+          - @day.challenges.each do |challenge|
+            - if challenge.time == 'classroom'
+              .col-md-4.text-center
+                .challenge-box
+                  %h3
+                    = challenge.title
+                  .image
+                    = image_tag challenge.category.image.url
+                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                  = image_tag 'list-hexagon.png'
+                  ¡Hazlo!
+        .row
+          %h2
+            Retos del sprint
+          - @day.challenges.each do |challenge|
+            - if challenge.time == 'homework'
+              .col-md-4.text-center
+                .challenge-box
+                  %h3
+                    = challenge.title
+                  .image
+                    = image_tag challenge.category.image.url
+                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                  = image_tag 'list-hexagon.png'
+                  ¡Hazlo!
       - else
         %h1.text-center
           Hoy no hay retos, pero siempre hay mucho que hacer!
           %h4.text-center
             Aprovecha y haz preguntas claves a los mentores!
+    - if current_user.email == "mentores@hack4geeks.co"
+      .row.mentor-zone
+        .col-md-12
+          %h3
+            Zona de mentores
+      .row
+        .col-md-3
+          %img.dementor{src:"http://fc02.deviantart.net/fs71/f/2012/280/8/d/dementor_painted_by_blackplague1348-d5h51vj.jpg"}
+        .col-md-3
+          .row
+            = link_to 'Editar este dia', edit_admin_day_path(@day), class: 'btn btn-default btn-block'
+          .row
+            = link_to 'Agregar reto', new_admin_challenge_path(:challenge => { :day_id => @day.id }), class: 'btn btn-default btn-block'

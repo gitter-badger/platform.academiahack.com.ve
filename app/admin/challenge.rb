@@ -11,7 +11,7 @@ ActiveAdmin.register Challenge do
       f.input :day
       f.input :category
       f.input :title
-      f.input :time, as: :select, collection: {day:'classroom', afternoon:'homework'}
+      f.input :time, as: :select, collection: {classroom:'classroom', homework:'homework'}
       f.input :description, as: :text
     end
     f.actions
