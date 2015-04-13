@@ -15,12 +15,15 @@
         %p
           = simple_format @challenge.description
     .row
-      .col-md-12
-        - if @challenge_repo
-          = @challenge_repo
+      .col-md-12.text-right
+        - if @challenge_repo && @challenge_url
+          %span.github-url
+            El nombre del repositorio a entregar es:
+            %a{href: @challenge_url}
+              = @challenge_repo
         - else
           %h4
-            Para entregar debes agregar tu usuario de github a tu perfil.
+            Para entregar deben agregar tu usuario de github a tu perfil.
   .container.disqus_box
     .row
       .col-md-12
