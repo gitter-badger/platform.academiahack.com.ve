@@ -1,5 +1,5 @@
 ActiveAdmin.register Day do
-
+  config.sort_order = 'number_desc'
   controller do
     def permitted_params
       params.permit day: [:number, :name, :image, :status, :week_id]
@@ -8,7 +8,7 @@ ActiveAdmin.register Day do
 
   form do |f|
     f.inputs "Detalles del día" do
-      f.input :number
+      f.input :number, :input_html => { :value => Day.maximum(:number) + 1}
       f.input :name
       f.input :week, as: :select
       f.input :status, as: :select, collection: Day.statuses.keys, input_html: { class: 'chosen-select' }

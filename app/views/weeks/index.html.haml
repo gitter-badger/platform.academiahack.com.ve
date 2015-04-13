@@ -12,7 +12,7 @@
               %h1.text-center
                 = week.name
               .row.text-center
-                - week.days.each do |day|
+                - week.days.order(:number).each do |day|
                   .day_box{'data-name' => day.name}
                     - if day.active?
                       = link_to day_path(day.id) do
