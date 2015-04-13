@@ -12,4 +12,16 @@ class ChallengesController < ApplicationController
       @challenge_repo = "w_#{week.number}_d_#{day.number}_#{current_user.github_user}"
     end
   end
+
+  def mentor_select_day
+    @weeks = Week.all
+  end
+
+  def mentor_create_challenge
+    @day = Day.find params[:id]
+  end
+
+  def mentor_new_challenge
+    @challenge = Challenge.new
+  end
 end
