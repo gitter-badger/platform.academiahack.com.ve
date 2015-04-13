@@ -15,8 +15,8 @@
 //= require bootstrap
 //= require chosen-jquery
 //= require dropzone
-//= require turbolinks
 //= require tinymce/tinymce.min
+//= require jquery.diagram
 //= require_tree .
 
 $(function(){
