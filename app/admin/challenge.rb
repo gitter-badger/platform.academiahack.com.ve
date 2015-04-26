@@ -4,6 +4,31 @@ ActiveAdmin.register Challenge do
     def permitted_params
       params.permit challenge: [:time, :title, :description, :day_id, :category_id, :status]
     end
+
+    def create
+      challenge = Challenge.new(challenge_params)
+      message = ''
+
+      unless challenge.save
+        message = 'No se pudo cargar el reto'
+      end
+      redirect_to challenge_path(challenge), notice: message
+    end
+
+    def update
+      challenge = Challenge.find params[:id]
+      message = ''
+
+      unless challenge.update(challenge_params)
+        message = 'No se pudo actualizar el reto!'
+      end
+      redirect_to challenge_path(challenge), notice: message
+    end
+
+    private
+    def challenge_params
+      params.require(:challenge).permit(:time, :title, :description, :day_id, :category_id, :status)
+    end
   end
 
   form do |f|
