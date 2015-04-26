@@ -16,14 +16,86 @@
           = simple_format @challenge.description
     .row
       .col-md-12.text-right
-        - if @challenge_repo && @challenge_url
+        - if current_user.github_user && @delivery && @delivery.challenge_repo && @delivery.challenge_url
           %span.github-url
             El nombre del repositorio a entregar es:
-            %a{href: @challenge_url}
-              = @challenge_repo
+            %a{href: @delivery.challenge_url}
+              = @delivery.challenge_repo
         - else
           %span.github-url
             Para entregar deben agregar tu usuario de github a tu perfil.
+    - if current_user.email == 'mentores@hack4geeks.co'
+      .row
+        .col-md-12
+          %h3
+            Zona de entrega
+      .row
+        .col-md-12
+          %p
+            La entrega es el hash del commit en github, copialo desde github o la consola
+            %em
+              git log -n 1
+            y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
+      .row
+        .col-md-8.col-md-offset-2
+          - if @challenge.status == 1
+            = form_for @delivery, html: {class:'form-inline'} do |f|
+              = f.hidden_field :user_id, value: @delivery.user.id
+              = f.hidden_field :challenge_id, value: @delivery.challenge.id
+              .row
+                .col-md-7
+                  = f.text_field :commit, type:"text", class:"form-control full-width btn-flat text-center"
+                .col-md-5
+                  = f.submit 'Cargar git commit', class: 'btn btn-primary btn-flat btn-block'
+          - else
+            .row
+              .col-md-12
+                %h4.text-center
+                  El reto esta cerrado (ya no esta permitido entregar)
+          .row
+            .col-md-12
+              -if @delivery.commit
+                %a.btn.btn-info.btn-flat.btn-block{href: @delivery.commit_url, target: 'blank'}
+                  Ver ultimo commit en github
+    - if current_user.email == "mentores@hack4geeks.co"
+      .row.mentor-zone
+        .col-md-12
+          %h3
+            Zona de mentores
+      .row
+        .col-md-12
+          = link_to 'Editar este reto', edit_admin_challenge_path(@challenge), class: 'btn btn-primary btn-flat btn-block'
+      %hr
+      .row
+        .col-md-3
+          %img.dementor{src:"http://fc02.deviantart.net/fs71/f/2012/280/8/d/dementor_painted_by_blackplague1348-d5h51vj.jpg"}
+        .col-md-9
+          .row
+            .col-md-12
+              %table.table
+                %thead
+                  %tr
+                    %th
+                      Email del estudiante
+                    %th
+                      Fecha y hora de la entrega
+                    %th
+                      Commit
+                %tbody
+                  - if @deliveries && @deliveries.length > 0
+                    - @deliveries.each do |delivery|
+                      %tr
+                        %td
+                          = delivery.user.email
+                        %td
+                          = delivery.created_at.strftime("%d/%m/%Y %I:%M%p")
+                        %td
+                          %a{href: delivery.commit_url}
+                            = delivery.commit.truncate(7, omission: '')
+                  - else
+                    %tr
+                      %td.text-center{colspan:3}
+                        No hay entregas aun!
   .container.disqus_box
     .row
       .col-md-12
