@@ -24,7 +24,7 @@
         - else
           %span.github-url
             Para entregar deben agregar tu usuario de github a tu perfil.
-    - if current_user.email == 'mentores@hack4geeks.co'
+    - unless current_user.email == 'mentores@hack4geeks.co'
       .row
         .col-md-12
           %h3
