@@ -24,7 +24,7 @@
         - else
           %span.github-url
             Para entregar deben agregar tu usuario de github a tu perfil.
-    - unless current_user.email == 'mentores@hack4geeks.co'
+    - if current_user.email == 'mentores@hack4geeks.co'
       .row
         .col-md-12
           %h3
@@ -36,9 +36,15 @@
             %em
               git log -n 1
             y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
+      - if @delivery
+        %hr
+        .row
+          .col-md-12
+            .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
+        %hr
       .row
         .col-md-8.col-md-offset-2
-          - if @challenge.status == 1
+          - if current_user.github_user && @challenge.status == 1
             = form_for @delivery, html: {class:'form-inline'} do |f|
               = f.hidden_field :user_id, value: @delivery.user.id
               = f.hidden_field :challenge_id, value: @delivery.challenge.id
@@ -51,13 +57,13 @@
             .row
               .col-md-12
                 %h4.text-center
-                  El reto esta cerrado (ya no esta permitido entregar)
+                  El reto esta cerrado (ya no esta permitido entregar) o no tienes github username.
           .row
             .col-md-12
-              -if @delivery.commit
+              -if @delivery && @delivery.commit
                 %a.btn.btn-info.btn-flat.btn-block{href: @delivery.commit_url, target: 'blank'}
                   Ver ultimo commit en github
-    - if current_user.email == "mentores@hack4geeks.co"
+    - unless current_user.email == "mentores@hack4geeks.co"
       .row.mentor-zone
         .col-md-12
           %h3
@@ -105,13 +111,17 @@
                         %td
                           %a{href: delivery.commit_url}
                             = delivery.commit.truncate(7, omission: '')
-                        %td
-                          = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
-                        %td
-                          = link_to 'Rechazar', delivery_review_path(id:delivery.id, status:0), class: 'btn btn-info btn-flat btn-block'
+                        - if @challenge.status == 1
+                          %td.text-center{colspan:2}
+                            Reto abierto.
+                        - else
+                          %td
+                            = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
+                          %td
+                            = link_to 'Rechazar', delivery_review_path(id:delivery.id, status:0), class: 'btn btn-info btn-flat btn-block'
                   - else
                     %tr
-                      %td.text-center{colspan:3}
+                      %td.text-center{colspan:5}
                         No hay entregas aun!
   .container.disqus_box
     .row

@@ -21,7 +21,7 @@ class DaysController < ApplicationController
         @days = complete_days day_number
       end
     else
-      redirect_to activities_error_path
+      redirect_to root_path, notice: 'El dia no se encuentra o esta bloqueado'
     end
   end
 

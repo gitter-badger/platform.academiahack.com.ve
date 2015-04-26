@@ -23,8 +23,7 @@ ActiveAdmin.register Day do
 
   form do |f|
     f.inputs "Detalles del día" do
-      f.input :number, :input_html => { :value => Day.maximum(:number) + 1}
-      #f.input :number, :input_html => { :value => params[:id] ? day.number : Day.maximum(:number) + 1}
+      f.input :number, :input_html => { :value => params[:id] ? day.number : Day.maximum(:number) + 1}
       f.input :name
       f.input :week, as: :select
       f.input :status, as: :select, collection: Day.statuses.keys, input_html: { class: 'chosen-select' }

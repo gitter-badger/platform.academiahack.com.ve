@@ -76,8 +76,10 @@
       .row
         .col-md-3
           %img.dementor{src:"http://fc02.deviantart.net/fs71/f/2012/280/8/d/dementor_painted_by_blackplague1348-d5h51vj.jpg"}
-        .col-md-3
+        .col-md-9
           .row
-            = link_to 'Editar este dia', edit_admin_day_path(@day), class: 'btn btn-default btn-block'
+            .col-md-12
+              = link_to 'Editar este dia', edit_admin_day_path(@day), class: 'btn btn-primary btn-flat btn-block'
           .row
-            = link_to 'Agregar reto', new_admin_challenge_path(:challenge => { :day_id => @day.id }), class: 'btn btn-default btn-block'
+            .col-md-12
+              = link_to 'Agregar reto', new_admin_challenge_path(:challenge => { :day_id => @day.id }), class: 'btn btn-info btn-flat btn-block'

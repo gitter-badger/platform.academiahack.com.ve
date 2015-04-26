@@ -16,15 +16,28 @@
 //= require chosen-jquery
 //= require dropzone
 //= require tinymce/tinymce.min
+//= require repo/repo.min
 //= require jquery.diagram
 //= require_tree .
 
 $(function(){
     var $feedback;
+    var $repo_preview;
+
+    var promo_group;
+    var challenge_repo;
+
     if($feedback = $(".feedback-alert") ) {
-        $feedback.slideUp(500, function(){
+        $feedback.delay(5000).slideUp(1000, function(){
             $(this).alert('close');
         });
+    }
+
+    if($repo_preview = $('.repo_preview')) {
+        promo_group = $repo_preview.attr('data-group');
+        challenge_repo = $repo_preview.attr('data-repo');
+
+        $repo_preview.repo({ user: promo_group, name: challenge_repo });
     }
 
     tinymce.init({selector:'textarea'});
