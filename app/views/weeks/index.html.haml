@@ -16,20 +16,24 @@
                   .day_box{'data-name' => day.name}
                     - if day.active?
                       = link_to day_path(day.id) do
-                        = image_tag 'black_hexagon.png', class: 'off'
+                        .box-off
+                          = image_tag 'black_hexagon.png', class: 'off'
                         = image_tag day.image.url
                     - elsif day.blocked?
-                      = image_tag 'black_hexagon.png', class: 'locked'
+                      .box-off
+                        = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag day.image.url
                       .day_overlay
                         = image_tag "locked.png"
                     - elsif day.done?
                       = image_tag day.image.url
                       .day_overlay
-                        = image_tag 'black_hexagon.png', class: 'locked'
+                        .box-off
+                          = image_tag 'black_hexagon.png', class: 'locked'
                         = image_tag "fullfilled.png", class: 'fullfilled'
                     - else
-                      = image_tag 'black_hexagon.png', class: 'locked'
+                      .box-off
+                        = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
     .text-center
       .badge-title

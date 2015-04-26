@@ -208,3 +208,122 @@ header.navbar-default {
   margin: 10px;
   position: absolute;
 }
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+  .navbar-header {
+    float: left;
+  }
+  .navbar-toggle {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+  }
+  .caret_header_2 {
+    display: none;
+  }
+  .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+    margin-top: 50px;
+    overflow: hidden;
+    background-color: #eee;
+    padding: 0;
+  }
+  #categorias ul {
+    width: 100%;
+  }
+  #categorias ul li {
+    width: 100%;
+  }
+  #categorias ul li a {
+    height: auto;
+    line-height: 50px;
+  }
+  #categorias ul .active a:hover,
+  #categorias ul li a:hover {
+    background-color: #d8d8d8 !important;
+  }
+  .navbar-nav > li > a {
+    padding: 0;
+  }
+  .caret_header {
+    display: none;
+  }
+  .menu-username {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .outperfil {
+    width: 100% !important;
+  }
+  #categorias ul li:first-child:after {
+    display: none;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  #breadcrumb {
+    padding: 5px 0;
+    margin: 20px auto;
+  }
+  .next-prev {
+    background-size: 30px auto;
+    width: 20px;
+    height: 24px;
+    margin: 0 4px;
+  }
+  .next-prev .arrow-left {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid #0D4F99;
+    margin: 6px auto;
+  }
+  .next-prev .arrow-right {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid #0D4F99;
+    margin: 7px 9px;
+  }
+  .carousel-indicators li {
+    background-size: 30px auto;
+    width: 20px;
+    height: 25px;
+    line-height: 22px;
+    font-size: 12px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+  }
+  .carousel-indicators .active {
+    background-size: 30px auto;
+    width: 20px;
+    height: 25px;
+    line-height: 22px;
+  }
+  .navbar-brand > img {
+    width: 130px;
+    margin: 0 10px;
+  }
+  .btn-large {
+    font-size: 18px;
+  }
+  .btn.btn-primary.btn-block {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+
+}
