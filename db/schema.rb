@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426014732) do
+ActiveRecord::Schema.define(version: 20150426035009) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150426014732) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "commit"
+    t.integer  "status"
   end
 
   add_index "deliveries", ["challenge_id"], name: "index_deliveries_on_challenge_id", using: :btree

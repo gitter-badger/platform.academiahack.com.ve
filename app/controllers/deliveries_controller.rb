@@ -18,6 +18,25 @@ class DeliveriesController < ApplicationController
     redirect_to :back, notice: message
   end
 
+
+  def review
+    message = 'Reto revisado'
+    if admin_user_signed_in?
+      if current_user.email == 'mentores@hack4geeks.co'
+        delivery = Delivery.find params[:id]
+        delivery.status = params[:status]
+        unless delivery.save
+          message = 'Error al aceptar el reto'
+        end
+        redirect_to challenge_path(delivery.challenge), notice: message
+      else
+        redirect_to destroy_user_session_path, notice: 'El usuario actual no es mentor'
+      end
+    else
+      redirect_to destroy_user_session_path, notice: 'El usuario actual no es admin'
+    end
+  end
+
   private
   def delivery_params
     params.require(:delivery).permit(:commit, :user_id, :challenge_id)

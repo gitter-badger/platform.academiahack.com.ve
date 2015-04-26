@@ -15,7 +15,7 @@ class ChallengesController < ApplicationController
       end
     end
 
-    if current_user.email = 'mentores@hack4geeks.co'
+    if current_user.email == 'mentores@hack4geeks.co'
       @deliveries = Delivery.where challenge_id: challenge_id
     end
   end

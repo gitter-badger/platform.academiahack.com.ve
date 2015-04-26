@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   get 'activities/error' => 'activities#error', as: :activities_error
+  get 'deliveries/:id/review/:status' => 'deliveries#review', as: :delivery_review
 
   resources :weeks, shallow: true do
     resources :days, shallow: true do

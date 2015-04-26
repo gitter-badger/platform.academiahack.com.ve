@@ -75,16 +75,29 @@
               %table.table
                 %thead
                   %tr
+                    %th.text-center
+                      Status
                     %th
                       Email del estudiante
                     %th
                       Fecha y hora de la entrega
                     %th
                       Commit
+                    %th.text-center{colspan:2}
+                      Review
                 %tbody
                   - if @deliveries && @deliveries.length > 0
                     - @deliveries.each do |delivery|
                       %tr
+                        %td.text-center
+                          - if delivery.status.nil?
+                            %span.glyphicon.glyphicon-eye-open{'aria-hidden'=>'true'}
+                          - elsif delivery.status == 0
+                            %span.delivery-rejected.glyphicon.glyphicon-remove{'aria-hidden'=>'true'}
+                          - elsif delivery.status == 1
+                            %span.delivery-ok.glyphicon.glyphicon-ok{'aria-hidden'=>'true'}
+                          - else
+                            Status no reconocido
                         %td
                           = delivery.user.email
                         %td
@@ -92,6 +105,10 @@
                         %td
                           %a{href: delivery.commit_url}
                             = delivery.commit.truncate(7, omission: '')
+                        %td
+                          = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
+                        %td
+                          = link_to 'Rechazar', delivery_review_path(id:delivery.id, status:0), class: 'btn btn-info btn-flat btn-block'
                   - else
                     %tr
                       %td.text-center{colspan:3}
