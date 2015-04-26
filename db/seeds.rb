@@ -234,3 +234,5 @@ create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @cat
 # *********************** PARAMETERS ***********************
 
 create_parameter "current_week", "7"
+create_parameter "promo_group", "Academia-Hack-Promo2"
+create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo2"
