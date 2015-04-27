@@ -11,7 +11,7 @@
             .col-md-12
               %h1.text-center
                 = week.name
-              .row.text-center
+              .row.text-center.left-5
                 - week.days.order(:number).each do |day|
                   .day_box{'data-name' => day.name}
                     - if day.active?
