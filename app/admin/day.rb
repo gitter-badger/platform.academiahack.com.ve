@@ -4,6 +4,21 @@ ActiveAdmin.register Day do
     def permitted_params
       params.permit day: [:number, :name, :image, :status, :week_id]
     end
+
+    def update
+      day = Day.find params[:id]
+      message = ''
+
+      unless day.update(day_params)
+        message = 'No se pudo actualizar el reto!'
+      end
+      redirect_to day_path(day), notice: message
+    end
+
+    private
+    def day_params
+      params.require(:day).permit(:number, :name, :image, :status, :week_id)
+    end
   end
 
   form do |f|
