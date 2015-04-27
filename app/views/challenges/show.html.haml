@@ -24,24 +24,24 @@
         - else
           %span.github-url
             Para entregar deben agregar tu usuario de github a tu perfil.
-    - if current_user.email == 'mentores@hack4geeks.co'
+    .row
+      .col-md-12
+        %h3
+          Zona de entrega
+    .row
+      .col-md-12
+        %p
+          La entrega es el hash del commit en github, copialo desde github o la consola
+          %em
+            git log -n 1
+          y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
+    - if @delivery && @delivery.id
+      %hr
       .row
         .col-md-12
-          %h3
-            Zona de entrega
-      .row
-        .col-md-12
-          %p
-            La entrega es el hash del commit en github, copialo desde github o la consola
-            %em
-              git log -n 1
-            y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
-      - if @delivery
-        %hr
-        .row
-          .col-md-12
-            .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
-        %hr
+          .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
+      %hr
+    - unless current_user.email == 'mentores@hack4geeks.co'
       .row
         .col-md-8.col-md-offset-2
           - if current_user.github_user && @challenge.status == 1
@@ -63,7 +63,7 @@
               -if @delivery && @delivery.commit
                 %a.btn.btn-info.btn-flat.btn-block{href: @delivery.commit_url, target: 'blank'}
                   Ver ultimo commit en github
-    - unless current_user.email == "mentores@hack4geeks.co"
+    - if current_user.email == "mentores@hack4geeks.co"
       .row.mentor-zone
         .col-md-12
           %h3
