@@ -1,43 +1,44 @@
 !!! 5
 %html
-%head
-  %title
-    Plataforma Hack
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = csrf_meta_tags
-%body{class: ['mosaic', controller_name, action_name]}
+  %head
+    %title
+      Plataforma Hack
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
+  %body{class: ['mosaic', controller_name, action_name]}
 
-  %header.navbar.navbar-default.navbar-fixed-top
-    .container.caret-box
-      .navbar-header
-        = link_to root_path, class: 'navbar-brand' do
-          = image_tag "logo.png"
-      %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
-        %ul.nav.navbar-nav
-          %li.menu-login
-            %a{href: '#'}
-              .caret_header
-                %span
-          %li.active.menu-registro
-            = link_to weeks_path do
-              Actividades
-              .caret_header
-                %span
-        - if user_signed_in?
-          %ul#menu-logged-menu.nav.navbar-nav.navbar-right
-            %li.perfilLink.menu-username
-              = link_to current_user.email
-            %li.outperfil.pull-right.menu-salir
-              = link_to destroy_user_session_path, method: 'delete' do
-                %span.glyphicon.glyphicon-off
+    %header.navbar.navbar-default.navbar-fixed-top
+      .container.caret-box
+        .navbar-header
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag "logo.png"
+        %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
+          %ul.nav.navbar-nav
+            %li.menu-login
+              %a{href: '#'}
+                .caret_header
+                  %span
+            %li.active.menu-registro
+              = link_to weeks_path do
+                Actividades
+                .caret_header
+                  %span
+          - if user_signed_in?
+            %ul#menu-logged-menu.nav.navbar-nav.navbar-right
+              %li.perfilLink.menu-username
+                = link_to current_user.email
+              %li.outperfil.pull-right.menu-salir
+                = link_to destroy_user_session_path, method: 'delete' do
+                  %span.glyphicon.glyphicon-off
 
-      %button.navbar-toggle.collapsed{"data-target" => "#categorias", "data-toggle" => "collapse", type: "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      .caret_header_2
-  - flash.each do |name, msg|
-    = content_tag :p, msg, class: "alert alert-info feedback-alert"
-  = yield
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+        %button.navbar-toggle.collapsed{"data-target" => "#categorias", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .caret_header_2
+    - flash.each do |name, msg|
+      = content_tag :p, msg, class: "alert alert-info feedback-alert"
+    = yield
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

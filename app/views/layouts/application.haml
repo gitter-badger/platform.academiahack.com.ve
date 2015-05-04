@@ -1,36 +1,37 @@
 !!! 5
 %html
-%head
-  %title
-    Plataforma Hack
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  = csrf_meta_tags
-%body
+  %head
+    %title
+      Plataforma Hack
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tags
+  %body
 
-  %header.navbar.navbar-default.navbar-fixed-top
-    .container.caret-box
-      .navbar-header
-        = link_to root_path, class: 'navbar-brand' do
-          = image_tag "logo.png"
-      %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
-        %ul.nav.navbar-nav.navbar-right
-          %li.active.menu-login
-            %a{href: '#'}
-              Login
-              .caret_header
-                %span
-          %li.menu-registro
-            %a{href: '#'}
-              .caret_header
-                %span
-      %button.navbar-toggle.collapsed{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      .caret_header_2
-  - flash.each do |name, msg|
-    = content_tag :p, msg, class: "alert alert-info feedback-alert"
-  = yield
-%script{src:"//tinymce.cachefly.net/4.1/tinymce.min.js"}
+    %header.navbar.navbar-default.navbar-fixed-top
+      .container.caret-box
+        .navbar-header
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag "logo.png"
+        %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
+          %ul.nav.navbar-nav.navbar-right
+            %li.active.menu-login
+              %a{href: '#'}
+                Login
+                .caret_header
+                  %span
+            %li.menu-registro
+              %a{href: '#'}
+                .caret_header
+                  %span
+        %button.navbar-toggle.collapsed{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .caret_header_2
+    - flash.each do |name, msg|
+      = content_tag :p, msg, class: "alert alert-info feedback-alert"
+    = yield
+  %script{src:"//tinymce.cachefly.net/4.1/tinymce.min.js"}

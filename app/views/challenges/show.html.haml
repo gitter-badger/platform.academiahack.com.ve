@@ -37,9 +37,18 @@
           y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
     - if @delivery && @delivery.id
       %hr
-      .row
-        .col-md-12
-          .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
+        .row
+          .col-md-12
+            .panel-group{role:'tablist'}
+              .panel.panel-default
+                .panel-heading{role:'tab'}
+                  %h4.panel-title#collapse_preview
+                    %a{'data-toggle'=>'collapse', href:'#collapse_preview_1', 'aria-expanded'=>'true', 'aria-controls'=>'collapse_preview_1'}
+                      Preview del repositorio
+                  %a.anchorjs-link{href:'#collapse_preview'}
+                    %span.anchorjs-icon
+                .panel-collapse.collapse#collapse_preview_1{role:'tabpanel', 'aria-expanded'=>'true'}
+                  .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
       %hr
     - unless current_user.email == 'mentores@hack4geeks.co'
       .row
