@@ -1,3 +1,19 @@
 // Place all the styles related to the days controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'vars';
+
+.white-title {
+  padding: 7px 0px;
+  margin-bottom: 20px;
+  background-color: $hack-blue-col;
+  color: white;
+}
+
+.card{
+  padding: 15px;
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(102,102,102,1);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(102,102,102,1);
+  box-shadow: 4px 4px 7px 0px rgba(102,102,102,1);
+  background-color: $background-col;
+}

@@ -33,46 +33,99 @@
                 = image_tag "0.png"
 .content-white
   .container
-    %h1.blue-text.text-center
+    %h1.white-title.text-center
       %span.day-title
         = @day.name
       -#%buton.btn.btn-default.btn-xs.day-name-edit
       -#  %span.glyphicon.glyphicon-pencil{'aria-hidden'=>'true'}
     .row
-      - if @day.challenges.length > 0
-        .row
-          %h2
-            Retos en clase
-          - @day.challenges.each do |challenge|
-            - if challenge.time == 'classroom'
-              .col-md-4.text-center
-                .challenge-box
-                  %h3
-                    = challenge.title
-                  .image
-                    = image_tag challenge.category.image.url
-                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                  = image_tag 'list-hexagon.png'
-                  ¡Hazlo!
-        .row
-          %h2
-            Retos del sprint
-          - @day.challenges.each do |challenge|
-            - if challenge.time == 'homework'
-              .col-md-4.text-center
-                .challenge-box
-                  %h3
-                    = challenge.title
-                  .image
-                    = image_tag challenge.category.image.url
-                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                  = image_tag 'list-hexagon.png'
-                  ¡Hazlo!
-      - else
-        %h1.text-center
-          Hoy no hay retos, pero siempre hay mucho que hacer!
-          %h4.text-center
-            Aprovecha y haz preguntas claves a los mentores!
+      .col-md-5
+        .card
+          %h3.blue-text.text-center
+            Mentor Hack
+          %hr
+          %ul.nav.nav-stacked
+            %li
+              %a
+                Video 1
+            %li
+              %a
+                Video 2
+      .col-md-7
+        .card
+          %ul.nav.nav-pills.nav-justified{role:'tablist'}
+            %li.active
+              %a{href:'#requirements', "data-toggle" => 'tab'}
+                Conocimientos Previos
+            %li
+              %a{href:'#cheatsheets', "data-toggle" => 'tab'}
+                CheatSheets
+            %li
+              %a{href:'#challenge', "data-toggle" => 'tab'}
+                Retos
+          %hr
+          .tab-content
+            #requirements.tab-pane.active{role:'tablist'}
+              -if @day.required_knowledge
+                -if @day.required_knowledge.empty?
+                  %h4.text-center
+                    No hace falta ningún background en específico para este día.
+                -else
+                  =@day.cheatsheet
+              -else
+                %h4.text-center
+                  No hace falta ningún background en específico para este día.
+            #cheatsheets.tab-pane{role:'tablist'}
+              -if @day.cheatsheet
+                -if @day.cheatsheet.empty?
+                  %h4.text-center
+                    Este dia no posee una CheatSheet.
+                -else
+                  =@day.cheatsheet
+              -else
+                %h4.text-center
+                  Este dia no posee una CheatSheet.
+            #challenge.tab-pane{role:'tablist'}
+              - if @day.challenges.length > 0
+                .row
+                  %h3.text-center
+                    Retos en clase
+                  - if @day.get_classroom_challenges.length > 0
+                    - @day.get_classroom_challenges.each do |challenge|
+                      .col-md-4.text-center
+                        .challenge-box
+                          %h4
+                            = challenge.title
+                          .image
+                            = image_tag challenge.category.image.url
+                        = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                          = image_tag 'list-hexagon.png'
+                          ¡Hazlo!
+                  -else
+                    %h4.text-center
+                      No existen retos del salon.
+                .row
+                  %h3.text-center
+                    Retos del sprint
+                  - if @day.get_homework_challenges.length > 0
+                    - @day.challenges.each do |challenge|
+                      .col-md-4.text-center
+                        .challenge-box
+                          %h4
+                            = challenge.title
+                          .image
+                            = image_tag challenge.category.image.url
+                        = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                          = image_tag 'list-hexagon.png'
+                          ¡Hazlo!
+                  -else
+                    %h4.text-center
+                      Aun no hay retos del sprint.
+              - else
+                %h1.text-center
+                  Hoy no hay retos, pero siempre hay mucho que hacer!
+                  %h4.text-center
+                    Aprovecha y haz preguntas claves a los mentores!
     - if current_user.email == "mentores@hack4geeks.co"
       .row.mentor-zone
         .col-md-12
