@@ -47,18 +47,18 @@
             %hr
             .card-content
               %ul.nav.nav-stacked
-                -@day.videos.each do |video|
+                -@day.videos.each do |vid|
                   %li
-                    -if video.url
-                      =link_to(video.url, target: :blank) do
+                    -if vid.video_file_name
+                      =link_to(vid.video.url, target: :blank) do
                         .play-icon
                           =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                        =video.name
+                        =vid.name
                     -else
-                      =link_to(video.video.url, target: :blank) do
+                      =link_to(vid.url, target: :blank) do
                         .play-icon
                           =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                        =video.name
+                        =vid.name
       %div{ :class => @day.videos.length > 0 ? "col-md-7" : 'col-md-10 col-md-offset-1' }
         .card
           %ul.nav.nav-pills.nav-justified{role:'tablist'}
