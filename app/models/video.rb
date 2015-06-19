@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
                     :styles => {
                         :medium => { :geometry => "640x480", :format => 'flv' },
                         :thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10 }
-                    }, :processors => [:transcoder]
+                    }, :processors => [:transcoder], :default_url => "missing.png"
   validates :video, :attachment_content_type =>{:content_type => [ 'application/x-mp4',
                                                                    'video/mpeg',
                                                                    'video/quicktime',

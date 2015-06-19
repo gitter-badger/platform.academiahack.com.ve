@@ -16,8 +16,29 @@
   -moz-box-shadow: 4px 4px 5px 0px rgba(102,102,102,1);
   box-shadow: 4px 4px 7px 0px rgba(102,102,102,1);
   background-color: $background-col;
+  height: 600px;
+  max-height: 600px;
 }
 
 hr{
   border-top: 1px solid $hack-blue-col;
+}
+
+.card-content {
+  overflow: auto;
+  height: 475px;
+}
+
+.play-icon{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: white;
+  background-color: $hack-blue-col;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 10px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }

@@ -1,5 +1,5 @@
 ActiveAdmin.register Video do
-  permit_params :name, :video, :day_id, day_attributes:[:name]
+  permit_params :name, :url, :day_id, :video
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,15 +14,19 @@ ActiveAdmin.register Video do
   #   permitted
   # end
 
+  filter :name
+
   controller do
     def permitted_params
-      params.permit video: [:name, :day_id, :video]
+      params.permit video: [:name, :url ,:day_id, :video]
     end
   end
 
   form do |f|
     f.inputs "Detalles del video" do
       f.input :name
+      f.input :url, label: 'External URL'
+      f.input :day_id, as: :select, collection: Day.all.map {|day| ["#{day.name}",day.id]}, include_blank: false
       f.input :video, :as => :file, :hint => f.template.image_tag(f.object.video.url(:thumb))
     end
     f.actions
@@ -30,6 +34,7 @@ ActiveAdmin.register Video do
 
   index do
     column :name
+    column :url
     column :day_id
     column :video do |video|
       image_tag(video.video.url(:thumb))
@@ -40,7 +45,8 @@ ActiveAdmin.register Video do
   show do |ad|
     attributes_table do
       row :name
-      column :day_id
+      row :url
+      row :day_id
       row :video do
         image_tag(ad.video.url(:thumb))
       end
