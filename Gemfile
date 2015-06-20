@@ -11,8 +11,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 3.4.1'
 gem 'haml', '~> 4.0.6'
 gem 'formtastic', '~> 3.1.3'
-gem 'better_errors', '~> 2.1.1', group: :development
-gem "binding_of_caller", group: :development
+
 #gem 'spring'
 #gem 'spring-commands-rspec'
 gem 'activeadmin', github: 'activeadmin'
@@ -23,5 +22,13 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: "capistrano/rvm"
 gem 'mysql2'
-gem 'bullet'
+
 gem 'acts_as_list'
+gem 'whenever', :require => false
+
+group :development do
+  gem 'bullet'
+  gem 'better_errors', '~> 2.1.1'
+  gem 'binding_of_caller'
+  gem 'annotate', '~> 2.6.6'
+end
