@@ -82,7 +82,7 @@
                       %h4.text-center
                         Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
                   -else
-                    =@day.required_knowledge
+                    =@day.required_knowledge.html_safe
                 -else
                   %h3.text-center
                     ¿Estas preparado?
@@ -96,7 +96,7 @@
                       %h4.text-center
                         Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
                   -else
-                    =@day.cheatsheet
+                    =@day.cheatsheet.html_safe
                 -else
                   %h3.text-center
                     ¿No recuerdas como se hacía o se escribía?
