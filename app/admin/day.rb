@@ -10,7 +10,7 @@ ActiveAdmin.register Day do
       message = ''
 
       unless day.update(day_params)
-        message = 'No se pudo actualizar el reto!'
+        message = 'No se pudo actualizar el día!'
       end
       redirect_to day_path(day), notice: message
     end

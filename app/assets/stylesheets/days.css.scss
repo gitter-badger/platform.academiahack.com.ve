@@ -25,15 +25,30 @@ hr{
 }
 
 .card-content {
-  overflow: auto;
+  overflow-y: auto;
   height: 475px;
+}
+
+.day-video-link{
+  font-weight: bold;
+  color: $hack-blue-col;
+  background-color: $background-col;
+
+  &:hover, &:active{
+    background-color: $background-col !important;
+    color: darken($hack-blue-col, 10%) !important;
+    .play-icon{
+      background-color: darken($hack-blue-col, 10%) !important;
+      color: $background-col !important;
+    }
+  }
 }
 
 .play-icon{
   display: inline-block;
   width: 40px;
   height: 40px;
-  color: white;
+  color: $background-col !important;
   background-color: $hack-blue-col;
   text-align: center;
   line-height: 40px;
@@ -41,4 +56,31 @@ hr{
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+}
+
+.day-content-tabs{
+  font-weight: bold;
+  li{
+    a{
+      color: $hack-blue-col !important;
+
+      &:hover, &:active{
+        color: darken($hack-blue-col, 20%) !important;
+        background-color: $background-col !important;
+      }
+    }
+  }
+
+  .active a{
+    color: darken($hack-blue-col, 20%) !important;
+    background-color: $background-col !important;
+  }
+}
+
+hr{
+  margin: 10px 0px;
+}
+
+.video-title{
+  margin-top: 15px;
 }

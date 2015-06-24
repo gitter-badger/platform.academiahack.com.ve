@@ -42,7 +42,7 @@
       -if @day.videos.length > 0
         .col-md-5
           .card
-            %h3.blue-text.text-center
+            %h3.blue-text.text-center.video-title
               Videos Hack
             %hr
             .card-content
@@ -50,18 +50,18 @@
                 -@day.videos.each do |vid|
                   %li
                     -if vid.video_file_name
-                      =link_to(vid.video.url, target: :blank) do
+                      =link_to(vid.video.url, target: :blank, class:'day-video-link') do
                         .play-icon
                           =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
                         =vid.name
                     -else
-                      =link_to(vid.url, target: :blank) do
+                      =link_to(vid.url, target: :blank, class:'day-video-link') do
                         .play-icon
                           =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
                         =vid.name
       %div{ :class => @day.videos.length > 0 ? "col-md-7" : 'col-md-10 col-md-offset-1' }
         .card
-          %ul.nav.nav-pills.nav-justified{role:'tablist'}
+          %ul.nav.day-content-tabs.nav-justified{role:'tablist'}
             %li.active
               %a{href:'#requirements', "data-toggle" => 'tab'}
                 Conocimientos Previos
@@ -82,7 +82,7 @@
                       %h4.text-center
                         Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
                   -else
-                    =@day.required_knowledge
+                    =@day.required_knowledge.html_safe
                 -else
                   %h3.text-center
                     ¿Estas preparado?
@@ -96,7 +96,7 @@
                       %h4.text-center
                         Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
                   -else
-                    =@day.cheatsheet
+                    =@day.cheatsheet.html_safe
                 -else
                   %h3.text-center
                     ¿No recuerdas como se hacía o se escribía?
