@@ -2,7 +2,7 @@ ActiveAdmin.register Day do
   config.sort_order = 'number_desc'
   controller do
     def permitted_params
-      params.permit day: [:number, :name, :image, :status, :week_id]
+      params.permit day: [:number, :name, :image, :status, :week_id, :required_knowledge, :cheatsheet]
     end
 
     def update
@@ -17,7 +17,7 @@ ActiveAdmin.register Day do
 
     private
     def day_params
-      params.require(:day).permit(:number, :name, :image, :status, :week_id)
+      params.require(:day).permit(:number, :name, :image, :status, :week_id, :required_knowledge, :cheatsheet)
     end
   end
 
@@ -28,6 +28,8 @@ ActiveAdmin.register Day do
       f.input :week, as: :select
       f.input :status, as: :select, collection: Day.statuses.keys, input_html: { class: 'chosen-select' }
       f.input :image, :as => :file, :hint => f.template.image_tag(f.object.image.url(:thumb))
+      f.input :required_knowledge
+      f.input :cheatsheet
     end
     f.actions
   end
@@ -50,6 +52,8 @@ ActiveAdmin.register Day do
       row :image do
         image_tag(ad.image.url(:thumb))
       end
+      row :required_knowledge
+      row :cheatsheet
     end
   end
 
