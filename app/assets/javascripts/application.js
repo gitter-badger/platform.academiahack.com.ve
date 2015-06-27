@@ -15,7 +15,6 @@
 //= require bootstrap
 //= require chosen-jquery
 //= require dropzone
-//= require tinymce/tinymce.min
 //= require repo/repo.min
 //= require jquery.diagram
 //= require_tree .
