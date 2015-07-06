@@ -123,8 +123,8 @@ create_week 13, "AngularJS", 13
 create_week 14, "AngularJS", 14
 # *********************** FRONTEND ***********************
 # *********************** FINAL HACK ***********************
-create_week 13, "Proyecto Final", 13
-create_week 14, "Proyecto Final", 14
+create_week 15, "Proyecto Final", 15
+create_week 16, "Proyecto Final", 16
 # *********************** FINAL HACK ***********************
 
 # *********************** SEMANA1 ***********************
