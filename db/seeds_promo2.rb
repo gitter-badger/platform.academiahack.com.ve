@@ -65,117 +65,105 @@ def create_parameter key, value
   @parameters.push param
 end
 
-# *********************** PROMO 3 ***********************
-
-
+# *********************** PROMO 2 ***********************
 
 create_user 'mentores@hack4geeks.co', 'Hack2015', User
-
-create_user 'ajvelazco16@gmail.com', '26610274', User, 'avelazco274'
-create_user 'christianpetersen@hotmail.com', '17424223', User, 'cpetersen223'
-create_user 'danielitox222@gmail.com', '24271083', User, 'dguzzo083'
-create_user 'd.rondonaguilera@gmail.com', '26473500', User, 'drondon500'
-create_user 'apontealeman@gmail.com', '19595396', User, 'gaponte396'
-create_user 'johanna.salazar.b@gmail.com', '18358568', User, 'jsalazar568'
-create_user 'johansanchez2101@gmail.com', '22774308', User, 'jsanchez308'
-create_user 'xadrijo@hotmail.com', '15323722', User, 'jjimenez722'
-create_user 'jorgeloaiza12@gmail.com', '20802018', User, 'jloaiza018'
-create_user 'leninjpv@hotmail.com', '17285842', User, 'lparra842'
-create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824'
-create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828'
-create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368'
-create_user 'pedrorojas89@gmail.com', '18899284', User, 'projas284'
-create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969'
-create_user 'johan_seijas@hotmail.com', '23637452', User, 'voronel452'
+create_user 'maldonmarco@gmail.com', '16433730', User, 'mmaldonado730'
+create_user 'anggelica.virtlife.jt@gmail.com', '19500768', User, 'aherrera768'
+create_user 'gen.reyest@gmail.com', '23592193', User, 'greyes193'
+create_user 'gamezh81@gmail.com', '21601011', User, 'hgamez011'
+create_user 'jamm@jmartinezm.org', '18619519', User, 'jmartinez519'
+create_user 'samuel_021093@hotmail.com', '22694771', User, 'smelgarejo771'
 create_user 'locke_din15@hotmail.com', '20089538', User, 'llopez538'
+create_user 'luisdavidrn@gmail.com', '20116194', User, 'lrodriguez194'
+create_user 'hector12j@gmail.com', '23644389', User, 'hcarreno389'
+create_user 'alexballera@gmail.com', '08983523', User, 'aballera523'
+create_user 'galindezj2@gmail.com', '24843057', User, 'jgalindez057'
+create_user 'mariiromero17@gmail.com', '22017982', User, 'mromero942'
 
-
-# *********************** PROMO 3 ***********************
+# *********************** PROMO 2 ***********************
 
 create_user 'rramos@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'oarocha@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'etirado@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'despinoza@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'mgomez@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'agonzalez@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
 
-# *********************** PROPEDEUTICO ***********************
+
 create_week 1, "Algoritmos en ruby 1", 1
 create_week 2, "Algoritmos en ruby 2", 2
-# *********************** PROPEDEUTICO ***********************
-# *********************** BACKEND ***********************
-create_week 3, "Ruby idiomatico + objetos en ruby", 3
+create_week 3, "Battleship + Objetos en ruby", 3
 create_week 4, "Objetos en ruby + HTTP", 4
 create_week 5, "BD + Rails", 5
 create_week 6, "JSON + Rails MC", 6
-create_week 7, "Backend week", 7
-# *********************** BACKEND ***********************
-# *********************** FRONTEND ***********************
-create_week 8, "Maquetacion 1", 8
-create_week 9, "Maquetacion 2", 9
+create_week 7, "Semana Santa", 7
+create_week 8, "Service App", 8
+create_week 9, "HTML + CSS + Bootstrap", 9
 create_week 10, "Javascript", 10
 create_week 11, "Javascript + jQuery", 11
-create_week 12, "ReactJS", 12
-create_week 13, "ReactJS", 13
-create_week 14, "Frontend week", 14
-# *********************** FRONTEND ***********************
+create_week 12, "AngularJS", 12
+create_week 13, "AngularJS", 13
+create_week 14, "AngularJS", 14
 
 
 # *********************** SEMANA1 ***********************
 
-create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 1, '16.png'
-create_day 2, "Busquedas, vcs, git, github", @weeks[0], 1, '19.png'
-create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 1, '11.png'
-create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 1, '12.png'
-create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 1, '13.png'
+create_day 1, "CARNAVAL 1", @weeks[0], 2
+create_day 2, "CARNAVAL 2", @weeks[0], 2
+create_day 3, "Vagrant, entornos,comandos", @weeks[0], 2, '16.png'
+create_day 4, "Variables, estructura de control", @weeks[0], 2, '11.png'
+create_day 5, "Tipos de dato, estructura iterativas", @weeks[0], 2, '11.png'
 
 # *********************** SEMANA2 ***********************
 
-create_day 6, "Arreglos multidimensionales", @weeks[1], 1, '31.png'
-create_day 7, "Funciones, programacion estructurada", @weeks[1], 1, '6.png'
-create_day 8, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 9, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 10, "Entrega de proyecto y certificación", @weeks[1], 1, '3.png'
+create_day 6, "Estructuras iterativas, arreglos", @weeks[1], 2, '12.png'
+create_day 7, "Arreglos multidimensionales, funciones", @weeks[1], 2, '12.png'
+create_day 8, "Funciones, programacion estructurada", @weeks[1], 2, '13.png'
+create_day 9, "Practica de algoritmos", @weeks[1], 2, '13.png'
+create_day 10, "Ordenamiento en arreglos", @weeks[1], 2, '13.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Ruby idiomatico 1", @weeks[2], 0, '26.png'
-create_day 12, "Ruby idiomatico 2", @weeks[2], 0, '26.png'
-create_day 13, "Clases y objetos en ruby", @weeks[2], 0, '26.png'
-create_day 14, "Self, herencia y modulos", @weeks[2], 0, '26.png'
-create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 0, '26.png'
+create_day 11, "Battleship 1", @weeks[2], 2, '26.png'
+create_day 12, "Battleship 2", @weeks[2], 2, '26.png'
+create_day 13, "Entrega Battleship", @weeks[2], 2, '26.png'
+create_day 14, "Objetos en Ruby 1", @weeks[2], 2, '26.png'
+create_day 15, "Objetos en Ruby 2", @weeks[2], 2, '26.png'
 
 # *********************** SEMANA 4 ***********************
 
-create_day 16, "Ruby warriors, nija vs dinosaurios", @weeks[3], 0, '27.png'
-create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 0, '27.png'
-create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 0, '27.png'
-create_day 19, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], 0, '17.png'
-create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 0, '18.png'
+create_day 16, "Objetos vs hashes en ruby", @weeks[3], 2, '27.png'
+create_day 17, "Practica de orientacion a objetos", @weeks[3], 2, '27.png'
+create_day 18, "RubyWarriors", @weeks[3], 2, '27.png'
+create_day 19, "Inicio HTTP", @weeks[3], 2, '17.png'
+create_day 20, "Practica HTTP + POSTMAN", @weeks[3], 2, '18.png'
 
 # *********************** SEMANA 5 ***********************
 
-create_day 21, "Modelado de datos", @weeks[4], 0, '22.png'
-create_day 22, "SQL 1", @weeks[4], 0, '23.png'
-create_day 23, "SQL 2", @weeks[4], 0, '23.png'
-create_day 24, "MVC, Frameworks, Rails", @weeks[4], 0, '32.png'
-create_day 25, "Modelos en rails 1", @weeks[4], 0, '32.png'
+create_day 21, "Modelado de datos", @weeks[4], 2, '22.png'
+create_day 22, "Introduccion a SQL", @weeks[4], 2, '23.png'
+create_day 23, "SQL 2", @weeks[4], 2, '23.png'
+create_day 24, "MVC, Frameworks, Rails", @weeks[4], 2, '32.png'
+create_day 25, "Modelos en rails 1", @weeks[4], 2, '32.png'
 
 # *********************** SEMANA 6 ***********************
 
-create_day 26, "Modelos en rails 2", @weeks[5], 0, '32.png'
-create_day 27, "Controladores en Rails 1", @weeks[5], 0, '19.png'
-create_day 28, "Controladores en Rails 2", @weeks[5], 0, '32.png'
-create_day 29, "Modelos + Controladores en Rails", @weeks[5], 0, '32.png'
-create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 0, '33.png'
+create_day 26, "Modelos en rails 2", @weeks[5], 1, '32.png'
+create_day 27, "Git", @weeks[5], 1, '19.png'
+create_day 28, "Controladores en Rails", @weeks[5], 1, '32.png'
+create_day 29, "Modelos + Controladores en Rails", @weeks[5], 1, '32.png'
+create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 1, '33.png'
 
-# *********************** SEMANA 7 ***********************
+# *********************** EXTRA! SEMANA 7 ***********************
 
-create_day 31, "[Review] Algoritmos basicos", @weeks[6], 0, '11.png'
-create_day 32, "[Review] Algoritmos intermedio", @weeks[6], 0, '12.png'
-create_day 33, "[Review] HTTP en ruby", @weeks[6], 0, '17.png'
-create_day 34, "[Review] Modelado de una BD", @weeks[6], 0, '22.png'
-create_day 35, "[Review] CRUD API en Rails", @weeks[6], 0, '33.png'
+create_day 31, "[EXTRA] Algoritmos basicos", @weeks[6], 1, '11.png'
+create_day 32, "[EXTRA] Algoritmos intermedio", @weeks[6], 1, '12.png'
+create_day 33, "[EXTRA] HTTP en ruby", @weeks[6], 1, '17.png'
+create_day 34, "[EXTRA] Modelado de una BD", @weeks[6], 1, '22.png'
+create_day 35, "[EXTRA] CRUD API en Rails", @weeks[6], 1, '33.png'
 
 # *********************** SEMANA 8 ***********************
 
@@ -241,10 +229,10 @@ create_category "Bug", 'bug.png'
 
 # *********************** CHALLENGES ***********************
 
-#create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @categories[2], @days[12]
+create_challenge 'manana', 'Entrega Battleship', 'Enunciado de battleship', @categories[2], @days[12]
 
 # *********************** PARAMETERS ***********************
 
-create_parameter "current_week", "1"
-create_parameter "promo_group", "Academia-Hack-Promo3"
-create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
+create_parameter "current_week", "7"
+create_parameter "promo_group", "Academia-Hack-Promo2"
+create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo2/"
