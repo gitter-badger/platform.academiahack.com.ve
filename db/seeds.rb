@@ -101,6 +101,7 @@ create_user 'despinoza@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'agonzalez@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'jfuentes@hack4geeks.co', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
 create_week 1, "Algoritmos en ruby 1", 1
