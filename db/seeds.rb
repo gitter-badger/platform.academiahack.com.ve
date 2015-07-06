@@ -71,23 +71,18 @@ end
 
 create_user 'mentores@hack4geeks.co', 'Hack2015', User
 
-create_user 'ajvelazco16@gmail.com', '26610274', User, 'avelazco274'
 create_user 'christianpetersen@hotmail.com', '17424223', User, 'cpetersen223'
 create_user 'danielitox222@gmail.com', '24271083', User, 'dguzzo083'
 create_user 'd.rondonaguilera@gmail.com', '26473500', User, 'drondon500'
-create_user 'apontealeman@gmail.com', '19595396', User, 'gaponte396'
 create_user 'johanna.salazar.b@gmail.com', '18358568', User, 'jsalazar568'
 create_user 'johansanchez2101@gmail.com', '22774308', User, 'jsanchez308'
-create_user 'xadrijo@hotmail.com', '15323722', User, 'jjimenez722'
 create_user 'jorgeloaiza12@gmail.com', '20802018', User, 'jloaiza018'
-create_user 'leninjpv@hotmail.com', '17285842', User, 'lparra842'
 create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824'
 create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828'
 create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368'
-create_user 'pedrorojas89@gmail.com', '18899284', User, 'projas284'
 create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969'
-create_user 'johan_seijas@hotmail.com', '23637452', User, 'voronel452'
-create_user 'locke_din15@hotmail.com', '20089538', User, 'llopez538'
+#FALTA ESTEBAN REYES JR.
+
 
 
 # *********************** PROMO 3 ***********************
