@@ -89,9 +89,7 @@ create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824'
 create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828'
 create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368'
 create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969'
-#FALTA ESTEBAN REYES JR.
-
-
+create_user 'estebansamuel.reyes@gmail.com', '20976791', User, 'estebansamuel'
 
 # *********************** PROMO 3 ***********************
 
