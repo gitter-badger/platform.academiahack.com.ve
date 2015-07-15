@@ -30,6 +30,11 @@ gem 'mysql2'
 gem 'acts_as_list'
 gem 'whenever', :require => false
 
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'bullet'
   gem 'better_errors', '~> 2.1.1'
