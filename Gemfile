@@ -32,8 +32,8 @@ gem 'acts_as_list'
 gem 'whenever', :require => false
 
 group :production do
-  gem 'puma'
- gem 'rails_12factor'
+  gem 'thin'
+  gem 'rails_12factor'
 end
 
 group :development do
