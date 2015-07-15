@@ -4,6 +4,7 @@
 @challenges = []
 @parameters = []
 
+
 def create_week number, name, position
   week = Week.new
   week.number = number
@@ -65,8 +66,15 @@ def create_parameter key, value
   @parameters.push param
 end
 
-# *********************** PROMO 3 ***********************
+def create_youtube_video name, youtube_url, day
+  video = Video.new
+  video.name = name
+  video.url = youtube_url
+  video.save
+  day.videos.push video
+end
 
+# *********************** PROMO 3 ***********************
 
 
 create_user 'mentores@hack4geeks.co', 'Hack2015', User
@@ -81,9 +89,7 @@ create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824'
 create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828'
 create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368'
 create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969'
-#FALTA ESTEBAN REYES JR.
-
-
+create_user 'estebansamuel.reyes@gmail.com', '20976791', User, 'estebansamuel'
 
 # *********************** PROMO 3 ***********************
 
@@ -93,6 +99,7 @@ create_user 'despinoza@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'agonzalez@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
 create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'jfuentes@hack4geeks.co', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
 create_week 1, "Algoritmos en ruby 1", 1
@@ -102,51 +109,53 @@ create_week 2, "Algoritmos en ruby 2", 2
 create_week 3, "Ruby idiomatico + objetos en ruby", 3
 create_week 4, "Objetos en ruby + HTTP", 4
 create_week 5, "BD + Rails", 5
-create_week 6, "JSON + Rails MC", 6
-create_week 7, "Backend week", 7
+create_week 6, "Rails + ActiveRecord", 6
+create_week 7, "Controllers + JSON Response", 7
 # *********************** BACKEND ***********************
 # *********************** FRONTEND ***********************
-create_week 8, "Maquetacion 1", 8
-create_week 9, "Maquetacion 2", 9
+create_week 8, "HTML + CSS", 8
+create_week 9, "Bootstrap", 9
 create_week 10, "Javascript", 10
-create_week 11, "Javascript + jQuery", 11
-create_week 12, "ReactJS", 12
-create_week 13, "ReactJS", 13
-create_week 14, "Frontend week", 14
+create_week 11, "jQuery", 11
+create_week 12, "FrontEnd Tools", 12
+create_week 13, "AngularJS", 13
+create_week 14, "AngularJS", 14
 # *********************** FRONTEND ***********************
-
+# *********************** FINAL HACK ***********************
+create_week 15, "Proyecto Final", 15
+create_week 16, "Proyecto Final", 16
+# *********************** FINAL HACK ***********************
 
 # *********************** SEMANA1 ***********************
-
-create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 1, '16.png'
-create_day 2, "Busquedas, vcs, git, github", @weeks[0], 1, '19.png'
-create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 1, '11.png'
-create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 1, '12.png'
-create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 1, '13.png'
+create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 2, '16.png'
+create_day 2, "Busquedas, vcs, git, github", @weeks[0], 2, '19.png'
+create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 2, '11.png'
+create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 2, '12.png'
+create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 2, '13.png'
 
 # *********************** SEMANA2 ***********************
 
-create_day 6, "Arreglos multidimensionales", @weeks[1], 1, '31.png'
-create_day 7, "Funciones, programacion estructurada", @weeks[1], 1, '6.png'
-create_day 8, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 9, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 10, "Entrega de proyecto y certificación", @weeks[1], 1, '3.png'
+create_day 6, "Arreglos multidimensionales", @weeks[1], 2, '31.png'
+create_day 7, "Funciones, programacion estructurada", @weeks[1], 2, '6.png'
+create_day 8, "Practica de algoritmos", @weeks[1], 2, '30.png'
+create_day 9, "Practica de algoritmos", @weeks[1], 2, '30.png'
+create_day 10, "Entrega de proyecto y certificación", @weeks[1], 2, '3.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Ruby idiomatico 1", @weeks[2], 0, '26.png'
-create_day 12, "Ruby idiomatico 2", @weeks[2], 0, '26.png'
-create_day 13, "Clases y objetos en ruby", @weeks[2], 0, '26.png'
-create_day 14, "Self, herencia y modulos", @weeks[2], 0, '26.png'
-create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 0, '26.png'
+create_day 11, "Ruby idiomatico 1", @weeks[2], 1, '26.png'
+create_day 12, "Ruby idiomatico 2", @weeks[2], 1, '26.png'
+create_day 13, "Clases y objetos en ruby", @weeks[2], 1, '27.png'
+create_day 14, "Self, herencia y modulos", @weeks[2], 1, '27.png'
+create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 1, '22.png'
 
 # *********************** SEMANA 4 ***********************
 
-create_day 16, "Ruby warriors, nija vs dinosaurios", @weeks[3], 0, '27.png'
-create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 0, '27.png'
-create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 0, '27.png'
+create_day 16, "Ruby warriors, ninja vs dinosaurios", @weeks[3], 0, '27.png'
+create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 0, '40.png'
+create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 0, '17.png'
 create_day 19, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], 0, '17.png'
-create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 0, '18.png'
+create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 0, '17.png'
 
 # *********************** SEMANA 5 ***********************
 
@@ -154,23 +163,23 @@ create_day 21, "Modelado de datos", @weeks[4], 0, '22.png'
 create_day 22, "SQL 1", @weeks[4], 0, '23.png'
 create_day 23, "SQL 2", @weeks[4], 0, '23.png'
 create_day 24, "MVC, Frameworks, Rails", @weeks[4], 0, '32.png'
-create_day 25, "Modelos en rails 1", @weeks[4], 0, '32.png'
+create_day 25, "ORM + ActiveRecord", @weeks[4], 0, '32.png'
 
 # *********************** SEMANA 6 ***********************
 
-create_day 26, "Modelos en rails 2", @weeks[5], 0, '32.png'
-create_day 27, "Controladores en Rails 1", @weeks[5], 0, '19.png'
-create_day 28, "Controladores en Rails 2", @weeks[5], 0, '32.png'
-create_day 29, "Modelos + Controladores en Rails", @weeks[5], 0, '32.png'
-create_day 30, "Servicios Web, CRUD en Rails", @weeks[5], 0, '33.png'
+create_day 26, "ActiveRecord relaciones, validaciones", @weeks[5], 0, '32.png'
+create_day 27, "ActiveRecord queries, callbacks", @weeks[5], 0, '3.png'
+create_day 28, "ActiveRecord queries", @weeks[5], 0, '3.png'
+create_day 29, "Modelado + SQL + ORM 1", @weeks[5], 0, '25.png'
+create_day 30, "Modelado + SQL + ORM 2", @weeks[5], 0, '25.png'
 
 # *********************** SEMANA 7 ***********************
 
-create_day 31, "[Review] Algoritmos basicos", @weeks[6], 0, '11.png'
-create_day 32, "[Review] Algoritmos intermedio", @weeks[6], 0, '12.png'
-create_day 33, "[Review] HTTP en ruby", @weeks[6], 0, '17.png'
-create_day 34, "[Review] Modelado de una BD", @weeks[6], 0, '22.png'
-create_day 35, "[Review] CRUD API en Rails", @weeks[6], 0, '33.png'
+create_day 31, "Rails routes + controllers", @weeks[6], 0, '32.png'
+create_day 32, "Rails controllers", @weeks[6], 0, '32.png'
+create_day 33, "Postman + Rails 1", @weeks[6], 0, '18.png'
+create_day 34, "Postman + Rails 2", @weeks[6], 0, '18.png'
+create_day 35, "API Cines", @weeks[6], 0, '2.png'
 
 # *********************** SEMANA 8 ***********************
 
@@ -228,6 +237,23 @@ create_day 68, "Miercoles", @weeks[13], 0
 create_day 69, "Jueves", @weeks[13], 0
 create_day 70, "Viernes", @weeks[13], 0
 
+# *********************** SEMANA 15 ***********************
+
+create_day 71, "Lunes", @weeks[14], 0
+create_day 72, "Martes", @weeks[14], 0
+create_day 73, "Miercoles", @weeks[14], 0
+create_day 74, "Jueves", @weeks[14], 0
+create_day 75, "Viernes", @weeks[14], 0
+
+# *********************** SEMANA 16 ***********************
+
+create_day 76, "Lunes", @weeks[15], 0
+create_day 77, "Martes", @weeks[15], 0
+create_day 78, "Miercoles", @weeks[15], 0
+create_day 79, "Jueves", @weeks[15], 0
+create_day 80, "Viernes", @weeks[15], 0
+
+# *********************************************************
 
 create_category "Analisis", 'analisis.png'
 create_category "Diseño", 'design.png'
@@ -243,3 +269,6 @@ create_category "Bug", 'bug.png'
 create_parameter "current_week", "1"
 create_parameter "promo_group", "Academia-Hack-Promo3"
 create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
+
+# *********************** VIDEOS ***********************
+
