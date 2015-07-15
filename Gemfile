@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
 gem 'rails', '4.1.8'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -32,7 +33,7 @@ gem 'whenever', :require => false
 
 group :production do
   gem 'puma'
-  gem 'rails_12factor'
+ gem 'rails_12factor'
 end
 
 group :development do
