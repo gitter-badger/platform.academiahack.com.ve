@@ -15,8 +15,12 @@ gem 'formtastic', '~> 3.1.3'
 #gem 'spring'
 #gem 'spring-commands-rspec'
 gem 'activeadmin', github: 'activeadmin'
+gem 'active_admin_editor'
 gem 'paperclip', '~> 4.2.1'
+gem 'paperclip-av-transcoder'
 gem 'chosen-rails'
+
+
 gem 'capistrano'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'

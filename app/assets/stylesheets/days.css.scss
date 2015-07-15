@@ -1,3 +1,86 @@
 // Place all the styles related to the days controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'vars';
+
+.white-title {
+  padding: 7px 0px;
+  margin-bottom: 20px;
+  background-color: $hack-blue-col;
+  color: white;
+}
+
+.card{
+  padding: 15px;
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(102,102,102,1);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(102,102,102,1);
+  box-shadow: 4px 4px 7px 0px rgba(102,102,102,1);
+  background-color: $background-col;
+  height: 600px;
+  max-height: 600px;
+}
+
+hr{
+  border-top: 1px solid $hack-blue-col;
+}
+
+.card-content {
+  overflow-y: auto;
+  height: 475px;
+}
+
+.day-video-link{
+  font-weight: bold;
+  color: $hack-blue-col;
+  background-color: $background-col;
+
+  &:hover, &:active{
+    background-color: $background-col !important;
+    color: darken($hack-blue-col, 10%) !important;
+    .play-icon{
+      background-color: darken($hack-blue-col, 10%) !important;
+      color: $background-col !important;
+    }
+  }
+}
+
+.play-icon{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: $background-col !important;
+  background-color: $hack-blue-col;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 10px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.day-content-tabs{
+  font-weight: bold;
+  li{
+    a{
+      color: $hack-blue-col !important;
+
+      &:hover, &:active{
+        color: darken($hack-blue-col, 20%) !important;
+        background-color: $background-col !important;
+      }
+    }
+  }
+
+  .active a{
+    color: darken($hack-blue-col, 20%) !important;
+    background-color: $background-col !important;
+  }
+}
+
+hr{
+  margin: 10px 0px;
+}
+
+.video-title{
+  margin-top: 15px;
+}

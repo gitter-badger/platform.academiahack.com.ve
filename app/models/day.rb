@@ -18,6 +18,7 @@
 class Day < ActiveRecord::Base
   belongs_to :week
   has_many :challenges
+  has_many :videos
   enum status: [ :blocked, :active, :done ]
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "0.png"
@@ -67,4 +68,13 @@ class Day < ActiveRecord::Base
     end
     days
   end
+
+  def get_classroom_challenges
+    self.challenges.where('time = ?', 'classroom')
+  end
+
+  def get_homework_challenges
+    self.challenges.where('time = ?', 'homework')
+  end
+
 end

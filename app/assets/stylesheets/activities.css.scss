@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'vars';
+
 .day_box {
 	width: 20%;
 	position: relative;
@@ -274,7 +276,7 @@ body.mosaic {
 //CARGA DE RETOS MENTORES
 
 .content-white {
-	background-color: #fff;
+	background-color: #eef2f9;
 	padding: 155px 0 30px;
 	margin-top: -250px;
 	color: #222;
@@ -286,7 +288,7 @@ body.mosaic {
 }
 
 .blue-text {
-	color: #005098;
+	color: $hack-blue-col;
 }
 
 .challenge-box {
@@ -296,6 +298,10 @@ body.mosaic {
 
 .challenge-box .image {
 	padding: 20px;
+}
+
+.challenge-box .image img {
+  width: 80px;
 }
 
 .reto-background .btn-large {
