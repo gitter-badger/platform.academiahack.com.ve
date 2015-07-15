@@ -14,7 +14,7 @@ development:
   encoding: utf8
   pool: 5
   username: platform
-  password: blanked
+  password: Abphps8xZQvonzfs
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev
 
