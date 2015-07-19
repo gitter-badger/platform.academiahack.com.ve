@@ -49,6 +49,6 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).permit(:commit, :user_id, :challenge_id)
+    params.permit(:commit, :user_id, :challenge_id)
   end
 end

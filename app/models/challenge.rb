@@ -30,10 +30,6 @@ class Challenge < ActiveRecord::Base
     deliveries.where(user: user).take
   end
 
-  def get_commits(user)
-    Gitlab.commits(repo_name(user)).to_hash
-  end
-
   def create_project user
     Gitlab.create_project(repo_name(user), {:description => self.description, :namespace_id => user.name_space_id})
   end

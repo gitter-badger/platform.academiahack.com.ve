@@ -22,10 +22,11 @@ class ChallengesController < ApplicationController
   def create_project
     @challenge = Challenge.find params[:id]
     project = @challenge.create_project current_user
-    if project && project.to_hash && (git_ssh_url = project.to_hash['ssh_url_to_repo']) && git_ssh_url
+    if project && (project = project.to_hash) && (git_ssh_url = project['ssh_url_to_repo']) && git_ssh_url
       @delivery = Delivery.new
       @delivery.user = current_user
       @delivery.challenge = @challenge
+      @delivery.project_id = project['id']
       @delivery.git_ssh_url = git_ssh_url
       @delivery.save
       redirect_to challenge_path(@challenge), notice: 'Repositorio creado'
