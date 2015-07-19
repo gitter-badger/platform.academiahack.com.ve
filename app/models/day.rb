@@ -13,6 +13,8 @@
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  required_knowledge :text
+#  cheatsheet         :text
 #
 
 class Day < ActiveRecord::Base
@@ -44,8 +46,6 @@ class Day < ActiveRecord::Base
     end
     days
   end
-
-  private
 
   def complete(day_number, repeat = 0, position = 'none')
     day_min = day_number - 2

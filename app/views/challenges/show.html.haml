@@ -15,15 +15,21 @@
         %p
           = simple_format @challenge.description
     .row
+      .col-md-12.text-center
+        - if @delivery && @delivery.git_ssh_url
+          %code
+            = @delivery.git_ssh_url
+        - else
+          = link_to 'Crear repositorio en gitlab', create_project_path(@challenge), class: 'btn btn-primary btn-flat btn-block'
       .col-md-12.text-right
-        - if current_user.github_user && @delivery && @delivery.challenge_repo && @delivery.challenge_url
+        - if current_user.gitlab_user && @delivery && @delivery.challenge_repo && @delivery.challenge_url(current_user)
           %span.github-url
             El nombre del repositorio a entregar es:
-            %a{href: @delivery.challenge_url}
+            %a{href: @delivery.challenge_url(current_user), target:"blank"}
               = @delivery.challenge_repo
         - else
           %span.github-url
-            Para entregar deben agregar tu usuario de github a tu perfil.
+            Para entregar deben agregar tu usuario de gitlab a tu perfil.
     .row
       .col-md-12
         %h3
@@ -31,11 +37,11 @@
     .row
       .col-md-12
         %p
-          La entrega es el hash del commit en github, copialo desde github o la consola
+          La entrega es el hash del commit en gitlab, copialo desde gitlab o la consola
           %em
             git log -n 1
           y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
-    - if @delivery && @delivery.id
+    - if @delivery && @delivery.commit
       %hr
         .row
           .col-md-12
@@ -53,7 +59,7 @@
     - unless current_user.email == 'mentores@hack4geeks.co'
       .row
         .col-md-8.col-md-offset-2
-          - if current_user.github_user && @challenge.status == 1
+          - if current_user.gitlab_user && @challenge.status == 1
             = form_for @delivery, html: {class:'form-inline'} do |f|
               = f.hidden_field :user_id, value: @delivery.user.id
               = f.hidden_field :challenge_id, value: @delivery.challenge.id
@@ -66,12 +72,12 @@
             .row
               .col-md-12
                 %h4.text-center
-                  El reto esta cerrado (ya no esta permitido entregar) o no tienes github username.
+                  El reto esta cerrado (ya no esta permitido entregar) o no tienes gitlab username.
           .row
             .col-md-12
               -if @delivery && @delivery.commit
                 %a.btn.btn-info.btn-flat.btn-block{href: @delivery.commit_url, target: 'blank'}
-                  Ver ultimo commit en github
+                  Ver ultimo commit en gitlab
     - if current_user.email == "mentores@hack4geeks.co"
       .row.mentor-zone
         .col-md-12

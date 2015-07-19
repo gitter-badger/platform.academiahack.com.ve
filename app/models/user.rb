@@ -15,8 +15,9 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  github_user            :string(255)
+#  gitlab_user            :string(255)
 #  name                   :string(255)
+#  name_space_id          :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -26,4 +27,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def gitlab_group
+    "#{gitlab_user}_hack"
+  end
 end

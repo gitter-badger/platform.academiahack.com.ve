@@ -2,7 +2,7 @@
 #   gem install sqlite3
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3' 
+#   gem 'sqlite3'
 #
 default: &default
   adapter: sqlite3
@@ -14,7 +14,7 @@ development:
   encoding: utf8
   pool: 5
   username: platform
-  password: Abphps8xZQvonzfs
+  password: blanked
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev
 
@@ -30,6 +30,6 @@ production:
   encoding: utf8
   pool: 5
   username: platform
-  password: Abphps8xZQvonzfs
+  password: blanked
   socket: /var/run/mysqld/mysqld.sock
   database: platform

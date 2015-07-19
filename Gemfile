@@ -31,6 +31,8 @@ gem 'mysql2'
 gem 'acts_as_list'
 gem 'whenever', :require => false
 
+gem 'gitlab'
+
 group :production do
   gem 'thin'
   gem 'rails_12factor'

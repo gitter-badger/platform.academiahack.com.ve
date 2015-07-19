@@ -9,6 +9,7 @@
 #  updated_at   :datetime
 #  commit       :string(255)
 #  status       :integer
+#  git_ssh_url  :string(255)
 #
 
 require 'test_helper'

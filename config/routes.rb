@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'activities/error' => 'activities#error', as: :activities_error
   get 'deliveries/:id/review/:status' => 'deliveries#review', as: :delivery_review
+  get 'challenges/:id/create_project' => 'challenges#create_project', as: :create_project
 
   resources :weeks, shallow: true do
     resources :days, shallow: true do
