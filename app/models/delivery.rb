@@ -30,11 +30,15 @@ class Delivery < ActiveRecord::Base
     "http://gitlab.com/#{self.user.gitlab_group}/#{challenge_repo}"
   end
   
+   def challenge_url_ssh
+    "git@gitlab.com:#{self.user.gitlab_group}/#{challenge_repo}.git"
+  end
+  
   def commits
     Gitlab.commits(self.project_id)
   end
 
-  def commit_url(user)
-     "#{challenge_url(user)}/commit/#{self.commit}"
+  def commit_url
+     "#{challenge_url(self.user)}/commit/#{self.commit}"
   end
 end

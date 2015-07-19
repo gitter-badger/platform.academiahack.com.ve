@@ -33,4 +33,11 @@ class Challenge < ActiveRecord::Base
   def create_project user
     Gitlab.create_project(repo_name(user), {:description => self.description, :namespace_id => user.name_space_id})
   end
+  
+  def deploy
+    deliveries.each do |delivery|
+      puts File.expand_path('~')
+      #Git.clone delivery.challenge_url_ssh, "~/temp/w_#{@day.week.number}_d_#{@day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
+    end
+  end
 end

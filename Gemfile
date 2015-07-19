@@ -33,6 +33,8 @@ gem 'whenever', :require => false
 
 gem 'gitlab'
 
+gem 'git'
+
 group :production do
   gem 'thin'
   gem 'rails_12factor'
