@@ -12,9 +12,9 @@ default: &default
 development:
   adapter: mysql2
   encoding: utf8
-  pool: 5
+  pool: 5 
   username: root
-  password: Exito.sql
+  password: Despinoza#2015
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev
 

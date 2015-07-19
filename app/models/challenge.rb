@@ -30,8 +30,8 @@ class Challenge < ActiveRecord::Base
     deliveries.where(user: user).take
   end
 
-  def get_commits(user)
-    Gitlab.commits(repo_name(user)).to_hash
+  def get_commits(delivery)
+    Gitlab.commits(delivery.project_id).to_hash
   end
 
   def create_project user

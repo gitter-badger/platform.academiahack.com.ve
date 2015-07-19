@@ -10,6 +10,7 @@
 #  commit       :string(255)
 #  status       :integer
 #  git_ssh_url  :string(255)
+#  project_id   :string(255)
 #
 
 class Delivery < ActiveRecord::Base
