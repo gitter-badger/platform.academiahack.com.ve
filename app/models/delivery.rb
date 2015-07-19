@@ -26,8 +26,12 @@ class Delivery < ActiveRecord::Base
     "w#{week.number}_d#{day.number}_ch#{challenge.id}_#{user.gitlab_user}"
   end
 
-  def challenge_url(user)
-    "http://gitlab.com/#{user.gitlab_group}/#{challenge_repo}"
+  def challenge_url
+    "http://gitlab.com/#{self.user.gitlab_group}/#{challenge_repo}"
+  end
+  
+  def commits
+    Gitlab.commits(self.project_id)
   end
 
   def commit_url(user)
