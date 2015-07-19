@@ -17,8 +17,8 @@
     - unless current_user.email == "mentores@hack4geeks.co"
       .row
         .col-md-12
-          - if @delivery && @delivery.project_id && !@delivery.commits
-            %h3
+          - if @delivery && @delivery.project_id && @delivery.commits.length < 1
+            %h3.text-center
               Instrucciones de la linea de comando
             %h4
               Configuración global de git
@@ -63,7 +63,8 @@
                 - @delivery.commits.each do |commit|
                   %tr
                     %td.text-center
-                      = commit.short_id
+                      %a{href: @delivery.commit_url}
+                        = commit.short_id
                     %td.text-center
                       = commit.author_email
                     %td.text-center

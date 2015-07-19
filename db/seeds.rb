@@ -44,12 +44,13 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
-def create_user email, password, devise_class, gitlab_user=nil
+def create_user email, password, devise_class, gitlab_user=nil, name_space_id=nil
   user = devise_class.new
   user.email = email
   if password.length >= 8
     if gitlab_user != nil
       user.gitlab_user = gitlab_user
+      user.name_space_id = name_space_id
     end
     user.password = password
     user.save
@@ -79,17 +80,17 @@ end
 
 create_user 'mentores@hack4geeks.co', 'Hack2015', User
 
-create_user 'christianpetersen@hotmail.com', '17424223', User, 'cpetersen223'
-create_user 'danielitox222@gmail.com', '24271083', User, 'dguzzo083'
-create_user 'd.rondonaguilera@gmail.com', '26473500', User, 'drondon500'
-create_user 'johanna.salazar.b@gmail.com', '18358568', User, 'jsalazar568'
-create_user 'johansanchez2101@gmail.com', '22774308', User, 'jsanchez308'
-create_user 'jorgeloaiza12@gmail.com', '20802018', User, 'jloaiza018'
-create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824'
-create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828'
-create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368'
-create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969'
-create_user 'estebansamuel.reyes@gmail.com', '20976791', User, 'estebansamuel'
+create_user 'christianpetersen@hotmail.com', '17424223', User, 'cpetersen223', '230287'
+create_user 'danielitox222@gmail.com', '24271083', User, 'dguzzo083', '230423'
+create_user 'd.rondonaguilera@gmail.com', '26473500', User, 'drondon500', '230424'
+create_user 'johanna.salazar.b@gmail.com', '18358568', User, 'jsalazar568', '230425'
+create_user 'johansanchez2101@gmail.com', '22774308', User, 'jsanchez308', '230426'
+create_user 'jorgeloaiza12@gmail.com', '20802018', User, 'jloaiza018', '230427'
+create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824', '230429'
+create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828', '230430'
+create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368', '230431'
+create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969', '230432'
+create_user 'estebansamuel.reyes@gmail.com', '20976791', User, 'ereyes791', '230435'
 
 # *********************** PROMO 3 ***********************
 
