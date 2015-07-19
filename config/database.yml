@@ -13,8 +13,8 @@ development:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: platform
-  password: blanked
+  username: root
+  password: Exito.sql
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev
 

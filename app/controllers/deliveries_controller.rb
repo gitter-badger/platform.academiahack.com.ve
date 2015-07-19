@@ -19,6 +19,12 @@ class DeliveriesController < ApplicationController
   end
 
 
+  def deploy
+    delivery = Delivery.find params[:id]
+
+    redirect_to challenge_path(delivery.challenge), notice: 'ando por acá'
+  end
+
   def review
     message = 'La revision del reto fue cargada correctamente'
     if admin_user_signed_in?

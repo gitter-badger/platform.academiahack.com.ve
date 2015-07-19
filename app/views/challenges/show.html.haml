@@ -98,7 +98,7 @@
                       Fecha y hora de la entrega
                     %th
                       Commit
-                    %th.text-center{colspan:2}
+                    %th.text-center{colspan:3}
                       Review
                 %tbody
                   - if @deliveries && @deliveries.length > 0
@@ -124,6 +124,8 @@
                           %td.text-center{colspan:2}
                             Reto abierto.
                         - else
+                          %td
+                            = link_to 'Revisar', delivery_deploy_path(id:delivery.id), class: 'btn btn-warning btn-flat btn-block'
                           %td
                             = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
                           %td

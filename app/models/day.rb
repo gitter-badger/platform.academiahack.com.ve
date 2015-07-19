@@ -45,6 +45,14 @@ class Day < ActiveRecord::Base
     days
   end
 
+  def get_classroom_challenges
+    self.challenges.where('time = ?', 'classroom')
+  end
+
+  def get_homework_challenges
+    self.challenges.where('time = ?', 'homework')
+  end
+
   private
 
   def complete(day_number, repeat = 0, position = 'none')
@@ -69,12 +77,5 @@ class Day < ActiveRecord::Base
     days
   end
 
-  def get_classroom_challenges
-    self.challenges.where('time = ?', 'classroom')
-  end
-
-  def get_homework_challenges
-    self.challenges.where('time = ?', 'homework')
-  end
 
 end
