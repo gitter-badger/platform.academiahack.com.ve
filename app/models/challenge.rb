@@ -19,25 +19,14 @@ class Challenge < ActiveRecord::Base
   has_many :comments
   has_many :deliveries
 
-  def repo_name user
-    day = self.day
-    week = day.week
-
-    "w_#{week.number}_d_#{day.number}_ch#{self.id}_#{user.gitlab_user}"
-  end
-
   def deliver_by_user user
     deliveries.where(user: user).take
   end
-
-  def create_project user
-    Gitlab.create_project(repo_name(user), {:description => self.description, :namespace_id => user.name_space_id})
-  end
   
   def deploy
-    deliveries.each do |delivery|
-      puts File.expand_path('~')
-      #Git.clone delivery.challenge_url_ssh, "~/temp/w_#{@day.week.number}_d_#{@day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
+    self.deliveries.each do |delivery|
+      puts delivery.challenge_url_ssh
+      Git.clone delivery.challenge_url_ssh, "#{File.expand_path('~')}/temp/w_#{self.day.week.number}_d_#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
     end
   end
 end
