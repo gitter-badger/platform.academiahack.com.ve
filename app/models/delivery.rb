@@ -9,6 +9,7 @@
 #  updated_at   :datetime
 #  commit       :string(255)
 #  status       :integer
+#  git_ssh_url  :string(255)
 #
 
 class Delivery < ActiveRecord::Base
@@ -21,20 +22,14 @@ class Delivery < ActiveRecord::Base
     day = challenge.day
     week = day.week
 
-    "w_#{week.number}_d_#{day.number}_ch#{challenge.id}_#{user.github_user}"
+    "w#{week.number}_d#{day.number}_ch#{challenge.id}_#{user.gitlab_user}"
   end
 
-  def challenge_url
-    challenge_url = ''
-    param_github_url = Parameter.find_by_key 'github_promo_url'
-
-    if param_github_url
-      challenge_url = param_github_url.value + challenge_repo
-    end
-    challenge_url
+  def challenge_url(user)
+    "http://gitlab.com/#{user.gitlab_group}/#{challenge_repo}"
   end
 
-  def commit_url
-    challenge_url + "/commit/#{self.commit}"
+  def commit_url(user)
+     "#{challenge_url(user)}/commit/#{self.commit}"
   end
 end

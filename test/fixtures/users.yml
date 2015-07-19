@@ -15,8 +15,9 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  github_user            :string(255)
+#  gitlab_user            :string(255)
 #  name                   :string(255)
+#  name_space_id          :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

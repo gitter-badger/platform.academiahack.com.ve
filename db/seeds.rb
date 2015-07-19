@@ -44,12 +44,12 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
-def create_user email, password, devise_class, github_user=nil
+def create_user email, password, devise_class, gitlab_user=nil
   user = devise_class.new
   user.email = email
   if password.length >= 8
-    if github_user != nil
-      user.github_user = github_user
+    if gitlab_user != nil
+      user.gitlab_user = gitlab_user
     end
     user.password = password
     user.save

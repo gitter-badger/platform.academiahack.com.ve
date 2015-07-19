@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
 gem 'rails', '4.1.8'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -29,6 +30,13 @@ gem 'mysql2'
 
 gem 'acts_as_list'
 gem 'whenever', :require => false
+
+gem 'gitlab'
+
+group :production do
+  gem 'thin'
+  gem 'rails_12factor'
+end
 
 group :development do
   gem 'bullet'
