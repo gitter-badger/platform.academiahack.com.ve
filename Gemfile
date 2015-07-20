@@ -32,7 +32,7 @@ gem 'acts_as_list'
 
 group :production do
   gem 'thin'
-  gem 'rails_12factor'
+  # gem 'rails_12factor'
 end
 
 group :development do
