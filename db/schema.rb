@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618200830) do
+ActiveRecord::Schema.define(version: 20150719041724) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20150618200830) do
     t.datetime "updated_at"
     t.string   "commit"
     t.integer  "status"
+    t.string   "git_ssh_url"
+    t.string   "project_id"
   end
 
   add_index "deliveries", ["challenge_id"], name: "index_deliveries_on_challenge_id", using: :btree
@@ -132,8 +134,9 @@ ActiveRecord::Schema.define(version: 20150618200830) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "github_user"
+    t.string   "gitlab_user"
     t.string   "name"
+    t.string   "name_space_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

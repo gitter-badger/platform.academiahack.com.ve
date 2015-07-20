@@ -1,11 +1,18 @@
 class DeliveriesController < ApplicationController
   def create
-    @delivery = Delivery.new(delivery_params)
-    message = 'Entrega creada exitosamente'
-    unless @delivery.save
-      message = 'No se pudo realizar la entrega! Comunicate con el mentor que asigno el reto'
+    @challenge = Challenge.find params[:challenge_id]
+    @delivery = Delivery.new @challenge
+    @delivery.user = current_user
+    
+    project = @delivery.create_project
+    if project && (project = project.to_hash) && (git_ssh_url = project['ssh_url_to_repo']) && git_ssh_url
+      @delivery.project_id = project['id']
+      @delivery.git_ssh_url = git_ssh_url
+      @delivery.save
+      redirect_to challenge_path(@challenge), notice: 'Repositorio creado'
+    else
+      redirect_to challenge_path(@challenge), notice: 'Error al crear el repositorio!'
     end
-    redirect_to :back, notice: message
   end
 
   def update
@@ -18,6 +25,12 @@ class DeliveriesController < ApplicationController
     redirect_to :back, notice: message
   end
 
+
+  def deploy
+    delivery = Delivery.find params[:id]
+
+    redirect_to challenge_path(delivery.challenge), notice: 'ando por acá'
+  end
 
   def review
     message = 'La revision del reto fue cargada correctamente'
@@ -43,6 +56,6 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).permit(:commit, :user_id, :challenge_id)
+    params.permit(:commit, :user_id, :challenge_id)
   end
 end

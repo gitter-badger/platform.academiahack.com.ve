@@ -14,65 +14,80 @@
       .col-md-12
         %p
           = simple_format @challenge.description
-    .row
-      .col-md-12.text-right
-        - if current_user.github_user && @delivery && @delivery.challenge_repo && @delivery.challenge_url
-          %span.github-url
-            El nombre del repositorio a entregar es:
-            %a{href: @delivery.challenge_url}
-              = @delivery.challenge_repo
-        - else
-          %span.github-url
-            Para entregar deben agregar tu usuario de github a tu perfil.
-    .row
-      .col-md-12
-        %h3
-          Zona de entrega
-    .row
-      .col-md-12
-        %p
-          La entrega es el hash del commit en github, copialo desde github o la consola
-          %em
-            git log -n 1
-          y pegalo en el campo de texto. Si es un reto diario tienes hasta el mismo dia hasta las 11:59pm para entregar. Si es un reto del sprint tienes hasta el lunes a las 9:30am para entregar.
-    - if @delivery && @delivery.id
-      %hr
-        .row
-          .col-md-12
-            .panel-group{role:'tablist'}
-              .panel.panel-default
-                .panel-heading{role:'tab'}
-                  %h4.panel-title#collapse_preview
-                    %a{'data-toggle'=>'collapse', href:'#collapse_preview_1', 'aria-expanded'=>'true', 'aria-controls'=>'collapse_preview_1'}
-                      Preview del repositorio
-                  %a.anchorjs-link{href:'#collapse_preview'}
-                    %span.anchorjs-icon
-                .panel-collapse.collapse#collapse_preview_1{role:'tabpanel', 'aria-expanded'=>'true'}
-                  .repo_preview{'data-group'=>@promo_group.value, 'data-repo'=>@delivery.challenge_repo}
-      %hr
-    - unless current_user.email == 'mentores@hack4geeks.co'
+    - unless current_user.email == "mentores@hack4geeks.co"
       .row
-        .col-md-8.col-md-offset-2
-          - if current_user.github_user && @challenge.status == 1
-            = form_for @delivery, html: {class:'form-inline'} do |f|
-              = f.hidden_field :user_id, value: @delivery.user.id
-              = f.hidden_field :challenge_id, value: @delivery.challenge.id
-              .row
-                .col-md-7
-                  = f.text_field :commit, type:"text", class:"form-control full-width btn-flat text-center"
-                .col-md-5
-                  = f.submit 'Cargar git commit', class: 'btn btn-primary btn-flat btn-block'
-          - else
+        .col-md-12
+          - if @delivery && @delivery.project_id && @delivery.commits.length < 1
+            %h3.text-center
+              Instrucciones de la linea de comando
+            %h4
+              Configuración global de git
+            .well
+              git config --global user.name #{current_user.gitlab_user}</br>
+              git config --global user.email #{current_user.email}</br>
+            %h4
+              Crear un repositorio nuevo
+            .well
+              git clone #{@delivery.git_ssh_url}</br>
+              cd #{@delivery.repo_name}</br>
+              touch README.md</br>
+              git add README.md</br>
+              git commit -m "add README"</br>
+              git push -u origin master</br>
+            %h4
+              Carpeta o repositorio existente
+            .well
+              cd existing_folder</br>
+              git init</br>
+              git remote add origin #{@delivery.git_ssh_url}</br>
+              git push -u origin master</br>
+          - elsif @delivery && @delivery.commits
             .row
               .col-md-12
-                %h4.text-center
-                  El reto esta cerrado (ya no esta permitido entregar) o no tienes github username.
-          .row
-            .col-md-12
-              -if @delivery && @delivery.commit
-                %a.btn.btn-info.btn-flat.btn-block{href: @delivery.commit_url, target: 'blank'}
-                  Ver ultimo commit en github
-    - if current_user.email == "mentores@hack4geeks.co"
+                %h3
+                  Zona de entrega
+            %table.table.table-striped.table-hover
+              %thead
+                %tr
+                  %th.text-center
+                    Commit id
+                  %th.text-center
+                    Autor
+                  %th.text-center
+                    Fecha
+                  %th.text-center{colspan: 2}
+                    Mensaje
+                  %th.text-center
+                    Entrega
+              %tbody
+                - @delivery.commits.each do |commit|
+                  %tr
+                    %td.text-center
+                      %a{href: @delivery.commit_url}
+                        = commit.short_id
+                    %td.text-center
+                      = commit.author_email
+                    %td.text-center
+                      = Time.parse(commit.created_at).strftime("%d/%m/%Y %-l:%M %P")
+                    %td.text-center{colspan: 2}
+                      = commit.message.truncate 100
+                    %td.text-center
+                      - if @delivery.commit == commit.id 
+                        .btn.btn-primary.btn-flat.btn-block Seleccionado
+                      - else 
+                        = link_to 'Entregar', delivery_path(@delivery, commit:commit.id, challenge_id: @challenge.id), class: 'btn btn-info btn-flat btn-block', method: :put
+          - else
+            = link_to 'Crear repositorio en gitlab', deliveries_path(challenge_id: @challenge.id), class: 'btn btn-primary btn-flat btn-block', method: 'post'
+        .col-md-12.text-right
+          - if current_user.gitlab_user && @delivery && @delivery.repo_name && @delivery.challenge_url
+            %span.github-url
+              El nombre del repositorio a entregar es:
+              %a{href: @delivery.challenge_url, target:"blank"}
+                = @delivery.repo_name
+          - else
+            %span.github-url
+              Para entregar deben agregar tu usuario de gitlab a tu perfil.
+    - else 
       .row.mentor-zone
         .col-md-12
           %h3
@@ -98,7 +113,7 @@
                       Fecha y hora de la entrega
                     %th
                       Commit
-                    %th.text-center{colspan:2}
+                    %th.text-center{colspan:3}
                       Review
                 %tbody
                   - if @deliveries && @deliveries.length > 0

@@ -3,7 +3,7 @@ class WeeksController < ApplicationController
   layout 'activities'
 
   def index
-    @weeks = Week.order(:position).all
+    @weeks = Week.order(:position).includes(:days).all
     parameter = Parameter.find_by_key :current_week
     if parameter
       @current_week_index = parameter.value.to_i - 1

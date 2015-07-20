@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'rails', '4.1.8'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -11,8 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 3.4.1'
 gem 'haml', '~> 4.0.6'
 gem 'formtastic', '~> 3.1.3'
-gem 'better_errors', '~> 2.1.1', group: :development
-gem "binding_of_caller", group: :development
+
 #gem 'spring'
 #gem 'spring-commands-rspec'
 gem 'activeadmin', github: 'activeadmin'
@@ -27,5 +27,22 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: "capistrano/rvm"
 gem 'mysql2'
-gem 'bullet'
+
 gem 'acts_as_list'
+
+group :production do
+  gem 'thin'
+  gem 'rails_12factor'
+end
+
+group :development do
+  gem 'better_errors', '~> 2.1.1'
+  gem 'binding_of_caller'
+  gem 'bullet'
+  gem 'annotate', '~> 2.6.6'
+end
+
+gem 'whenever', :require => false
+
+gem 'gitlab'
+gem 'git'

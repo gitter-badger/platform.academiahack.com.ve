@@ -12,8 +12,8 @@ default: &default
 development:
   adapter: mysql2
   encoding: utf8
-  pool: 5
-  username: platform
+  pool: 5 
+  username: root
   password: blanked
   socket: /var/run/mysqld/mysqld.sock
   database: platform_dev

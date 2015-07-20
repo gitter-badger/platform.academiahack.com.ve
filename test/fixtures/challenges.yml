@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: challenges
+#
+#  id          :integer          not null, primary key
+#  time        :string(255)
+#  title       :string(255)
+#  description :text
+#  day_id      :integer
+#  category_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  status      :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
