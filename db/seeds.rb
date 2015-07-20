@@ -88,9 +88,11 @@ create_user 'johansanchez2101@gmail.com', '22774308', User, 'jsanchez308', '2304
 create_user 'jorgeloaiza12@gmail.com', '20802018', User, 'jloaiza018', '230427'
 create_user 'meg_1703@hotmail.com', '18816824', User, 'mgraterol824', '230429'
 create_user 'miguelacs18@gmail.com', '22019828', User, 'mcamacho828', '230430'
-create_user 'nerumarcano@gmail.com', '23597368', User, 'nmarcano368', '230431'
+create_user 'nerumarcano@gmail.com', '23597368', User, 'nrmarcano368', '230765'
 create_user 'scarleth1306@gmail.com', '21132969', User, 'sbernal969', '230432'
 create_user 'estebansamuel.reyes@gmail.com', '20976791', User, 'ereyes791', '230435'
+create_user 'jorge.basilio.94@gmail.com', '26334221', User, 'jbasilio221', '230774'
+create_user 'romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
 
 # *********************** PROMO 3 ***********************
 
@@ -120,7 +122,7 @@ create_week 10, "Javascript", 10
 create_week 11, "jQuery", 11
 create_week 12, "FrontEnd Tools", 12
 create_week 13, "AngularJS", 13
-create_week 14, "AngularJS", 14
+create_week 14, "Full stack app", 14
 # *********************** FRONTEND ***********************
 # *********************** FINAL HACK ***********************
 create_week 15, "Proyecto Final", 15
@@ -144,27 +146,27 @@ create_day 10, "Entrega de proyecto y certificación", @weeks[1], 2, '3.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Ruby idiomatico 1", @weeks[2], 1, '26.png'
-create_day 12, "Ruby idiomatico 2", @weeks[2], 1, '26.png'
-create_day 13, "Clases y objetos en ruby", @weeks[2], 1, '27.png'
-create_day 14, "Self, herencia y modulos", @weeks[2], 1, '27.png'
-create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 1, '22.png'
+create_day 11, "Ruby idiomatico 1", @weeks[2], 2, '26.png'
+create_day 12, "Ruby idiomatico 2", @weeks[2], 2, '26.png'
+create_day 13, "Clases y objetos en ruby", @weeks[2], 2, '27.png'
+create_day 14, "Self, herencia y modulos", @weeks[2], 2, '27.png'
+create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 2, '22.png'
 
 # *********************** SEMANA 4 ***********************
 
-create_day 16, "Ruby warriors, ninja vs dinosaurios", @weeks[3], 0, '27.png'
-create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 0, '40.png'
-create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 0, '17.png'
-create_day 19, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], 0, '17.png'
-create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 0, '17.png'
+create_day 16, "Ruby warriors, ninja vs dinosaurios", @weeks[3], 2, '27.png'
+create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 2, '40.png'
+create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 2, '17.png'
+create_day 19, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], 2, '17.png'
+create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 2, '17.png'
 
 # *********************** SEMANA 5 ***********************
 
-create_day 21, "Modelado de datos", @weeks[4], 0, '22.png'
-create_day 22, "SQL 1", @weeks[4], 0, '23.png'
-create_day 23, "SQL 2", @weeks[4], 0, '23.png'
-create_day 24, "MVC, Frameworks, Rails", @weeks[4], 0, '32.png'
-create_day 25, "ORM + ActiveRecord", @weeks[4], 0, '32.png'
+create_day 21, "Modelado de datos", @weeks[4], 1, '22.png'
+create_day 22, "SQL 1", @weeks[4], 1, '23.png'
+create_day 23, "SQL 2", @weeks[4], 1, '23.png'
+create_day 24, "MVC, Frameworks, Rails", @weeks[4], 1, '32.png'
+create_day 25, "ORM + ActiveRecord", @weeks[4], 1, '32.png'
 
 # *********************** SEMANA 6 ***********************
 
@@ -267,7 +269,7 @@ create_category "Bug", 'bug.png'
 
 # *********************** PARAMETERS ***********************
 
-create_parameter "current_week", "1"
+create_parameter "current_week", "5"
 create_parameter "promo_group", "Academia-Hack-Promo3"
 create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
 
