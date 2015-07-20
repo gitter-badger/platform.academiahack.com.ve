@@ -29,11 +29,6 @@ gem 'capistrano-rvm', github: "capistrano/rvm"
 gem 'mysql2'
 
 gem 'acts_as_list'
-gem 'whenever', :require => false
-
-gem 'gitlab'
-
-gem 'git'
 
 group :production do
   gem 'thin'
@@ -41,8 +36,13 @@ group :production do
 end
 
 group :development do
-  gem 'bullet'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'
+  gem 'bullet'
   gem 'annotate', '~> 2.6.6'
 end
+
+gem 'whenever', :require => false
+
+gem 'gitlab'
+gem 'git'
