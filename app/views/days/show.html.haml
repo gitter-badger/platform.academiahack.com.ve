@@ -74,9 +74,9 @@
           %hr
           .card-content
             .tab-content
-              #requirements.tab-pane.active{role:'tablist'}
+              #requirements{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane" : "tab-pane active"}
                 -if @day.required_knowledge
-                  -if @day.required_knowledge.empty?
+                  -if @day.required_knowledge.blank?
                     %h3.text-center
                       ¿Estas preparado?
                       %h4.text-center
@@ -90,7 +90,7 @@
                       Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
               #cheatsheets.tab-pane{role:'tablist'}
                 -if @day.cheatsheet
-                  -if @day.cheatsheet.empty?
+                  -if @day.cheatsheet.blank?
                     %h3.text-center
                       ¿No recuerdas el comando, o la función?
                       %h4.text-center
@@ -102,7 +102,7 @@
                     ¿No recuerdas como se hacía o se escribía?
                     %h4.text-center
                       Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
-              #challenge.tab-pane{role:'tablist'}
+              #challenge{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane active" : "tab-pane"}
                 - if @day.challenges.length > 0
                   .row
                     %h3.text-center
