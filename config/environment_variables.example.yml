@@ -1,0 +1,7 @@
+development:
+ DATABASE_USER: root
+ DATABASE_PASS: vagrant
+production:
+ FOO: 'bar'
+test:
+ FOO: 'bar'
