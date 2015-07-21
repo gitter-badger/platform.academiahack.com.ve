@@ -33,46 +33,116 @@
                 = image_tag "0.png"
 .content-white
   .container
-    %h1.blue-text.text-center
+    %h1.white-title.text-center
       %span.day-title
         = @day.name
       -#%buton.btn.btn-default.btn-xs.day-name-edit
       -#  %span.glyphicon.glyphicon-pencil{'aria-hidden'=>'true'}
     .row
-      - if @day.challenges.length > 0
-        .row
-          %h2
-            Retos en clase
-          - @day.challenges.each do |challenge|
-            - if challenge.time == 'classroom'
-              .col-md-4.text-center
-                .challenge-box
-                  %h3
-                    = challenge.title
-                  .image
-                    = image_tag challenge.category.image.url
-                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                  = image_tag 'list-hexagon.png'
-                  ¡Hazlo!
-        .row
-          %h2
-            Retos del sprint
-          - @day.challenges.each do |challenge|
-            - if challenge.time == 'homework'
-              .col-md-4.text-center
-                .challenge-box
-                  %h3
-                    = challenge.title
-                  .image
-                    = image_tag challenge.category.image.url
-                = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                  = image_tag 'list-hexagon.png'
-                  ¡Hazlo!
-      - else
-        %h1.text-center
-          Hoy no hay retos, pero siempre hay mucho que hacer!
-          %h4.text-center
-            Aprovecha y haz preguntas claves a los mentores!
+      -if @day.videos.length > 0
+        .col-md-5
+          .card
+            %h3.blue-text.text-center.video-title
+              Videos Hack
+            %hr
+            .card-content
+              %ul.nav.nav-stacked
+                -@day.videos.each do |vid|
+                  %li
+                    -if vid.video_file_name
+                      =link_to(vid.video.url, target: :blank, class:'day-video-link') do
+                        .play-icon
+                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                        =vid.name
+                    -else
+                      =link_to(vid.url, target: :blank, class:'day-video-link') do
+                        .play-icon
+                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                        =vid.name
+      %div{ :class => @day.videos.length > 0 ? "col-md-7" : 'col-md-10 col-md-offset-1' }
+        .card
+          %ul.nav.day-content-tabs.nav-justified{role:'tablist'}
+            %li.active
+              %a{href:'#requirements', "data-toggle" => 'tab'}
+                Conocimientos Previos
+            %li
+              %a{href:'#cheatsheets', "data-toggle" => 'tab'}
+                CheatSheets
+            %li
+              %a{href:'#challenge', "data-toggle" => 'tab'}
+                Retos
+          %hr
+          .card-content
+            .tab-content
+              #requirements{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane" : "tab-pane active"}
+                -if @day.required_knowledge
+                  -if @day.required_knowledge.blank?
+                    %h3.text-center
+                      ¿Estas preparado?
+                      %h4.text-center
+                        Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
+                  -else
+                    =@day.required_knowledge.html_safe
+                -else
+                  %h3.text-center
+                    ¿Estas preparado?
+                    %h4.text-center
+                      Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
+              #cheatsheets.tab-pane{role:'tablist'}
+                -if @day.cheatsheet
+                  -if @day.cheatsheet.blank?
+                    %h3.text-center
+                      ¿No recuerdas el comando, o la función?
+                      %h4.text-center
+                        Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
+                  -else
+                    =@day.cheatsheet.html_safe
+                -else
+                  %h3.text-center
+                    ¿No recuerdas como se hacía o se escribía?
+                    %h4.text-center
+                      Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
+              #challenge{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane active" : "tab-pane"}
+                - if @day.challenges.length > 0
+                  .row
+                    %h3.text-center
+                      Retos en clase
+                    - if @day.get_classroom_challenges.length > 0
+                      - @day.get_classroom_challenges.each do |challenge|
+                        .col-md-4.text-center
+                          .challenge-box
+                            %h4
+                              = challenge.title
+                            .image
+                              = image_tag challenge.category.image.url
+                          = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                            = image_tag 'list-hexagon.png'
+                            ¡Hazlo!
+                    -else
+                      %h4.text-center
+                        No existen retos del salon.
+                  .row
+                    %h3.text-center
+                      Proyectos
+                    - if @day.get_homework_challenges.length > 0
+                      - @day.challenges.each do |challenge|
+                        .col-md-4.text-center
+                          .challenge-box
+                            %h4
+                              = challenge.title
+                            .image
+                              = image_tag challenge.category.image.url
+                          = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                            = image_tag 'list-hexagon.png'
+                            ¡Hazlo!
+                    -else
+                      %h4.text-center
+                        Aun no hay retos del sprint.
+                - else
+                  %h3.text-center
+                    Hoy no hay retos, pero siempre hay mucho que hacer!
+                    %h4.text-center
+                      Aprovecha y haz preguntas claves a los mentores!
     - if current_user.email == "mentores@hack4geeks.co"
       .row.mentor-zone
         .col-md-12

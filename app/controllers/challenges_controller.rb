@@ -3,20 +3,14 @@ class ChallengesController < ApplicationController
   layout 'activities'
 
   def show
-    challenge_id = params[:id]
-    @challenge = Challenge.find challenge_id
+    @challenge = Challenge.find params[:id]
     @promo_group = Parameter.find_by_key 'promo_group'
 
-    @delivery = Delivery.where(challenge_id: challenge_id, user_id: current_user.id).first
-    unless @delivery
-      @delivery = Delivery.new
-      @delivery.user = current_user
-      @delivery.challenge = @challenge
-    end
-
+    # @delivery = Delivery.where(challenge_id: params[:id], user_id: current_user.id).first
+    @delivery = @challenge.deliver_by_user current_user
+    
     if current_user.email == 'mentores@hack4geeks.co'
-      @deliveries = Delivery.where challenge_id: challenge_id
+      @deliveries = Delivery.where challenge_id: params[:id]
     end
   end
-
 end

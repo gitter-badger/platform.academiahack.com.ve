@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: days
+#
+#  id                 :integer          not null, primary key
+#  number             :integer
+#  name               :string(255)
+#  week_id            :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  status             :integer
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#  required_knowledge :text
+#  cheatsheet         :text
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

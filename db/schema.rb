@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426035009) do
+ActiveRecord::Schema.define(version: 20150719041724) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20150426035009) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "required_knowledge"
+    t.text     "cheatsheet"
   end
 
   add_index "days", ["week_id"], name: "index_days_on_week_id", using: :btree
@@ -105,6 +107,8 @@ ActiveRecord::Schema.define(version: 20150426035009) do
     t.datetime "updated_at"
     t.string   "commit"
     t.integer  "status"
+    t.string   "git_ssh_url"
+    t.string   "project_id"
   end
 
   add_index "deliveries", ["challenge_id"], name: "index_deliveries_on_challenge_id", using: :btree
@@ -130,12 +134,27 @@ ActiveRecord::Schema.define(version: 20150426035009) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "github_user"
+    t.string   "gitlab_user"
     t.string   "name"
+    t.string   "name_space_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+  end
+
+  add_index "videos", ["day_id"], name: "index_videos_on_day_id", using: :btree
 
   create_table "weeks", force: true do |t|
     t.integer  "number"
