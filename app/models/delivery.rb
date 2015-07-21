@@ -32,7 +32,7 @@ class Delivery < ActiveRecord::Base
   end
   
   def create_project
-    Gitlab.create_project(repo_name, {:description => self.challenge.description, :namespace_id => self.user.name_space_id})
+    Gitlab.create_project(repo_name, {:description => self.challenge.description.truncate(1900), :namespace_id => self.user.name_space_id})
   end
 
   def challenge_url
