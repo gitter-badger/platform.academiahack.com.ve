@@ -19,7 +19,9 @@ class DeliveriesController < ApplicationController
     message = 'Entrega actualizada correctamente'
     @delivery = Delivery.find params[:id]
 
-    unless @delivery.update(delivery_params)
+    if @delivery.update(delivery_params)
+      DeliveryMailer.deliver_notify_commit_selected(current_user, @delivery).deliver!
+    else
       message = 'No se pudo actualizar la entrega! Comunicate con el mentor que asigno el reto'
     end
     redirect_to :back, notice: message

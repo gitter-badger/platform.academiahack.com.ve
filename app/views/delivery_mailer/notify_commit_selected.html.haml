@@ -1,0 +1,9 @@
+!!! 5
+%html
+  %head
+  %body
+    %h1
+      Entrega de commit
+    %p
+      El alumno <%= @user.email %> acaba de entregar un commit para el reto: "<%= @delivery.challenge.title%>".
+      Para revisar el repositorio haga click <a href="<%= @delivery.challenge_url %>"> aqui </a>
