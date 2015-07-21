@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Entrega de commit</h1>
+    <p>
+      El alumno <%= @user.email %> acaba de entregar un commit para el reto: "<%= @delivery.challenge.title%>".<br>
+      Para revisar el repositorio haga click <a href="<%= @delivery.challenge_url %>"> aqui </a>
+    </p>
+  </body>
+</html>
+
