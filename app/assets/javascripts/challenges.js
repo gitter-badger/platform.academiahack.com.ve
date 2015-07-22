@@ -6,7 +6,7 @@ $(document).ready(function(){
     var myDropzone;
     var disqus_shortname;
 
-    disqus_shortname = 'hack4geeks';
+    disqus_shortname = 'academiahack';
     dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
