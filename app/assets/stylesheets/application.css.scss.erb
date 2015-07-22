@@ -16,10 +16,14 @@
  *= require dropzone
  *= require tomorrow
  *= require active_admin/editor/wysiwyg
+ *= require base16.ocean.dark
  *= require_self
  */
 
-<%= Rouge::Themes::Base16.render(:scope => '.highlight') %>
+.highlight {
+  margin: 0 auto;
+  width: 90%;
+}
 
  @font-face {
   font-family: 'Roboto';

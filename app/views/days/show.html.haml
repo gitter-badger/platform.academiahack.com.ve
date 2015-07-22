@@ -75,14 +75,26 @@
           .card-content
             .tab-content
               #requirements{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane" : "tab-pane active"}
-                -if @day.required_knowledge
+                -if current_user.email == 'mentores@hack4geeks.co'
+                  .container-fluid
+                    .row
+                      .col-md-6
+                        = form_tag(day_path, method: "put", id: 'required_knowledge_form') do
+                          = text_area_tag 'required_knowledge', @day.required_knowledge, class: 'no-style-textarea'
+                      .col-md-6
+                        = preserve do
+                          = @day.transform_content.required_knowledge.html_safe
+                      .col-md-12
+                        = submit_tag("Guardar", class: "btn btn-info btn-flat btn-block", form: 'required_knowledge_form')
+                -elsif @day.required_knowledge
                   -if @day.required_knowledge.blank?
                     %h3.text-center
                       ¿Estas preparado?
                       %h4.text-center
                         Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
                   -else
-                    =@day.required_knowledge.html_safe
+                    = preserve do
+                      = @day.transform_content.required_knowledge.html_safe
                 -else
                   %h3.text-center
                     ¿Estas preparado?
@@ -96,7 +108,8 @@
                       %h4.text-center
                         Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
                   -else
-                    =@day.cheatsheet.html_safe
+                    = preserve do
+                      =@day.transform_content.cheatsheet.html_safe
                 -else
                   %h3.text-center
                     ¿No recuerdas como se hacía o se escribía?
