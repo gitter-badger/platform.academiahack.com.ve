@@ -17,6 +17,9 @@
 //= require dropzone
 //= require repo/repo.min
 //= require jquery.diagram
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 
 $(function(){

@@ -54,6 +54,7 @@ Rails.application.configure do
       :domain => 'academiahack.com.ve', # your domain to identify your server when connecting
   }
 
+  config.react.variant = :development
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

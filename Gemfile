@@ -46,3 +46,6 @@ gem 'whenever', :require => false
 
 gem 'gitlab'
 gem 'git'
+gem 'react-rails', '~> 1.0'
+gem 'kramdown'
+gem 'rouge'
