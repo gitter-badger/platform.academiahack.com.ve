@@ -37,7 +37,7 @@ ActiveAdmin.register Challenge do
       f.input :category
       f.input :title
       f.input :time, as: :select, collection: {classroom:'classroom', homework:'homework'}
-      f.input :status, as: :select, collection: {active:1, blocked:0}
+      f.input :status, as: :select, collection: {active:'active', blocked:'blocked'}
       f.input :description, as: :text
     end
     f.actions

@@ -17,8 +17,8 @@ class ChallengesController < ApplicationController
    def deploy
     @challenge = Challenge.find params[:id]
 
-    #@challenge.deploy
+    @challenge.deploy
 
-    redirect_to challenge_path(delivery.challenge), notice: '<a href="">'
+    redirect_to 'http://apps.academiahack.com.ve:2000/'
   end
 end
