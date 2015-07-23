@@ -95,6 +95,9 @@
       .row
         .col-md-12
           = link_to 'Editar este reto', edit_admin_challenge_path(@challenge), class: 'btn btn-primary btn-flat btn-block'
+      .row
+        .col-md-12
+          = link_to 'Revisar reto', challenge_deploy_path(@challenge), class: 'btn btn-warning btn-flat btn-block'
       %hr
       .row
         .col-md-3

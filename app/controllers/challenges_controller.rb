@@ -13,4 +13,12 @@ class ChallengesController < ApplicationController
       @deliveries = Delivery.where challenge_id: params[:id]
     end
   end
+  
+   def deploy
+    @challenge = Challenge.find params[:id]
+
+    #@challenge.deploy
+
+    redirect_to challenge_path(delivery.challenge), notice: '<a href="">'
+  end
 end
