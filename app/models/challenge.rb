@@ -32,7 +32,8 @@ class Challenge < ActiveRecord::Base
       self.deliveries.each do |delivery|
         puts delivery.challenge_url_ssh
         if delivery.commit
-          g = Git.clone delivery.challenge_url_ssh, "#{File.expand_path('~')}/hackers/w#{self.day.week.number}_d#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
+          ##{File.expand_path('~')}
+          g = Git.clone delivery.challenge_url_ssh, "/home/hack/hackers/w#{self.day.week.number}_d#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
           g.checkout delivery.commit
         end
       end
