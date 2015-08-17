@@ -18,16 +18,32 @@ class Challenge < ActiveRecord::Base
   belongs_to :category
   has_many :comments
   has_many :deliveries
+  
+  scope :actived_classroom, -> { where(status: 1, time: 'classroom') }
+  
+  enum status: { blocked: 0, active: 1, cloned: 2 }
 
   def deliver_by_user user
     deliveries.where(user: user).take
   end
   
   def deploy
-    self.deliveries.each do |delivery|
-      puts delivery.challenge_url_ssh
-      Git.clone delivery.challenge_url_ssh, "#{File.expand_path('~')}/temp/w_#{self.day.week.number}_d_#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
-      #TODO cambiar commit.
+    unless self.cloned?
+      self.deliveries.each do |delivery|
+        puts delivery.challenge_url_ssh
+        if delivery.commit
+          g = Git.clone delivery.challenge_url_ssh, "#{File.expand_path('~')}/hackers/w#{self.day.week.number}_d#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
+          g.checkout delivery.commit
+        end
+      end
+      self.status = "cloned"
+      self.save
+    end
+  end
+  
+  def self.deploy_challenges
+    Challenge.actived_classroom.each do |challenge|
+      challenge.deploy
     end
   end
 end

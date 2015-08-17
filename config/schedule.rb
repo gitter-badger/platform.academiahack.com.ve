@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every 1.day, :at => '11:59 pm' do
+  runner "Challenge.deploy_challenges", :output => 'cron.log' 
+end

@@ -77,4 +77,24 @@ class Day < ActiveRecord::Base
     self.challenges.where('time = ?', 'homework')
   end
 
+  def transform_content
+    transform_required_knowledge
+    transform_cheatsheet
+    self
+  end
+
+  def transform_required_knowledge
+    if self.required_knowledge
+      self.required_knowledge = Kramdown::Document.new(self.required_knowledge, {input: 'GFM',syntax_highlighter: 'rouge'}).to_html
+    end
+    self
+  end
+
+  def transform_cheatsheet
+    if self.cheatsheet
+      self.cheatsheet = Kramdown::Document.new(self.cheatsheet, {syntax_highlighter: 'rouge'}).to_html
+    end
+    self
+  end
+
 end

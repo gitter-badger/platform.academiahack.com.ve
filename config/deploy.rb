@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'platform.hack4geeks.co'
+set :application, 'platform.academiahack.com.ve'
 set :repo_url, 'git@github.com:HackAcademy/plataforma.hack4geeks.co.git'
 
 # Default branch is :master

@@ -13,4 +13,12 @@ class ChallengesController < ApplicationController
       @deliveries = Delivery.where challenge_id: params[:id]
     end
   end
+  
+   def deploy
+    @challenge = Challenge.find params[:id]
+
+    @challenge.deploy
+
+    redirect_to 'http://apps.academiahack.com.ve:2000/'
+  end
 end
