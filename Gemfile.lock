@@ -24,6 +24,23 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.2)
 
+GIT
+  remote: git://github.com/jkrmr/jazz_hands.git
+  revision: 5d672e52772d9abf4064260186556fa963a75604
+  specs:
+    jazz_hands (1.0.0)
+      awesome_print (~> 1.2)
+      hirb (~> 0.7)
+      pry (~> 0.10)
+      pry-byebug (~> 2.0)
+      pry-coolline (~> 0.2)
+      pry-doc (~> 0.4)
+      pry-git (~> 0.2)
+      pry-rails (~> 0.3)
+      pry-remote (~> 0.1)
+      pry-stack_explorer (~> 0.4)
+      railties (>= 3.0, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,6 +84,7 @@ GEM
     arel (5.0.1.20140414130214)
     av (0.9.0)
       cocaine (~> 0.5.3)
+    awesome_print (1.6.1)
     babel-source (5.8.0)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -85,6 +103,10 @@ GEM
     bullet (4.14.4)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -115,6 +137,7 @@ GEM
       execjs
     coffee-script-source (1.9.1)
     colorize (0.7.5)
+    columnize (0.9.0)
     compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -122,8 +145,11 @@ GEM
     compass-rails (2.0.0)
       compass (>= 0.12.2)
     connection_pool (2.2.0)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     daemons (1.2.3)
     debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -131,6 +157,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    diff-lcs (1.2.5)
+    diffy (3.0.7)
     ejs (1.1.1)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -143,12 +171,16 @@ GEM
     gitlab (3.4.0)
       httparty
       terminal-table
+    grit (2.0.0)
+      diff-lcs (>= 1.1.2)
+      mime-types (>= 1.15)
     haml (4.0.6)
       tilt
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    hirb (0.7.3)
     httparty (0.13.5)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -173,6 +205,7 @@ GEM
     kramdown (1.8.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.11.0)
@@ -192,6 +225,30 @@ GEM
       paperclip (>= 2.5.2)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
+    pry-doc (0.8.0)
+      pry (~> 0.9)
+      yard (~> 0.8)
+    pry-git (0.2.3)
+      diffy
+      grit
+      pry (>= 0.9.8)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -238,6 +295,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -265,11 +323,13 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     uniform_notifier (1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
@@ -293,6 +353,7 @@ DEPENDENCIES
   git
   gitlab
   haml (~> 4.0.6)
+  jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
   kramdown

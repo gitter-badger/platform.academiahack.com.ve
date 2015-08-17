@@ -40,6 +40,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'annotate', '~> 2.6.6'
+  gem 'jazz_hands', github: 'jkrmr/jazz_hands'
 end
 
 gem 'whenever', :require => false
