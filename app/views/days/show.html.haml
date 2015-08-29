@@ -39,27 +39,43 @@
       -#%buton.btn.btn-default.btn-xs.day-name-edit
       -#  %span.glyphicon.glyphicon-pencil{'aria-hidden'=>'true'}
     .row
-      -if @day.videos.length > 0
-        .col-md-4
-          .card
-            %h3.blue-text.text-center.video-title
-              Videos Hack
-            %hr
-            .card-content
-              %ul.nav.nav-stacked
-                -@day.videos.each do |vid|
-                  %li
-                    -if vid.video_file_name
-                      =link_to(vid.video.url, target: :blank, class:'day-video-link') do
-                        .play-icon
-                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                        =vid.name
-                    -else
-                      =link_to(vid.url, target: :blank, class:'day-video-link') do
-                        .play-icon
-                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                        =vid.name
-      %div{ :class => @day.videos.length > 0 ? "col-md-8" : 'col-md-10 col-md-offset-1' }
+      .col-md-4
+        .card
+          %h3.blue-text.text-center.video-title
+            Videos Hack
+          %hr
+          .card-content
+            %ul.nav.nav-stacked
+              -@day.videos.each do |vid|
+                %li
+                  -if vid.video_file_name
+                    =link_to(vid.video.url, target: :blank, class:'day-video-link') do
+                      .play-icon
+                        =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                      =vid.name
+                  -else
+                    =link_to(vid.url, target: :blank, class:'day-video-link') do
+                      .play-icon
+                        =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                      =vid.name
+              - if current_user.email == "mentores@hack4geeks.co"
+                %li
+                  = form_for([:admin, @video]) do |f|
+                    = f.hidden_field("day_id", value: @day.id)
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "link"
+                          = f.url_field("url", class:"form-control")
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "nombre"
+                          = f.text_field("name", class:"form-control")
+                    .row
+                      .col-md-12
+                        = f.submit("Guardar", class: "btn btn-info btn-flat btn-block")
+      %div.col-md-8
         .card
           %ul.nav.day-content-tabs.nav-justified{role:'tablist'}
             %li.active
