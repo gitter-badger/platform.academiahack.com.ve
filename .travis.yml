@@ -5,6 +5,7 @@ rvm:
 after_success:
 - bundle exec cap development deploy
 notifications:
+  slack: hackacademia:9BIme9p3vLnABZxQuXObReo5
   email:
     recipients:
     - rramos@academiahack.com.ve
