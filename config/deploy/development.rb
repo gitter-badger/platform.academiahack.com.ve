@@ -6,5 +6,6 @@ role :db,  %w{deploy@45.55.165.253}
 
 set :stage, :development
 set :branch, 'development'
+set :password, ENV["SSH_DEPLOY_PASS"]
 
 set :deploy_to, '/home/deploy/dev.platform.academiahack.com.ve'
