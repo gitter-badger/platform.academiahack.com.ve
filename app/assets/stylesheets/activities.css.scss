@@ -210,13 +210,23 @@ body.mosaic {
 }
 
 .badges {
-	padding: 20px 0 10px;
+//	padding: 20px 0 10px;
 	position: relative;
 }
 
 .badges .item {
-	padding: 0 70px;
+//	padding: 0 70px;
 	min-height: 360px;
+}
+
+.btn-project {
+  height: 45px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.week-info {
+  margin-top: 20px;
 }
 
 #badges_carousel h1 {

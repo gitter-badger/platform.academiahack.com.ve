@@ -27,13 +27,14 @@ ActiveAdmin.register Challenge do
 
     private
     def challenge_params
-      params.require(:challenge).permit(:time, :title, :description, :day_id, :category_id, :status)
+      params.require(:challenge).permit(:time, :title, :description, :day_id, :week_id, :category_id, :status)
     end
   end
 
   form do |f|
     f.inputs "Detalles del reto" do
       f.input :day
+      f.input :week
       f.input :category
       f.input :title
       f.input :time, as: :select, collection: {classroom:'classroom', homework:'homework'}

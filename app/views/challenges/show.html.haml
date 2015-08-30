@@ -2,8 +2,13 @@
   .row
     .col-md-5.col-md-offset-7
       %h3.text-right
-        = @challenge.day.name
-        = image_tag @challenge.day.image.url :thumb
+        - if @challenge.day
+          = @challenge.day.name
+          = image_tag @challenge.day.image.url :thumb
+        - elsif @challenge.week.name
+          = @challenge.week.name
+        - else
+          NO DAY! NO WEEK!
 .challenge_box
   .container.challenge_description
     .row

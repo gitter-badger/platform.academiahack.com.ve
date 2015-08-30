@@ -13,6 +13,7 @@
 
 class Week < ActiveRecord::Base
     has_many :days, -> { order(:number) }
+    has_one :challenge
     enum status: [ :blocked, :active, :done ]
     acts_as_list
 end
