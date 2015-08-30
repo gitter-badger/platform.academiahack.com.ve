@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+- 2.0.0
+- 2.1.2
+before_script:
+- cp config/database.example.yml config/database.yml
+after_success:
+- cap development deploy
+notifications:
+  email:
+    recipients:
+    - rramos@academiahack.com.ve
+    - romerramos@gmail.com
+    on_success:
+    - always
+    on_failure:
+    - always
