@@ -34,7 +34,16 @@ class Challenge < ActiveRecord::Base
         puts delivery.challenge_url_ssh
         if delivery.commit
           ##{File.expand_path('~')}
-          g = Git.clone delivery.challenge_url_ssh, "/home/hack/hackers/w#{self.day.week.number}_d#{self.day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
+          if self.day
+            day = challenge.day
+            week = day.week
+          elsif self.week
+            day = Day.new
+            day.number = 0
+            week = challenge.week
+          end
+
+          g = Git.clone delivery.challenge_url_ssh, "/home/hack/hackers/w#{week.number}_d#{day.number}_ch#{self.id}/#{delivery.user.gitlab_user}"
           g.checkout delivery.commit
         end
       end
