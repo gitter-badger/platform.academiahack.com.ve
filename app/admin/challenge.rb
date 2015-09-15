@@ -9,7 +9,12 @@ ActiveAdmin.register Challenge do
       challenge = Challenge.new(challenge_params)
       message = ''
 
-      unless challenge.save
+      if challenge.save
+        telegram_hack = TelegramHack.get_instance
+        Thread.new do
+          telegram_hack.challenge_published! challenge.day.name
+        end
+      else
         message = 'No se pudo cargar el reto'
       end
       redirect_to challenge_path(challenge), notice: message
