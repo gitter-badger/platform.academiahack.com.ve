@@ -78,7 +78,7 @@ end
 # *********************** PROMO 3 ***********************
 
 
-create_user 'mentores@hack4geeks.co', 'Hack2015', User
+create_user 'mentores@academiahack.com.ve', 'Hack2015', User
 
 create_user 'emanuel.gomez.9@gmail.com', '19163292', User, 'egomez292', '332654'
 create_user 'sayago31@hotmail.com', '19060738', User, 'hsayago882', '332677'
@@ -108,13 +108,13 @@ create_user 'romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
 
 # *********************** PROMO 3 ***********************
 
-create_user 'rramos@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'oarocha@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'despinoza@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'agonzalez@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'jmanrique@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'alegonia@hack4geeks.co', 'Hack2015', AdminUser
-create_user 'jfuentes@hack4geeks.co', 'Hack2015', AdminUser
+create_user 'rramos@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'oarocha@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'despinoza@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'agonzalez@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'jmanrique@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'alegonia@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'jfuentes@academiahack.com.ve', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
 create_week 1, "Algoritmos en ruby 1", 1
