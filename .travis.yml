@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.1.2
+after_success:
+- bundle exec cap development deploy
+notifications:
+  slack: hackacademia:9BIme9p3vLnABZxQuXObReo5
+  email:
+    recipients:
+    - rramos@academiahack.com.ve
+    - romerramos@gmail.com
+    on_success:
+    - always
+    on_failure:
+    - always

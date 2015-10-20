@@ -26,6 +26,7 @@ gem 'capistrano'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: "capistrano/rvm"
+gem 'slackistrano', require: false
 gem 'mysql2'
 
 gem 'acts_as_list'
@@ -40,6 +41,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'annotate', '~> 2.6.6'
+  gem 'jazz_hands', github: 'jkrmr/jazz_hands'
 end
 
 gem 'whenever', :require => false
@@ -49,3 +51,4 @@ gem 'git'
 gem 'react-rails', '~> 1.0'
 gem 'kramdown'
 gem 'rouge'
+gem 'telegram-bot-ruby'

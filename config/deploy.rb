@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'platform.hack4geeks.co'
+set :application, 'platform.academiahack.com.ve'
 set :repo_url, 'git@github.com:HackAcademy/plataforma.hack4geeks.co.git'
 
 # Default branch is :master
@@ -33,6 +33,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+set :slack_webhook, "https://hooks.slack.com/services/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"
 
 namespace :deploy do
 

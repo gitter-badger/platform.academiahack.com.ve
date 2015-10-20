@@ -9,7 +9,12 @@ ActiveAdmin.register Challenge do
       challenge = Challenge.new(challenge_params)
       message = ''
 
-      unless challenge.save
+      if challenge.save
+        telegram_hack = TelegramHack.get_instance
+        Thread.new do
+          telegram_hack.challenge_published! challenge.day.name
+        end
+      else
         message = 'No se pudo cargar el reto'
       end
       redirect_to challenge_path(challenge), notice: message
@@ -27,13 +32,14 @@ ActiveAdmin.register Challenge do
 
     private
     def challenge_params
-      params.require(:challenge).permit(:time, :title, :description, :day_id, :category_id, :status)
+      params.require(:challenge).permit(:time, :title, :description, :day_id, :week_id, :category_id, :status)
     end
   end
 
   form do |f|
     f.inputs "Detalles del reto" do
       f.input :day
+      f.input :week
       f.input :category
       f.input :title
       f.input :time, as: :select, collection: {classroom:'classroom', homework:'homework'}

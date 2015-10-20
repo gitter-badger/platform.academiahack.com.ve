@@ -17,6 +17,15 @@ ActiveAdmin.register Video do
   filter :name
 
   controller do
+    def create
+      message = 'Video creado exitosamente!'
+
+      unless Video.create(permitted_params[:video])
+        message = 'No se pudo crear el video!'
+      end
+      redirect_to day_path(params[:video][:day_id]), notice: message
+    end
+
     def permitted_params
       params.permit video: [:name, :url ,:day_id, :video]
     end

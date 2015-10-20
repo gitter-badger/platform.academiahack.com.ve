@@ -24,9 +24,15 @@ class Delivery < ActiveRecord::Base
 
   def repo_name
     challenge = self.challenge
-    day = challenge.day
-    
-    week = day.week
+
+    if challenge.day
+      day = challenge.day
+      week = day.week
+    elsif challenge.week
+      day = Day.new
+      day.number = 0
+      week = challenge.week
+    end
 
     "w#{week.number}_d#{day.number}_ch#{challenge.id}_#{self.user.gitlab_user}"
   end

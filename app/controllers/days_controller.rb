@@ -5,6 +5,7 @@ class DaysController < ApplicationController
   def show
     @day = Day.includes(challenges: [:category]).find(params[:id])
     @days = @day.order_list
+    @video = Video.new
 
     @post = {title: 'Esto es una prueba', body: 'Este es el contenido de la prueba', published: true}
 
