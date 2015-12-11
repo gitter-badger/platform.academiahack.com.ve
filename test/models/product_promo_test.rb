@@ -7,6 +7,7 @@
 #  promo_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 require 'test_helper'

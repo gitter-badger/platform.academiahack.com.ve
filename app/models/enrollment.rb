@@ -1,15 +1,17 @@
 # == Schema Information
 #
-# Table name: product_promos
+# Table name: enrollments
 #
 #  id         :integer          not null, primary key
 #  product_id :integer
 #  promo_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
-class ProductPromo < ActiveRecord::Base
-  has_and_belongs_to_many :products
-  has_and_belongs_to_many :promos
+class Enrollment < ActiveRecord::Base
+  belongs_to :product
+  belongs_to :promo
+  belongs_to :user
 end
