@@ -1,22 +1,20 @@
 # == Schema Information
 #
-# Table name: challenges
+# Table name: black_days
 #
 #  id          :integer          not null, primary key
-#  time        :string(255)
-#  title       :string(255)
+#  day         :integer
+#  month       :integer
+#  black_date  :date
+#  name        :string(255)
 #  description :text
-#  day_id      :integer
-#  category_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  status      :integer
-#  week_id     :integer
 #
 
 require 'test_helper'
 
-class ChallengeTest < ActiveSupport::TestCase
+class BlackDayTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

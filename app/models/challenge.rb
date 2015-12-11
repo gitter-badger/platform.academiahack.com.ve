@@ -11,6 +11,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  status      :integer
+#  week_id     :integer
 #
 
 class Challenge < ActiveRecord::Base

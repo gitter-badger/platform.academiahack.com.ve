@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: black_days
+#
+#  id          :integer          not null, primary key
+#  day         :integer
+#  month       :integer
+#  black_date  :date
+#  name        :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 1
+  month: 1
+  black_date: 2015-12-10
+  name: MyString
+  description: MyText
+
+two:
+  day: 1
+  month: 1
+  black_date: 2015-12-10
+  name: MyString
+  description: MyText

@@ -1,22 +1,18 @@
 # == Schema Information
 #
-# Table name: challenges
+# Table name: products
 #
 #  id          :integer          not null, primary key
-#  time        :string(255)
-#  title       :string(255)
+#  name        :string(255)
 #  description :text
-#  day_id      :integer
-#  category_id :integer
+#  duration    :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  status      :integer
-#  week_id     :integer
 #
 
 require 'test_helper'
 
-class ChallengeTest < ActiveSupport::TestCase
+class ProductTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

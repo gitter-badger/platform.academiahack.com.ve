@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: promos
+#
+#  id         :integer          not null, primary key
+#  number     :integer
+#  name       :string(255)
+#  start_date :date
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  name: MyString
+  start_date: 2015-12-10
+
+two:
+  number: 1
+  name: MyString
+  start_date: 2015-12-10

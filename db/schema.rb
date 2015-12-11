@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830143948) do
+ActiveRecord::Schema.define(version: 20151210235428) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20150830143948) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "black_days", force: true do |t|
+    t.integer  "day"
+    t.integer  "month"
+    t.date     "black_date"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -118,6 +128,42 @@ ActiveRecord::Schema.define(version: 20150830143948) do
   create_table "parameters", force: true do |t|
     t.string   "key"
     t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_promos", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "promo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_promos", ["product_id"], name: "index_product_promos_on_product_id", using: :btree
+  add_index "product_promos", ["promo_id"], name: "index_product_promos_on_promo_id", using: :btree
+
+  create_table "product_users", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_users", ["product_id"], name: "index_product_users_on_product_id", using: :btree
+  add_index "product_users", ["user_id"], name: "index_product_users_on_user_id", using: :btree
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promos", force: true do |t|
+    t.integer  "number"
+    t.string   "name"
+    t.date     "start_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
