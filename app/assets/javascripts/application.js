@@ -13,14 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require chosen-jquery
 //= require dropzone
-//= require repo/repo.min
+//= require repo/repo
 //= require jquery.diagram
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree .
+//= require chosen-jquery
 
 $(function(){
     var $feedback;
@@ -41,6 +40,4 @@ $(function(){
 
         $repo_preview.repo({ user: promo_group, name: challenge_repo });
     }
-
-    tinymce.init({selector:'textarea'});
 });

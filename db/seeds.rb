@@ -44,11 +44,13 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
-def create_user email, password, devise_class, gitlab_user=nil, name_space_id=nil
+def create_user name, last_name, email, password, devise_class, gitlab_user=nil, name_space_id=nil
   user = devise_class.new
   user.email = email
   if password.length >= 8
     if gitlab_user != nil
+      user.name = name
+      user.last_name = last_name
       user.gitlab_user = gitlab_user
       user.name_space_id = name_space_id
     end
@@ -78,43 +80,38 @@ end
 # *********************** PROMO 3 ***********************
 
 
-create_user 'mentores@academiahack.com.ve', 'Hack2015', User
+create_user 'Mentores', 'Hack' ,'mentores@academiahack.com.ve', 'Hack2015', User
 
-create_user 'emanuel.gomez.9@gmail.com', '19163292', User, 'egomez292', '332654'
-create_user 'sayago31@hotmail.com', '19060738', User, 'hsayago882', '332677'
-create_user 'josedeleon_k@hotmail.com', '26194045', User, 'jleon045', '332683'
-create_user 'darkniguit@gmail.com', '20802029', User, 'jrodriguez029', '332689'
-create_user 'nikko1801@gmail.com', '25206591', User, 'lmachillanda591', '332692'
-create_user 'rycerickz@hotmail.es', '24089142', User, 'nrodriguez142', '332695'
-create_user 'oscar_martinez1992@live.com', '20616210', User, 'omartinez210', '332697'
-create_user 'romangof@gmail.com', '20701132', User, 'rfuentes132', '332699'
-create_user 'dzambrano753@gmail.com', '20678272', User, 'dzambrano272', '332773'
-create_user 'david_155_7@hotmail.com', '20604755', User, 'dramos755', '332700'
-create_user 'chuchopetit@gmail.com', '20026531', User, 'jpetit531', '332779'
-create_user 'jolumodu@outlook.com', '19690779', User, 'jmoreno779', '332783'
-create_user 'josea.rangelg@gmail.com', '20921454', User, 'jrangel454', '332788'
-create_user 'a.2_19@hotmail.com', '20595385', User, 'jarismendi385', '332905'
-create_user 'josea.rangelg@gmail.com', '20921454', User, 'jrangel454', '332788'
-create_user 'negro32@gmail.com', '20748827', User, 'jcalcagno827', '332909'
-create_user 'julius_1008@hotmail.com', '21495021', User, 'jindirago021', '332915'
-create_user 'leettyvillamizar@gmail.com', '20616607', User, 'lvillamizar607', '332917'
-create_user 'orlanclezama@gmail.com', '18244673', User, 'ocarvajal673', '332921'
-create_user 'rosairenegarcia@live.com', '06844879', User, 'rgarcia879', '332924'
-create_user 'kanixds@gmail.com', '20127528', User, 'savila528', '332938'
-create_user 'erick_fat@hotmail.com', '24272055', User, 'egonzalez055', '332941'
-create_user 'brazzoduro_14@hotmail.com', '25947926', User, 'gbrazzoduro926', '332943'
-create_user 'brazzoduro26@gmail.com ', '16543115', User, 'mbrazzoduro115', '332945'
-create_user 'romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
+create_user 'Emanuel', 'Gomez' ,'emanuel.gomez.9@gmail.com', '19163292', User, 'egomez292', '332654'
+create_user 'Jose', 'De Leon' ,'josedeleon_k@hotmail.com', '26194045', User, 'jleon045', '332683'
+create_user 'Jose', 'Rodriguez' ,'darkniguit@gmail.com', '20802029', User, 'jrodriguez029', '332689'
+create_user 'Luis', 'Machillanda','nikko1801@gmail.com', '25206591', User, 'lmachillanda591', '332692'
+create_user 'Niolberth', 'Rodriguez','rycerickz@hotmail.es', '24089142', User, 'nrodriguez142', '332695'
+create_user 'Oscar', 'Martinez','oscar_martinez1992@live.com', '20616210', User, 'omartinez210', '332697'
+create_user 'Roman', 'Fuentes','romangof@gmail.com', '20701132', User, 'rfuentes132', '332699'
+create_user 'Jose', 'Arismendi','a.2_19@hotmail.com', '20595385', User, 'jarismendi385', '332905'
+
+create_user 'Jorge', 'Moreno','jolumodu@outlook.com', '19690779', User, 'jmoreno779', '332783'
+create_user 'Jose', 'Rangel','josea.rangelg@gmail.com', '20921454', User, 'jrangel454', '332788'
+create_user 'Juan', 'Calcagno','negro32@gmail.com', '20748827', User, 'jcalcagno827', '332909'
+create_user 'Juilius', 'Indirago','julius_1008@hotmail.com', '21495021', User, 'jindirago021', '332915'
+create_user 'Letty', 'Villamizar','leettyvillamizar@gmail.com', '20616607', User, 'lvillamizar607', '332917'
+create_user 'Rosa', 'Garcia','rosairenegarcia@live.com', '06844879', User, 'rgarcia879', '332924'
+create_user 'Erick', 'Gonzalez','erick_fat@hotmail.com', '24272055', User, 'egonzalez055', '332941'
+create_user 'Carlos', 'Gonzalez','carloseduardogonzalezmendoza@gmail.com', '26597013', User, 'cgonzalez013', '410046'
+create_user 'Gabriel', 'Brazzoduro','brazzoduro_14@hotmail.com', '25947926', User, 'gbrazzoduro926', '332943'
+create_user 'Miguel', 'Brazzoduro','brazzoduro26@gmail.com ', '16543115', User, 'mbrazzoduro115', '332945'
+create_user 'Romer', 'Ramos','romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
 
 # *********************** PROMO 3 ***********************
 
-create_user 'rramos@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'oarocha@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'despinoza@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'agonzalez@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'jmanrique@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'alegonia@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'jfuentes@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Anais', 'Legonia','alegonia@academiahack.com.ve', 'Hack2015', AdminUser
+create_user 'Jorge', 'Fuentes','jfuentes@academiahack.com.ve', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
 create_week 1, "Algoritmos en ruby 1", 1
