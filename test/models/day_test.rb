@@ -15,6 +15,7 @@
 #  image_updated_at   :datetime
 #  required_knowledge :text
 #  cheatsheet         :text
+#  product_id         :integer
 #
 
 require 'test_helper'

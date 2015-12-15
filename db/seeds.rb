@@ -3,24 +3,27 @@
 @categories = []
 @challenges = []
 @parameters = []
+@students = []
 
 
-def create_week number, name, position
+def create_week number, name, position, product=nil
   week = Week.new
   week.number = number
   week.name = name
   week.position = position
+  week.product = product
   week.save
   @weeks.push week
 end
 
-def create_day number, name, week, status, image = '0.png'
+def create_day number, name, week, status, image = '0.png', product=nil
   day = Day.new
   day.number = number
   day.name = name
   day.image = File.new("#{Rails.root}/app/assets/images/#{image}")
   day.week = week
   day.status = status
+  day.product = product
   day.save
   @days.push day
 end
@@ -53,6 +56,7 @@ def create_user name, last_name, email, password, devise_class, gitlab_user=nil,
       user.last_name = last_name
       user.gitlab_user = gitlab_user
       user.name_space_id = name_space_id
+      @students.push user
     end
     user.password = password
     user.save
@@ -77,10 +81,69 @@ def create_youtube_video name, youtube_url, day
   day.videos.push video
 end
 
-# *********************** PROMO 3 ***********************
+def create_promo number, git_url, git_group, start_date, name=nil
+  promo = Promo.new
+  promo.number = number
+  promo.git_url = git_url
+  promo.git_group = git_group
+  promo.start_date = start_date
+  promo.name = name
+  promo.save
+  promo
+end
 
+def create_product code, name, description, duration
+  product = Product.new
+  product.code = code
+  product.name = name
+  product.description = description
+  product.duration = duration
+  product.save
+  product
+end
+
+def create_enrollment promo, product, user
+  enrollment = Enrollment.new
+  enrollment.promo = promo
+  enrollment.product = product
+  enrollment.user = user
+  enrollment.save
+  enrollment
+end
+
+def create_black_day name, description, day=nil, month=nil, black_date=nil
+  black_day = BlackDay.new
+  black_day.name = name
+  black_day.description = description
+  black_day.day = day
+  black_day.month = month
+  black_day.black_date = black_date
+  black_day.save
+  black_day
+end
 
 create_user 'Mentores', 'Hack' ,'mentores@academiahack.com.ve', 'Hack2015', User
+create_user 'Romer', 'Ramos','romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
+
+htd = create_product "001","HumanToDev", "Intensivo de programacion web", 70
+prope_htd = create_product "002","Propedeutico HumanToDev", "Propedeutico de HTD", 10
+
+# *********************** BLACKDAYS ***********************
+# Propedeutico
+Date.new(2015, 11, 2).upto(Date.new(2015, 11, 6)) do |prope_date|
+  create_black_day "propedeutico", "propedeutico", nil, nil, prope_date
+end
+
+# Navidad
+Date.new(2015, 12, 8).upto(Date.new(2016, 1, 11)) do |date|
+  create_black_day "navidad", "navidad", nil, nil, date
+end
+
+
+# *********************** BLACKDAYS ***********************
+
+# *********************** PROMO 4 ***********************
+promo4 = create_promo 4, "gitlab.com/HackPromo4", "HackPromo4", Date.new(2015, 10, 19), "Promo 4"
 
 create_user 'Emanuel', 'Gomez' ,'emanuel.gomez.9@gmail.com', '19163292', User, 'egomez292', '332654'
 create_user 'Jose', 'De Leon' ,'josedeleon_k@hotmail.com', '26194045', User, 'jleon045', '332683'
@@ -101,9 +164,14 @@ create_user 'Erick', 'Gonzalez','erick_fat@hotmail.com', '24272055', User, 'egon
 create_user 'Carlos', 'Gonzalez','carloseduardogonzalezmendoza@gmail.com', '26597013', User, 'cgonzalez013', '410046'
 create_user 'Gabriel', 'Brazzoduro','brazzoduro_14@hotmail.com', '25947926', User, 'gbrazzoduro926', '332943'
 create_user 'Miguel', 'Brazzoduro','brazzoduro26@gmail.com ', '16543115', User, 'mbrazzoduro115', '332945'
-create_user 'Romer', 'Ramos','romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
+# *********************** PROMO 4 ***********************
 
-# *********************** PROMO 3 ***********************
+# *********************** ENROLLMENT PROMO 4 ***********************
+@students.each do |student|
+  create_enrollment promo4, prope_htd, student
+  create_enrollment promo4, htd, student
+end
+# *********************** ENROLLMENT PROMO 4 ***********************
 
 create_user 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', AdminUser
 create_user 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015', AdminUser
@@ -114,28 +182,28 @@ create_user 'Anais', 'Legonia','alegonia@academiahack.com.ve', 'Hack2015', Admin
 create_user 'Jorge', 'Fuentes','jfuentes@academiahack.com.ve', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
-create_week 1, "Algoritmos en ruby 1", 1
-create_week 2, "Algoritmos en ruby 2", 2
+create_week 1, "Algoritmos en ruby 1", 1, prope_htd
+create_week 2, "Algoritmos en ruby 2", 2, prope_htd
 # *********************** PROPEDEUTICO ***********************
 # *********************** BACKEND ***********************
-create_week 3, "Ruby idiomatico + objetos en ruby", 3
-create_week 4, "Objetos en ruby + HTTP", 4
-create_week 5, "BD + Rails", 5
-create_week 6, "Rails + ActiveRecord", 6
-create_week 7, "Controllers + JSON Response", 7
+create_week 3, "Ruby idiomatico + objetos en ruby", 3, htd
+create_week 4, "Objetos en ruby + HTTP", 4, htd
+create_week 5, "BD + Rails", 5, htd
+create_week 6, "Rails + ActiveRecord", 6, htd
+create_week 7, "Controllers + JSON Response", 7, htd
 # *********************** BACKEND ***********************
 # *********************** FRONTEND ***********************
-create_week 8, "HTML + CSS", 8
-create_week 9, "Bootstrap", 9
-create_week 10, "Javascript", 10
-create_week 11, "jQuery", 11
-create_week 12, "FrontEnd Tools", 12
-create_week 13, "AngularJS", 13
-create_week 14, "Full stack app", 14
+create_week 8, "HTML + CSS", 8, htd
+create_week 9, "Bootstrap", 9, htd
+create_week 10, "Javascript", 10, htd
+create_week 11, "jQuery", 11, htd
+create_week 12, "FrontEnd Tools", 12, htd
+create_week 13, "AngularJS", 13, htd
+create_week 14, "Full stack app", 14, htd
 # *********************** FRONTEND ***********************
 # *********************** FINAL HACK ***********************
-create_week 15, "Proyecto Final", 15
-create_week 16, "Proyecto Final", 16
+create_week 15, "Proyecto Final", 15, htd
+create_week 16, "Proyecto Final", 16, htd
 # *********************** FINAL HACK ***********************
 
 # *********************** SEMANA1 ***********************
@@ -278,9 +346,9 @@ create_category "Bug", 'bug.png'
 
 # *********************** PARAMETERS ***********************
 
-create_parameter "current_week", "5"
-create_parameter "promo_group", "Academia-Hack-Promo3"
-create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
+create_parameter "current_promo", promo4.number
+#create_parameter "promo_group", "Academia-Hack-Promo3"
+#create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
 
-# *********************** VIDEOS ***********************
+Promo.calculate_htd_schedule
 

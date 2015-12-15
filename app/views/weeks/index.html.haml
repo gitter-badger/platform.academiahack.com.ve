@@ -39,6 +39,8 @@
                       .box-off
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
+                    = l(day.schedule, format: '%A %-d %b', locale: 'es').humanize if day.schedule
+
     .text-center
       .badge-title
     #breadcrumb
@@ -50,3 +52,5 @@
             = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}
         .arrow-right
+    .text-center.breadcrumb-title
+      Semanas

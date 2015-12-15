@@ -12,8 +12,10 @@
 #
 
 class Week < ActiveRecord::Base
+    belongs_to :product
     has_many :days, -> { order(:number) }
     has_one :challenge
     enum status: [ :blocked, :active, :done ]
     acts_as_list
 end
+

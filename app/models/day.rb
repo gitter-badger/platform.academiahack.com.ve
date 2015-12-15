@@ -18,6 +18,7 @@
 #
 
 class Day < ActiveRecord::Base
+  belongs_to :product
   belongs_to :week
   has_many :challenges
   has_many :videos

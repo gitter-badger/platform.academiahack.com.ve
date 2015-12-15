@@ -9,6 +9,7 @@
 #  updated_at :datetime
 #  status     :integer
 #  position   :integer
+#  product_id :integer
 #
 
 require 'test_helper'

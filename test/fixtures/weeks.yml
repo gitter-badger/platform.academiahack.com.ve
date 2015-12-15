@@ -9,6 +9,7 @@
 #  updated_at :datetime
 #  status     :integer
 #  position   :integer
+#  product_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -3,6 +3,6 @@ class ActivitiesController < ApplicationController
   layout 'activities'
 
   def error
-
+    Promo.calculate_htd_schedule
   end
 end

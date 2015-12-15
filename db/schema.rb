@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214144846) do
+ActiveRecord::Schema.define(version: 20151214213437) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -107,8 +107,11 @@ ActiveRecord::Schema.define(version: 20151214144846) do
     t.datetime "image_updated_at"
     t.text     "required_knowledge"
     t.text     "cheatsheet"
+    t.integer  "product_id"
+    t.date     "schedule"
   end
 
+  add_index "days", ["product_id"], name: "index_days_on_product_id", using: :btree
   add_index "days", ["week_id"], name: "index_days_on_week_id", using: :btree
 
   create_table "deliveries", force: true do |t|
@@ -150,6 +153,7 @@ ActiveRecord::Schema.define(version: 20151214144846) do
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
   end
 
   create_table "promos", force: true do |t|
@@ -158,6 +162,8 @@ ActiveRecord::Schema.define(version: 20151214144846) do
     t.date     "start_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "git_url"
+    t.string   "git_group"
   end
 
   create_table "users", force: true do |t|
@@ -203,6 +209,9 @@ ActiveRecord::Schema.define(version: 20151214144846) do
     t.datetime "updated_at"
     t.integer  "status"
     t.integer  "position"
+    t.integer  "product_id"
   end
+
+  add_index "weeks", ["product_id"], name: "index_weeks_on_product_id", using: :btree
 
 end
