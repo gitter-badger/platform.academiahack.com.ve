@@ -129,14 +129,19 @@ htd = create_product "001","HumanToDev", "Intensivo de programacion web", 70
 prope_htd = create_product "002","Propedeutico HumanToDev", "Propedeutico de HTD", 10
 
 # *********************** BLACKDAYS ***********************
-# Propedeutico
+# Retraso propedeutico
 Date.new(2015, 11, 2).upto(Date.new(2015, 11, 6)) do |prope_date|
-  create_black_day "propedeutico", "propedeutico", nil, nil, prope_date
+  create_black_day "Retraso propedeutico", "Debido a la puerta de la unexpo este dia no se pudo dar clase!", nil, nil, prope_date
 end
 
-# Navidad
-Date.new(2015, 12, 8).upto(Date.new(2016, 1, 11)) do |date|
-  create_black_day "navidad", "navidad", nil, nil, date
+# Retraso academico?
+Date.new(2015, 11, 26).upto(Date.new(2015, 12, 7)) do |date|
+  create_black_day "Retraso academico", "Debido a ser la ultima semana del anio se decidio no dar clase de rails sino dejarlo para el anio que viene", nil, nil, date
+end
+
+# Pausa navidenia
+Date.new(2015, 12, 8).upto(Date.new(2016, 1, 9)) do |date|
+  create_black_day "Pausa navidenia", "navidad", nil, nil, date
 end
 
 
