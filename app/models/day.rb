@@ -15,6 +15,8 @@
 #  image_updated_at   :datetime
 #  required_knowledge :text
 #  cheatsheet         :text
+#  product_id         :integer
+#  schedule           :date
 #
 
 class Day < ActiveRecord::Base
@@ -22,6 +24,8 @@ class Day < ActiveRecord::Base
   belongs_to :week
   has_many :challenges
   has_many :videos
+  has_many :academic_schedules
+
   enum status: [ :blocked, :active, :done ]
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "0.png"

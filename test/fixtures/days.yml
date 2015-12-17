@@ -16,6 +16,7 @@
 #  required_knowledge :text
 #  cheatsheet         :text
 #  product_id         :integer
+#  schedule           :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

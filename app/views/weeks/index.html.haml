@@ -5,32 +5,32 @@
       -#  = image_tag 'arrow-left.png'
       -#%a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
       -#  = image_tag 'arrow-right.png'
-      - @weeks.each_with_index do |week, i|
+      - @academic_week_schedules.each_with_index do |academic_week_schedule, i|
         .item{class: ("active" if i == @current_week_index)}
-          - if week.challenge
+          - if academic_week_schedule.week.challenge
             .row
               .col-md-12
-                = link_to "Proyecto: #{week.challenge.title}", challenge_path(week.challenge), class: 'btn btn-info btn-flat btn-block btn-project'
+                = link_to "Proyecto: #{academic_week_schedule.week.challenge.title}", challenge_path(academic_week_schedule.week.challenge), class: 'btn btn-info btn-flat btn-block btn-project'
           .row.week-info
             .col-md-12
               %h1.text-center
-                = week.name
+                = academic_week_schedule.week.name
               .row.text-center.left-5
-                - week.days.each do |day|
-                  .day_box{'data-name' => day.name}
-                    - if day.active?
-                      = link_to day_path(day.id) do
+                - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
+                  .day_box{'data-name' => academic_day_schedule.day.name}
+                    - if academic_day_schedule.day.active?
+                      = link_to day_path(academic_day_schedule.day.id) do
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'off'
-                        = image_tag day.image.url
-                    - elsif day.blocked?
+                        = image_tag academic_day_schedule.day.image.url
+                    - elsif academic_day_schedule.day.blocked?
                       .box-off
                         = image_tag 'black_hexagon.png', class: 'locked'
-                      = image_tag day.image.url
+                      = image_tag academic_day_schedule.day.image.url
                       .day_overlay
                         = image_tag "locked.png"
-                    - elsif day.done?
-                      = image_tag day.image.url
+                    - elsif academic_day_schedule.day.done?
+                      = image_tag academic_day_schedule.day.image.url
                       .day_overlay
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'locked'
@@ -39,7 +39,7 @@
                       .box-off
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
-                    = l(day.schedule, format: '%A %-d %b', locale: 'es').humanize if day.schedule
+                    = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
 
     .text-center
       .badge-title
@@ -47,7 +47,7 @@
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
         .arrow-left
       %ol.carousel-indicators
-        - @weeks.each_with_index do |week, i|
+        - @academic_week_schedules.each_with_index do |academic_week_schedule, i|
           %li{"data-target" => "#badges_carousel", "data-slide-to" => i, class: ("active" if i == @current_week_index)}
             = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}

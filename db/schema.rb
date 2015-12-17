@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214213437) do
+ActiveRecord::Schema.define(version: 20151217030754) do
+
+  create_table "academic_day_schedules", force: true do |t|
+    t.integer "position"
+    t.date    "schedule"
+    t.integer "academic_week_schedule_id"
+    t.integer "day_id"
+  end
+
+  add_index "academic_day_schedules", ["academic_week_schedule_id"], name: "index_academic_day_schedules_on_academic_week_schedule_id", using: :btree
+  add_index "academic_day_schedules", ["day_id"], name: "index_academic_day_schedules_on_day_id", using: :btree
+
+  create_table "academic_week_schedules", force: true do |t|
+    t.integer  "position"
+    t.integer  "promo_id"
+    t.integer  "week_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "academic_week_schedules", ["promo_id"], name: "index_academic_week_schedules_on_promo_id", using: :btree
+  add_index "academic_week_schedules", ["week_id"], name: "index_academic_week_schedules_on_week_id", using: :btree
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"

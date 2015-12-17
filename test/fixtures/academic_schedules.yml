@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: academic_schedules
+#
+#  id         :integer          not null, primary key
+#  schedule   :date
+#  position   :integer
+#  promo_id   :integer
+#  week_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  schedule: 2015-12-15
+  promo_id: 
+  week_id: 
+
+two:
+  schedule: 2015-12-15
+  promo_id: 
+  week_id: 

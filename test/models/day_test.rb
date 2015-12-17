@@ -16,6 +16,7 @@
 #  required_knowledge :text
 #  cheatsheet         :text
 #  product_id         :integer
+#  schedule           :date
 #
 
 require 'test_helper'

@@ -20,6 +20,7 @@
 //= require react_ujs
 //= require components
 //= require chosen-jquery
+//= require weeks
 
 $(function(){
     var $feedback;
