@@ -37,14 +37,7 @@ class AcademicWeekSchedule < ActiveRecord::Base
   def self.calculate_htd
     #Get current promo
     current_promo = Promo.current
-    #prope_htd = Product.find_by code:"002"
-    #htd = Product.find_by code:"001"
-
     academic_week_schedules = AcademicWeekSchedule.where promo: current_promo
-
-    #weeks_prope = Week.where product: prope_htd
-    #weeks_htd = Week.where product: htd
-
     AcademicWeekSchedule.schedule current_promo.start_date, academic_week_schedules
   end
 

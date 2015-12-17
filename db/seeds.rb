@@ -123,10 +123,6 @@ def create_black_day name, description, day=nil, month=nil, black_date=nil
   black_day
 end
 
-#def create_academic_schedule position, promo, week
-  #AcademicSchedule.create_by_week week
-#end
-
 create_user 'Mentores', 'Hack' ,'mentores@academiahack.com.ve', 'Hack2015', User
 create_user 'Romer', 'Ramos','romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
 
@@ -360,8 +356,6 @@ create_parameter "current_promo", promo4.number
 @weeks.each_with_index do |week, index|
   AcademicWeekSchedule.generate promo4, week, index+1
 end
-#create_parameter "promo_group", "Academia-Hack-Promo3"
-#create_parameter "github_promo_url", "https://github.com/Academia-Hack-Promo3/"
 
 AcademicWeekSchedule.calculate_htd
 
