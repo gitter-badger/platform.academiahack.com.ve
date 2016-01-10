@@ -24,7 +24,7 @@ class Day < ActiveRecord::Base
   belongs_to :week
   has_many :challenges
   has_many :videos
-  has_many :academic_schedules
+  has_many :academic_day_schedules
 
   enum status: [ :blocked, :active, :done ]
 
