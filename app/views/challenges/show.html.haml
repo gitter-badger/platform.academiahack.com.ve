@@ -19,7 +19,7 @@
       .col-md-12
         %p
           = simple_format @challenge.description
-    - unless current_user.email == "mentores@hack4geeks.co"
+    - unless current_user.mentor
       .row
         .col-md-12
           - if @delivery && @delivery.project_id && @delivery.commits.length < 1

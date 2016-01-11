@@ -58,7 +58,7 @@
                       .play-icon
                         =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
                       =vid.name
-              - if current_user.email == "mentores@hack4geeks.co"
+              - if current_user.mentor
                 %li
                   = form_for([:admin, @video]) do |f|
                     = f.hidden_field("day_id", value: @day.id)
@@ -91,7 +91,7 @@
           .card-content
             .tab-content
               #requirements{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane" : "tab-pane active"}
-                -if current_user.email == 'mentores@hack4geeks.co'
+                -if current_user.mentor
                   .container-fluid
                     .row
                       .col-md-6
@@ -117,7 +117,7 @@
                     %h4.text-center
                       Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
               #cheatsheets.tab-pane{role:'tablist'}
-                -if current_user.email == 'mentores@hack4geeks.co'
+                -if current_user.mentor
                   .container-fluid
                     .row
                       .col-md-6
@@ -184,7 +184,7 @@
                     Hoy no hay retos, pero siempre hay mucho que hacer!
                     %h4.text-center
                       Aprovecha y haz preguntas claves a los mentores!
-    - if current_user.email == "mentores@hack4geeks.co"
+    - if current_user.mentor
       .row.mentor-zone
         .col-md-12
           %h3

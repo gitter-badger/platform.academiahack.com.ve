@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :deliveries
   has_many :enrollments
+  has_one :mentor
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,

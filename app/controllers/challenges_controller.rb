@@ -9,7 +9,7 @@ class ChallengesController < ApplicationController
     # @delivery = Delivery.where(challenge_id: params[:id], user_id: current_user.id).first
     @delivery = @challenge.deliver_by_user current_user
     
-    if current_user.email == 'mentores@hack4geeks.co'
+    if current_user.mentor
       @deliveries = Delivery.where challenge_id: params[:id]
     end
   end

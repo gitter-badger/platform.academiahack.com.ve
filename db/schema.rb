@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217030754) do
+ActiveRecord::Schema.define(version: 20160111001659) do
 
   create_table "academic_day_schedules", force: true do |t|
     t.integer "position"
@@ -160,6 +160,16 @@ ActiveRecord::Schema.define(version: 20151217030754) do
   add_index "enrollments", ["product_id"], name: "index_enrollments_on_product_id", using: :btree
   add_index "enrollments", ["promo_id"], name: "index_enrollments_on_promo_id", using: :btree
   add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
+
+  create_table "mentors", force: true do |t|
+    t.string   "type_of"
+    t.integer  "identity"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
 
   create_table "parameters", force: true do |t|
     t.string   "key"

@@ -6,6 +6,70 @@
 @students = []
 @academic_schedules = []
 
+@required_knowledge_template= "
+Conocimientos previos
+-----------------------------------
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris. Aliquam faucibus neque orci, quis dignissim ante aliquam nec. Integer hendrerit rutrum augue sit amet dictum. Suspendisse laoreet posuere diam, id iaculis ligula congue ut. Mauris elementum nisi fermentum neque ultrices, sed gravida dolor placerat. Proin sed sagittis dui, nec ornare risus. Vivamus neque leo, dapibus ut mollis vitae, imperdiet in lorem. Maecenas facilisis vehicula tellus, sed imperdiet elit sagittis a.
+
+
+Paquetes y dependencias (Requerimientos)
+------------------------------------------------------------------
+
+- [Paquete 1](http://www.google.com)
+- [Paquete 2](http://www.google.com)
+- ``` sudo apt-get install package_name ```
+
+Términos
+---------------
+
+- Término1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris.
+
+- Término2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris.
+
+- Término3: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris.
+
+Links oficiales
+----------------------
+
+- [Link 1](http://www.google.com)
+- [Link 2](http://www.google.com)
+- [Link 3](http://www.google.com)
+
+FAQ
+------
+
+#### Pregunta 1?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris. Aliquam faucibus neque orci, quis dignissim ante aliquam nec. Integer hendrerit rutrum augue sit amet dictum. Suspendisse laoreet posuere diam, id iaculis ligula congue ut.
+
+#### Pregunta 2?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris. Aliquam faucibus neque orci, quis dignissim ante aliquam nec. Integer hendrerit rutrum augue sit amet dictum. Suspendisse laoreet posuere diam, id iaculis ligula congue ut.
+
+#### Pregunta 3?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris. Aliquam faucibus neque orci, quis dignissim ante aliquam nec. Integer hendrerit rutrum augue sit amet dictum. Suspendisse laoreet posuere diam, id iaculis ligula congue ut."
+
+@cheatsheet_template = "
+Tips
+------
+- tip1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+- tip2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+- tip3: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Resumen
+---------------
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis sed elit ultricies efficitur eget sit amet mauris. Aliquam faucibus neque orci, quis dignissim ante aliquam nec.
+
+Código
+----------
+
+~~~ ruby
+  def hello_world
+    puts 'Hola mundo'
+  end
+~~~"
 
 def create_week number, name, position, product=nil
   week = Week.new
@@ -17,7 +81,7 @@ def create_week number, name, position, product=nil
   @weeks.push week
 end
 
-def create_day number, name, week, status, image = '0.png', product=nil
+def create_day number, name, week, status, image = '0.png', product=nil, required_knowledge=@required_knowledge_template, cheatsheet=@cheatsheet_template
   day = Day.new
   day.number = number
   day.name = name
@@ -25,6 +89,8 @@ def create_day number, name, week, status, image = '0.png', product=nil
   day.week = week
   day.status = status
   day.product = product
+  day.required_knowledge = required_knowledge
+  day.cheatsheet = cheatsheet
   day.save
   @days.push day
 end
@@ -48,6 +114,16 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
+def create_mentor name, last_name, email, password, identity=nil, type_of=nil
+  mentor = Mentor.new
+  mentor.identity = identity
+  mentor.type_of = type_of
+
+  user = create_user name, last_name, email, password, User
+  mentor.user = user
+  mentor.save
+end
+
 def create_user name, last_name, email, password, devise_class, gitlab_user=nil, name_space_id=nil
   user = devise_class.new
   user.email = email
@@ -60,7 +136,7 @@ def create_user name, last_name, email, password, devise_class, gitlab_user=nil,
       @students.push user
     end
     user.password = password
-    user.save
+    user if user.save
   else
     puts 'El password debe ser mayor a 8 caracteres'
   end
@@ -177,14 +253,6 @@ create_user 'Miguel', 'Brazzoduro','brazzoduro26@gmail.com ', '16543115', User, 
   create_enrollment promo4, htd, student
 end
 # *********************** ENROLLMENT PROMO 4 ***********************
-
-create_user 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Anais', 'Legonia','alegonia@academiahack.com.ve', 'Hack2015', AdminUser
-create_user 'Jorge', 'Fuentes','jfuentes@academiahack.com.ve', 'Hack2015', AdminUser
 
 # *********************** PROPEDEUTICO ***********************
 create_week 1, "Algoritmos en ruby 1", 1, prope_htd
@@ -359,3 +427,12 @@ end
 
 AcademicWeekSchedule.calculate_htd
 
+create_mentor 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', '18020036'
+create_mentor 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015'
+create_mentor 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015'
+create_mentor 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015'
+create_mentor 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015'
+create_mentor 'Anais', 'Legonia','alegonia@academiahack.com.ve', 'Hack2015'
+create_mentor 'Jorge', 'Fuentes','jfuentes@academiahack.com.ve', 'Hack2015'
+
+create_user 'Hack', 'Admin', 'admin@academiahack.com.ve', 'Hack2015', AdminUser

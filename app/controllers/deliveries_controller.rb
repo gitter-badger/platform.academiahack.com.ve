@@ -32,7 +32,7 @@ class DeliveriesController < ApplicationController
     message = 'La revision del reto fue cargada correctamente'
     if admin_user_signed_in?
       if user_signed_in?
-        if current_user.email == 'mentores@hack4geeks.co'
+        if current_user.email.mentor
           delivery = Delivery.find params[:id]
           delivery.status = params[:status]
           unless delivery.save
