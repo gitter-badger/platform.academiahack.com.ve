@@ -2,6 +2,12 @@ class ChallengesController < ApplicationController
   before_action :authenticate_user!
   layout 'activities'
 
+  def new
+    @challenge = Challenge.new
+    @day = Day.find params[:day_id]
+    @days = @day.order_list
+  end
+
   def show
     @challenge = Challenge.find params[:id]
     @promo_group = Parameter.find_by_key 'promo_group'
