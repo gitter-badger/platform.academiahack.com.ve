@@ -280,27 +280,27 @@ create_week 16, "Proyecto Final", 16, htd
 # *********************** FINAL HACK ***********************
 
 # *********************** SEMANA1 ***********************
-create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 2, '16.png'
-create_day 2, "Busquedas, vcs, git, github", @weeks[0], 2, '19.png'
-create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 2, '11.png'
-create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 2, '12.png'
-create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 2, '13.png'
+create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 1, '16.png'
+create_day 2, "Busquedas, vcs, git, github", @weeks[0], 1, '19.png'
+create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 1, '11.png'
+create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 1, '12.png'
+create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 1, '13.png'
 
 # *********************** SEMANA2 ***********************
 
-create_day 6, "Arreglos multidimensionales", @weeks[1], 2, '31.png'
-create_day 7, "Funciones, programacion estructurada", @weeks[1], 2, '6.png'
-create_day 8, "Practica de algoritmos", @weeks[1], 2, '30.png'
-create_day 9, "Practica de algoritmos", @weeks[1], 2, '30.png'
-create_day 10, "Entrega de proyecto y certificación", @weeks[1], 2, '3.png'
+create_day 6, "Arreglos multidimensionales", @weeks[1], 1, '31.png'
+create_day 7, "Funciones, programacion estructurada", @weeks[1], 1, '6.png'
+create_day 8, "Practica de algoritmos", @weeks[1], 1, '30.png'
+create_day 9, "Practica de algoritmos", @weeks[1], 1, '30.png'
+create_day 10, "Entrega de proyecto y certificación", @weeks[1], 1, '3.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Ruby idiomatico 1", @weeks[2], 2, '26.png'
-create_day 12, "Ruby idiomatico 2", @weeks[2], 2, '26.png'
-create_day 13, "Clases y objetos en ruby", @weeks[2], 2, '27.png'
-create_day 14, "Self, herencia y modulos", @weeks[2], 2, '27.png'
-create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 2, '22.png'
+create_day 11, "Ruby idiomatico 1", @weeks[2], 1, '26.png'
+create_day 12, "Ruby idiomatico 2", @weeks[2], 1, '26.png'
+create_day 13, "Clases y objetos en ruby", @weeks[2], 1, '27.png'
+create_day 14, "Self, herencia y modulos", @weeks[2], 1, '27.png'
+create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 1, '22.png'
 
 # *********************** SEMANA 4 ***********************
 

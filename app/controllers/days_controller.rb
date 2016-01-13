@@ -19,6 +19,19 @@ class DaysController < ApplicationController
     end
   end
 
+  def toggle
+    day = Day.find params[:id]
+    day.status = day.active? ? :blocked : :active
+
+    if day.save
+      message = "Status del dia actualizado exitosamente"
+    else
+      message = 'No se pudo actualizar el dia!'
+    end
+
+    redirect_to week_path(current_week: day.week.number), notice: message
+  end
+
   def update
     message = 'Dia actualizado correctamente'
     @day = Day.find params[:id]

@@ -22,7 +22,7 @@ class AcademicWeekSchedule < ActiveRecord::Base
       black_days += 1 if day_unavailable?(date)
     end
 
-    diff = (current_calendar_day.to_date - Promo.current.start_date) - black_days
+    diff = (current_calendar_day.to_date - Promo.current.start_date) - black_days + 1
     diff < 0 ? 0 : (diff/5).ceil
   end
 

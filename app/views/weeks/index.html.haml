@@ -11,6 +11,11 @@
             .col-md-12
               %h1.text-center
                 = academic_week_schedule.week.name
+                - if current_user.mentor
+                  = link_to week_open_path(academic_week_schedule.week), method:'put' do
+                    %span{class:"glyphicon glyphicon-ok-sign", "aria-hidden"=>"true"}
+                  = link_to week_close_path(academic_week_schedule.week), method:'put' do
+                    %span{class:"glyphicon glyphicon-remove-sign", "aria-hidden"=>"true"}
               .row.text-center.left-5
                 - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
                   .day_box{'data-name' => academic_day_schedule.day.name}
@@ -36,6 +41,12 @@
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
                     = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
+                    - if current_user.mentor
+                      = link_to day_toggle_path(academic_day_schedule.day), method:'put' do
+                        - if academic_day_schedule.day.active?
+                          %span{class:"glyphicon glyphicon-remove-sign", "aria-hidden"=>"true"}
+                        - elsif academic_day_schedule.day.blocked?
+                          %span{class:"glyphicon glyphicon-ok-sign", "aria-hidden"=>"true"}
     .text-center
       .badge-title
     #breadcrumb

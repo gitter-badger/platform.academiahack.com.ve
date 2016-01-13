@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get 'deliveries/:id/review/:status' => 'deliveries#review', as: :delivery_review
   get 'challenges/:id/deploy' => 'challenges#deploy', as: :challenge_deploy
 
+  put 'days/:id/toggle' => 'days#toggle', as: :day_toggle
+  put 'weeks/:id/open' => 'weeks#open', as: :week_open
+  put 'weeks/:id/close' => 'weeks#close', as: :week_close
+
   resources :weeks, shallow: true do
     resources :days, shallow: true do
       resources :videos
