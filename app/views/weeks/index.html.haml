@@ -15,7 +15,7 @@
                 - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
                   .day_box{'data-name' => academic_day_schedule.day.name}
                     - if academic_day_schedule.day.active?
-                      = link_to day_path(academic_day_schedule.day.id) do
+                      = link_to day_path(academic_day_schedule.day, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'off'
                         = image_tag academic_day_schedule.day.image.url

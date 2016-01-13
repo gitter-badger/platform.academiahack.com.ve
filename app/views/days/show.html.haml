@@ -54,15 +54,17 @@
                     =vid.name
                 -else
                   .row
-                    .col-md-9
+                    .col-md-8
                       =link_to(vid.url, target: :blank, class:'day-video-link') do
                         .play-icon
                           =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
                         =vid.name
                     -if current_user.mentor
-                      .col-md-3
-                        =link_to day_path(@day, video_id:vid.id), class:'play-icon' do
+                      .col-md-4
+                        =link_to day_path(@day, video_id:vid.id), class:'btn btn-primary' do
                           %span{class:"glyphicon glyphicon-pencil", "aria-hidden"=>"true"}
+                        =link_to video_path(vid), method:'delete', data:{confirm:"Desea eliminar el video?"}, class:'btn btn-danger' do
+                          %span{class:"glyphicon glyphicon-trash", "aria-hidden"=>"true"}
             - if current_user.mentor
               %li
                 -if @video.id
@@ -169,29 +171,29 @@
                     .row
                       - @day.challenges.each do |challenge|
                         .col-md-4.text-center
-                          .challenge-box
-                            %h4
-                              = challenge.title.truncate(20)
-                            .image
-                              = image_tag challenge.category.image.url
+                          = link_to challenge_path(challenge) do
+                            .challenge-box
+                              %h4
+                                = challenge.title.truncate(20)
+                              .image
+                                = image_tag challenge.category.image.url
                           - if current_user.mentor
-                            = link_to edit_challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                              = image_tag 'list-hexagon.png'
-                              Editar
+                            = link_to edit_challenge_path(challenge), class: 'btn btn-primary btn-flat btn-block btn-medium' do
+                              %span{class:"glyphicon glyphicon-pencil", "aria-hidden"=>"true"}
+                            = link_to challenge_path(challenge), method: 'delete', data: {:confirm => 'Desea eliminar el reto?'}, class: 'btn btn-danger btn-flat btn-block btn-large' do
+                              %span{class:"glyphicon glyphicon-trash", "aria-hidden"=>"true"}
                           - else
-                            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                            = link_to challenge_path(challenge), class: 'btn btn-primary btn-block btn-flat btn-large' do
                               = image_tag 'list-hexagon.png'
                               ¡Hazlo!
                       - if current_user.mentor
                         .col-md-4.text-center
-                          .challenge-box
-                            %h4
-                              Agregar reto
-                            .image
-                              %span{class:"glyphicon glyphicon-plus challenge-icon", "aria-hidden"=>"true"}
-                          = link_to new_day_challenge_path(@day, time:"classroom"), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                            = image_tag 'list-hexagon.png'
-                            Crear!
+                          = link_to new_day_challenge_path(@day, time:"classroom") do
+                            .challenge-box
+                              %h4
+                                Agregar reto
+                              .image
+                                %span{class:"glyphicon glyphicon-plus challenge-icon", "aria-hidden"=>"true"}
                 - else
                   %h3.text-center
                     Hoy no hay retos, pero siempre hay mucho que hacer!

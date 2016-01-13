@@ -37,6 +37,17 @@ class ChallengesController < ApplicationController
     redirect_to day_path(day, tab: "challenge"), notice:message
   end
 
+  def destroy
+    challenge = Challenge.find params[:id]
+    if challenge.destroy
+      message = "Reto eliminado exitosamente"
+    else
+      message = "Error al eliminar el reto"
+    end
+
+    redirect_to day_path(challenge.day, tab:"challenge"), notice: message
+  end
+
   def show
     @challenge = Challenge.find params[:id]
     @promo_group = Parameter.find_by_key 'promo_group'

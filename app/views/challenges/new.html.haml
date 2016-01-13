@@ -47,12 +47,9 @@
             = f.label :category
             = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
           .row
-            .col-md-6
+            .col-md-12
               .form-group
-                = f.label :description
+                = f.label "Description (markdown)"
                 = f.text_area :description, class: 'no-style-textarea'
-            .col-md-6
-              = preserve do
-                = @challenge.transform_description.description.html_safe if @challenge.description
           .form-group
             = f.submit :create, class: 'form-control btn btn-info'

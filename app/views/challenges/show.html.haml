@@ -17,8 +17,8 @@
           = @challenge.title
     .row
       .col-md-12
-        %p
-          = simple_format @challenge.description
+        = preserve do
+          = @challenge.transform_description.description.html_safe if @challenge.description
     - unless current_user.mentor
       .row
         .col-md-12
@@ -100,7 +100,7 @@
             Zona de mentores
       .row
         .col-md-12
-          = link_to 'Editar este reto', edit_admin_challenge_path(@challenge), class: 'btn btn-primary btn-flat btn-block'
+          = link_to 'Editar este reto', edit_challenge_path(@challenge), class: 'btn btn-primary btn-flat btn-block'
       - if @challenge.active?
         .row
           .col-md-12
@@ -111,56 +111,52 @@
             = link_to 'Revisar reto', challenge_deploy_path(@challenge), class: 'btn btn-warning btn-flat btn-block'
       %hr
       .row
-        .col-md-3
-          %img.dementor{src:"http://fc02.deviantart.net/fs71/f/2012/280/8/d/dementor_painted_by_blackplague1348-d5h51vj.jpg"}
-        .col-md-9
-          .row
-            .col-md-12
-              %table.table
-                %thead
+        .col-md-12
+          %table.table
+            %thead
+              %tr
+                %th.text-center
+                  Status
+                %th
+                  Email del estudiante
+                %th
+                  Fecha y hora de la entrega
+                %th
+                  Commit
+                %th.text-center{colspan:3}
+                  Review
+            %tbody
+              - if @deliveries && @deliveries.length > 0
+                - @deliveries.each do |delivery|
                   %tr
-                    %th.text-center
-                      Status
-                    %th
-                      Email del estudiante
-                    %th
-                      Fecha y hora de la entrega
-                    %th
-                      Commit
-                    %th.text-center{colspan:3}
-                      Review
-                %tbody
-                  - if @deliveries && @deliveries.length > 0
-                    - @deliveries.each do |delivery|
-                      %tr
-                        %td.text-center
-                          - if delivery.status.nil?
-                            %span.glyphicon.glyphicon-eye-open{'aria-hidden'=>'true'}
-                          - elsif delivery.status == 0
-                            %span.delivery-rejected.glyphicon.glyphicon-remove{'aria-hidden'=>'true'}
-                          - elsif delivery.status == 1
-                            %span.delivery-ok.glyphicon.glyphicon-ok{'aria-hidden'=>'true'}
-                          - else
-                            Status no reconocido
-                        %td
-                          = delivery.user.email
-                        %td
-                          = delivery.created_at.strftime("%d/%m/%Y %I:%M%p")
-                        %td
-                          %a{href: delivery.commit_url}
-                            = delivery.commit.truncate(7, omission: '') if delivery.commit
-                        - if @challenge.active?
-                          %td.text-center{colspan:2}
-                            Reto abierto.
-                        - else
-                          %td
-                            = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
-                          %td
-                            = link_to 'Rechazar', delivery_review_path(id:delivery.id, status:0), class: 'btn btn-info btn-flat btn-block'
-                  - else
-                    %tr
-                      %td.text-center{colspan:5}
-                        No hay entregas aun!
+                    %td.text-center
+                      - if delivery.status.nil?
+                        %span.glyphicon.glyphicon-eye-open{'aria-hidden'=>'true'}
+                      - elsif delivery.status == 0
+                        %span.delivery-rejected.glyphicon.glyphicon-remove{'aria-hidden'=>'true'}
+                      - elsif delivery.status == 1
+                        %span.delivery-ok.glyphicon.glyphicon-ok{'aria-hidden'=>'true'}
+                      - else
+                        Status no reconocido
+                    %td
+                      = delivery.user.email
+                    %td
+                      = delivery.created_at.strftime("%d/%m/%Y %I:%M%p")
+                    %td
+                      %a{href: delivery.commit_url}
+                        = delivery.commit.truncate(7, omission: '') if delivery.commit
+                    - if @challenge.active?
+                      %td.text-center{colspan:2}
+                        Reto abierto.
+                    - else
+                      %td
+                        = link_to 'Aceptar', delivery_review_path(id:delivery.id, status:1), class: 'btn btn-primary btn-flat btn-block'
+                      %td
+                        = link_to 'Rechazar', delivery_review_path(id:delivery.id, status:0), class: 'btn btn-info btn-flat btn-block'
+              - else
+                %tr
+                  %td.text-center{colspan:5}
+                    No hay entregas aun!
   .container.disqus_box
     .row
       .col-md-12

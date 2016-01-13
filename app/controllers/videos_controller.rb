@@ -15,9 +15,20 @@ class VideosController < ApplicationController
   def update
     video = Video.find params[:id]
     if video.update(video_params)
-      message = "Video actualizado"
+      message = "Video actualizado exitosamente"
     else
       message = "Error al actualizar el video"
+    end
+
+    redirect_to day_path(video.day), notice: message
+  end
+
+  def destroy
+    video = Video.find params[:id]
+    if video.destroy
+      message = "Video eliminado exitosamente"
+    else
+      message = "Error al eliminar el video"
     end
 
     redirect_to day_path(video.day), notice: message

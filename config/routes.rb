@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :weeks, shallow: true do
     resources :days, shallow: true do
-      resources :videos, only: [:create, :update]
+      resources :videos
       resources :challenges
     end
   end
