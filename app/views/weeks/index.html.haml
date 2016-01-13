@@ -1,10 +1,6 @@
 .badges
   #badges_carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "false"}
     .carousel-inner
-      -#%a.left.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "prev"}
-      -#  = image_tag 'arrow-left.png'
-      -#%a.right.carousel-control{"href" => "#badges_carousel", "role" => "button", "data-slide" => "next"}
-      -#  = image_tag 'arrow-right.png'
       - @academic_week_schedules.each_with_index do |academic_week_schedule, i|
         .item{class: ("active" if i == @current_week_index)}
           - if academic_week_schedule.week.challenge
@@ -40,7 +36,6 @@
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
                     = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
-
     .text-center
       .badge-title
     #breadcrumb

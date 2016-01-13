@@ -58,4 +58,11 @@ class Challenge < ActiveRecord::Base
       challenge.deploy
     end
   end
+
+  def transform_description
+    if self.description
+      self.description = Kramdown::Document.new(self.description, {syntax_highlighter: 'rouge'}).to_html
+    end
+    self
+  end
 end

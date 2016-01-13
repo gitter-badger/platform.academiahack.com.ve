@@ -8,6 +8,16 @@ class ChallengesController < ApplicationController
     @days = @day.order_list
   end
 
+  def create
+    challenge = Challenge.new(challenges_params)
+    day = Day.find params[:day_id]
+
+    challenge.day = day
+    if challenge.save
+      redirect_to day_path day
+    end
+  end
+
   def show
     @challenge = Challenge.find params[:id]
     @promo_group = Parameter.find_by_key 'promo_group'
@@ -26,5 +36,9 @@ class ChallengesController < ApplicationController
     @challenge.deploy
 
     redirect_to 'http://apps.academiahack.com.ve:2000/'
+   end
+
+  def challenges_params
+    params.require(:challenge).permit(:title, :description, :time, :category_id, :day_id)
   end
 end

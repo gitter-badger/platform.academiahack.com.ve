@@ -146,39 +146,26 @@
                 - if @day.challenges.length > 0
                   .container-fluid
                     .row
-                      %h3.text-center
-                        Retos en clase
-                      - if @day.get_classroom_challenges.length > 0
-                        - @day.get_classroom_challenges.each do |challenge|
-                          .col-md-4.text-center
-                            .challenge-box
-                              %h4
-                                = challenge.title
-                              .image
-                                = image_tag challenge.category.image.url
-                            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                              = image_tag 'list-hexagon.png'
-                              ¡Hazlo!
-                      -else
-                        %h4.text-center
-                          No existen retos del salon.
-                    .row
-                      %h3.text-center
-                        Proyectos
-                      - if @day.get_homework_challenges.length > 0
-                        - @day.challenges.each do |challenge|
-                          .col-md-4.text-center
-                            .challenge-box
-                              %h4
-                                = challenge.title
-                              .image
-                                = image_tag challenge.category.image.url
-                            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                              = image_tag 'list-hexagon.png'
-                              ¡Hazlo!
-                      -else
-                        %h4.text-center
-                          Aun no hay retos del sprint.
+                      - @day.challenges.each do |challenge|
+                        .col-md-4.text-center
+                          .challenge-box
+                            %h4
+                              = challenge.title
+                            .image
+                              = image_tag challenge.category.image.url
+                          = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                            = image_tag 'list-hexagon.png'
+                            ¡Hazlo!
+                      - if current_user.mentor
+                        .col-md-4.text-center
+                          .challenge-box
+                            %h4
+                              Agregar reto
+                            .image
+                              %span{class:"glyphicon glyphicon-plus challenge-icon", "aria-hidden"=>"true"}
+                          = link_to new_day_challenge_path(@day, time:"classroom"), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                            = image_tag 'list-hexagon.png'
+                            Crear!
                 - else
                   %h3.text-center
                     Hoy no hay retos, pero siempre hay mucho que hacer!

@@ -75,8 +75,13 @@
 }
 
 body.mosaic {
-	background-image: asset-url("fondo_mosaico.jpg");
+  background-image: asset-url("fondo_mosaico.jpg");
 	color: #fff;
+}
+
+body.mosaic1 {
+  background-image: asset-url("fondo_mosaico2.jpg");
+  color: #fff;
 }
 
 #breadcrumb {

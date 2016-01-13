@@ -44,10 +44,15 @@
             = f.label :title
             = f.text_field :title, class: 'form-control'
           .form-group
-            = f.label :description
-            = f.text_field :description, class: 'form-control'
-          .form-group
             = f.label :category
             = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
+          .row
+            .col-md-6
+              .form-group
+                = f.label :description
+                = f.text_area :description, class: 'no-style-textarea'
+            .col-md-6
+              = preserve do
+                = @challenge.transform_description.description.html_safe if @challenge.description
           .form-group
-            = f.submit :create, class: 'form-control'
+            = f.submit :create, class: 'form-control btn btn-info'
