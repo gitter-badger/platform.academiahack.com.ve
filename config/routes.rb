@@ -6,10 +6,13 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show]
+  resources :projects
 
   get 'activities/error' => 'activities#error', as: :activities_error
   get 'deliveries/:id/review/:status' => 'deliveries#review', as: :delivery_review
   get 'challenges/:id/deploy' => 'challenges#deploy', as: :challenge_deploy
+
+  get 'weeks/:id/challenges/new' => 'challenges#create_week', as: :new_week_challenge
 
   put 'days/:id/toggle' => 'days#toggle', as: :day_toggle
   put 'weeks/:id/open' => 'weeks#open', as: :week_open

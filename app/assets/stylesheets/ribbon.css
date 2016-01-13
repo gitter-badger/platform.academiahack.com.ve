@@ -1,9 +1,3 @@
-.box {
-    width: 200px; height: 300px;
-    position: relative;
-    border: 1px solid #BBB;
-    background: #EEE;
-}
 .ribbon {
     position: fixed;
     left: -5px; top: -5px;

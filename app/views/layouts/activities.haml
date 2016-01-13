@@ -11,38 +11,35 @@
       .ribbon
         %span
           MENTOR
-    %header.navbar.navbar-default.navbar-fixed-top
-      .container.caret-box
-        .navbar-header
-          = link_to root_path, class: 'navbar-brand' do
-            = image_tag "logo.png"
-        %nav#categorias.collapse.navbar-collapse.bs-navbar-collapse{role: 'navigation'}
-          %ul.nav.navbar-nav
-            %li.menu-login
-              %a{href: '#'}
-                .caret_header
-                  %span
-            %li.active.menu-registro
-              = link_to weeks_path do
-                Actividades
-                .caret_header
-                  %span
-          - if user_signed_in?
-            %ul#menu-logged-menu.nav.navbar-nav.navbar-right
-              %li.perfilLink.menu-username
-                %a{href:"#"}
-                  = current_user.email
-              %li.outperfil.pull-right.menu-salir
-                = link_to destroy_user_session_path, method: 'delete' do
-                  %span.glyphicon.glyphicon-off
-
-        %button.navbar-toggle.collapsed{"data-target" => "#categorias", "data-toggle" => "collapse", type: "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        .caret_header_2
+    %header
+      %nav.navbar.navbar-default.navbar-hack.navbar-fixed-top
+        .container
+          .navbar-header
+            %button.navbar-toggle.collapsed{"data-target" => "#menu", "data-toggle" => "collapse", type: "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to root_path, class: 'navbar-brand' do
+              = image_tag "logo.png"
+          #menu.navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li.active
+                = link_to weeks_path do
+                  Actividades
+              %li
+                = link_to projects_path do
+                  Proyectos
+            - if user_signed_in?
+              %ul.nav.navbar-nav.navbar-right
+                %li
+                  %a{href:"#"}
+                    = current_user.email
+                %li
+                  = link_to destroy_user_session_path, method: 'delete' do
+                    %span.glyphicon.glyphicon-off
     - flash.each do |name, msg|
       = content_tag :p, msg, class: "alert alert-info feedback-alert"
-    = yield
+    .hack-container
+      = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

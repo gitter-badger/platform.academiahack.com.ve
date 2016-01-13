@@ -28,6 +28,7 @@ class ChallengesController < ApplicationController
     day = Day.find params[:day_id]
 
     challenge.day = day
+    challenge.time = "classroom"
     if challenge.save
       message = "Reto creado exitosamente"
     else

@@ -21,6 +21,16 @@
  *= require_self
  */
 
+.navbar-hack {
+  height: 65px;
+  padding-top: 5px;
+}
+
+.hack-container {
+  margin-top: 65px;
+  padding-top: 20px;
+}
+
 .highlight {
   margin: 0 auto;
   width: 90%;
@@ -38,7 +48,6 @@
 
 body {
   font-family: 'Roboto';
-  padding-top: 80px;
 }
 
 .logo_hack {
