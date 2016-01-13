@@ -298,7 +298,7 @@ body.mosaic1 {
 .content-white {
 	background-color: #eef2f9;
 	padding: 155px 0 30px;
-	margin-top: -250px;
+	margin-top: -190px;
 	color: #222;
 	min-height: 500px;
 }
@@ -318,6 +318,7 @@ body.mosaic1 {
 
 .challenge-box .image {
 	padding: 20px;
+    min-height: 120px;
 }
 
 .challenge-box .image img {

@@ -1,0 +1,58 @@
+.badges
+  .item
+    .row
+      .col-md-12
+        .row.text-center.left-5
+          - @days.each do |day|
+            .day_box{'data-name' => day.name}
+              - if day.active?
+                -if @challenge.day.id == day.id
+                  .box-off
+                    = image_tag 'black_hexagon.png', class: 'on'
+                  = image_tag day.image.url
+                - else
+                  = link_to day_path(day.id) do
+                    .box-off
+                      = image_tag 'black_hexagon.png', class: 'off'
+                    = image_tag day.image.url
+              - elsif day.blocked?
+                .box-off
+                  = image_tag 'black_hexagon.png', class: 'locked'
+                = image_tag day.image.url
+                .day_overlay
+                  = image_tag "locked.png"
+              - elsif day.done?
+                = image_tag day.image.url
+                .day_overlay
+                  .box-off
+                    = image_tag 'black_hexagon.png', class: 'locked'
+                  = image_tag "fullfilled.png", class: 'fullfilled'
+              - else
+                .box-off
+                  = image_tag 'black_hexagon.png', class: 'locked'
+                = image_tag "0.png"
+.content-white
+  .container
+    %h1.white-title.text-center
+      %span.day-title
+        Editando:
+        = @challenge.day.name
+    .row
+      .col-md-12
+        = form_for @challenge do |f|
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: 'form-control'
+          .form-group
+            = f.label :category
+            = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
+          .row
+            .col-md-6
+              .form-group
+                = f.label :description
+                = f.text_area :description, class: 'no-style-textarea'
+            .col-md-6
+              = preserve do
+                = @challenge.transform_description.description.html_safe if @challenge.description
+          .form-group
+            = f.submit :create, class: 'form-control btn btn-info'

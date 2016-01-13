@@ -26,6 +26,11 @@
   width: 90%;
 }
 
+.feedback-alert {
+  z-index: 9999;
+  position: fixed;
+}
+
  @font-face {
   font-family: 'Roboto';
   src: asset-url('roboto_light.ttf');

@@ -8,14 +8,33 @@ class ChallengesController < ApplicationController
     @days = @day.order_list
   end
 
+  def edit
+    @challenge = Challenge.find params[:id]
+    @days = @challenge.day.order_list
+  end
+
+  def update
+    challenge = Challenge.find params[:id]
+    if challenge.update(challenges_params)
+      message = "Reto actualizado exitosamente"
+    else
+      message = "Error al actualizar el reto"
+    end
+    redirect_to day_path(challenge.day, tab: "challenge"), notice: message
+  end
+
   def create
     challenge = Challenge.new(challenges_params)
     day = Day.find params[:day_id]
 
     challenge.day = day
     if challenge.save
-      redirect_to day_path day
+      message = "Reto creado exitosamente"
+    else
+      message = "Error al crear el reto"
     end
+
+    redirect_to day_path(day, tab: "challenge"), notice:message
   end
 
   def show

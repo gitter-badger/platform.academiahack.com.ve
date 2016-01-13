@@ -44,24 +44,45 @@
           %h3.blue-text.text-center.video-title
             Videos Hack
           %hr
-          .card-content
-            %ul.nav.nav-stacked
-              -@day.videos.each do |vid|
-                %li
-                  -if vid.video_file_name
-                    =link_to(vid.video.url, target: :blank, class:'day-video-link') do
-                      .play-icon
-                        =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                      =vid.name
-                  -else
-                    =link_to(vid.url, target: :blank, class:'day-video-link') do
-                      .play-icon
-                        =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
-                      =vid.name
-              - if current_user.mentor
-                %li
-                  = form_for([:admin, @video]) do |f|
-                    = f.hidden_field("day_id", value: @day.id)
+          %ul.nav.nav-stacked
+            -@day.videos.each do |vid|
+              %li
+                -if vid.video_file_name
+                  =link_to(vid.video.url, target: :blank, class:'day-video-link') do
+                    .play-icon
+                      =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                    =vid.name
+                -else
+                  .row
+                    .col-md-9
+                      =link_to(vid.url, target: :blank, class:'day-video-link') do
+                        .play-icon
+                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                        =vid.name
+                    -if current_user.mentor
+                      .col-md-3
+                        =link_to day_path(@day, video_id:vid.id), class:'play-icon' do
+                          %span{class:"glyphicon glyphicon-pencil", "aria-hidden"=>"true"}
+            - if current_user.mentor
+              %li
+                -if @video.id
+                  = form_for @video do |f|
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "link"
+                          = f.url_field("url", class:"form-control")
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "nombre"
+                          = f.text_field("name", class:"form-control")
+                    .row
+                      .col-md-12
+                        = f.submit("Guardar", class: "btn btn-info btn-flat btn-block")
+                  = link_to "Video nuevo", day_path(@day), class: "btn btn-primary btn-flat btn-block"
+                -else
+                  = form_for([@day, @video]) do |f|
                     .row
                       .col-md-12
                         .form-group
@@ -78,19 +99,19 @@
       %div.col-md-8
         .card
           %ul.nav.day-content-tabs.nav-justified{role:'tablist'}
-            %li
+            %li{class: @tab == "requirements" ? "active":""}
               %a{href:'#requirements', "data-toggle" => 'tab'}
                 Contenido
-            %li
+            %li{class: @tab == "cheatsheets" ? "active":""}
               %a{href:'#cheatsheets', "data-toggle" => 'tab'}
                 Resumen y tips
-            %li
+            %li{class: @tab == "challenge" ? "active":""}
               %a{href:'#challenge', "data-toggle" => 'tab'}
                 Retos
           %hr
           .card-content
             .tab-content
-              #requirements{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane" : "tab-pane active"}
+              #requirements{role:'tablist', class: @tab == "requirements" ? "tab-pane active" : "tab-pane"}
                 -if current_user.mentor
                   .container-fluid
                     .row
@@ -116,7 +137,7 @@
                     ¿Estas preparado?
                     %h4.text-center
                       Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
-              #cheatsheets.tab-pane{role:'tablist'}
+              #cheatsheets{role:'tablist', class: @tab == "cheatsheets" ? "tab-pane active" : "tab-pane"}
                 -if current_user.mentor
                   .container-fluid
                     .row
@@ -142,20 +163,25 @@
                     ¿No recuerdas como se hacía o se escribía?
                     %h4.text-center
                       Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
-              #challenge{role:'tablist', class: @day.required_knowledge.blank? ? "tab-pane active" : "tab-pane"}
-                - if @day.challenges.length > 0
+              #challenge{role:'tablist', class: @tab == "challenge" ? "tab-pane active" : "tab-pane"}
+                - if @day.challenges.length > 0 || current_user.mentor
                   .container-fluid
                     .row
                       - @day.challenges.each do |challenge|
                         .col-md-4.text-center
                           .challenge-box
                             %h4
-                              = challenge.title
+                              = challenge.title.truncate(20)
                             .image
                               = image_tag challenge.category.image.url
-                          = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
-                            = image_tag 'list-hexagon.png'
-                            ¡Hazlo!
+                          - if current_user.mentor
+                            = link_to edit_challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                              = image_tag 'list-hexagon.png'
+                              Editar
+                          - else
+                            = link_to challenge_path(challenge.id), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                              = image_tag 'list-hexagon.png'
+                              ¡Hazlo!
                       - if current_user.mentor
                         .col-md-4.text-center
                           .challenge-box
@@ -171,18 +197,3 @@
                     Hoy no hay retos, pero siempre hay mucho que hacer!
                     %h4.text-center
                       Aprovecha y haz preguntas claves a los mentores!
-    - if current_user.mentor
-      .row.mentor-zone
-        .col-md-12
-          %h3
-            Zona de mentores
-      .row
-        .col-md-3
-          %img.dementor{src:"http://fc02.deviantart.net/fs71/f/2012/280/8/d/dementor_painted_by_blackplague1348-d5h51vj.jpg"}
-        .col-md-9
-          .row
-            .col-md-12
-              = link_to 'Editar este dia', edit_admin_day_path(@day), class: 'btn btn-primary btn-flat btn-block'
-          .row
-            .col-md-12
-              = link_to 'Agregar reto', new_admin_challenge_path(:challenge => { :day_id => @day.id }), class: 'btn btn-info btn-flat btn-block'

@@ -5,9 +5,14 @@ class DaysController < ApplicationController
   def show
     @day = Day.includes(challenges: [:category]).find(params[:id])
     @days = @day.order_list
-    @video = Video.new
 
-    @post = {title: 'Esto es una prueba', body: 'Este es el contenido de la prueba', published: true}
+    if params[:video_id]
+      @video = Video.find params[:video_id]
+    else
+      @video = Video.new
+    end
+
+    @tab = params[:tab] ? params[:tab] : "requirements"
 
     unless @days
       redirect_to root_path, notice: 'El dia no se encuentra o esta bloqueado'

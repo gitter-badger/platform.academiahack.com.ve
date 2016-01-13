@@ -28,8 +28,8 @@ ActiveAdmin.register Day do
       f.input :week, as: :select
       f.input :status, as: :select, collection: Day.statuses.keys, input_html: { class: 'chosen-select' }
       f.input :image, :as => :file, :hint => f.template.image_tag(f.object.image.url(:thumb))
-      f.input :required_knowledge, as: :html_editor
-      f.input :cheatsheet, as: :html_editor
+      f.input :required_knowledge
+      f.input :cheatsheet
     end
     f.actions
   end
