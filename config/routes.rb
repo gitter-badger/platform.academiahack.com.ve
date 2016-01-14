@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
   resources :projects
+  resources :academic_days
 
   get 'activities/error' => 'activities#error', as: :activities_error
   get 'deliveries/:id/review/:status' => 'deliveries#review', as: :delivery_review
@@ -14,9 +15,9 @@ Rails.application.routes.draw do
 
   get 'weeks/:id/challenges/new' => 'challenges#create_week', as: :new_week_challenge
 
-  put 'days/:id/toggle' => 'days#toggle', as: :day_toggle
-  put 'weeks/:id/open' => 'weeks#open', as: :week_open
-  put 'weeks/:id/close' => 'weeks#close', as: :week_close
+  put 'academic_days/:id/toggle' => 'academic_days#toggle', as: :academic_days_toggle
+  put 'academic_weeks/:id/open' => 'academic_days#open_academic_week', as: :week_open
+  put 'academic_weeks/:id/close' => 'academic_days#close_academic_week', as: :week_close
 
   resources :weeks, shallow: true do
     resources :days, shallow: true do

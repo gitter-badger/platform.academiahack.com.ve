@@ -71,23 +71,20 @@ Código
   end
 ~~~"
 
-def create_week number, name, position, product=nil
+def create_week name, product=nil
   week = Week.new
-  week.number = number
   week.name = name
-  week.position = position
   week.product = product
   week.save
   @weeks.push week
 end
 
-def create_day number, name, week, status, image = '0.png', product=nil, required_knowledge=@required_knowledge_template, cheatsheet=@cheatsheet_template
+def create_day position, name, week, image = '0.png', product=nil, required_knowledge=@required_knowledge_template, cheatsheet=@cheatsheet_template
   day = Day.new
-  day.number = number
   day.name = name
+  day.position = position
   day.image = File.new("#{Rails.root}/app/assets/images/#{image}")
   day.week = week
-  day.status = status
   day.product = product
   day.required_knowledge = required_knowledge
   day.cheatsheet = cheatsheet
@@ -128,12 +125,14 @@ def create_user name, last_name, email, password, devise_class, gitlab_user=nil,
   user = devise_class.new
   user.email = email
   if password.length >= 8
-    if gitlab_user != nil
+    if devise_class.name == "User"
       user.name = name
       user.last_name = last_name
-      user.gitlab_user = gitlab_user
-      user.name_space_id = name_space_id
-      @students.push user
+      if gitlab_user != nil
+        user.gitlab_user = gitlab_user
+        user.name_space_id = name_space_id
+        @students.push user
+      end
     end
     user.password = password
     user if user.save
@@ -199,6 +198,17 @@ def create_black_day name, description, day=nil, month=nil, black_date=nil
   black_day
 end
 
+def create_academic_week_schedule promo, week, position=nil
+  current_promo_day = 1
+  academic_week_schedule = AcademicWeekSchedule.create({position: position, promo_id: promo.id, week_id: week.id})
+  days = Day.where(week: week).order(:number)
+
+  days.each do |day|
+    AcademicDaySchedule.create({number: ((position-1) * 5) + current_promo_day, day_id: day.id, academic_week_schedule_id: academic_week_schedule.id, status: 1})
+    current_promo_day += 1
+  end
+end
+
 create_user 'Mentores', 'Hack' ,'mentores@academiahack.com.ve', 'Hack2015', User
 create_user 'Romer', 'Ramos','romerramos@gmail.com', '18020036', User, 'romerramos', '228413'
 
@@ -255,156 +265,156 @@ end
 # *********************** ENROLLMENT PROMO 4 ***********************
 
 # *********************** PROPEDEUTICO ***********************
-create_week 1, "Algoritmos en ruby 1", 1, prope_htd
-create_week 2, "Algoritmos en ruby 2", 2, prope_htd
-# *********************** PROPEDEUTICO ***********************
-# *********************** BACKEND ***********************
-create_week 3, "Ruby idiomatico + objetos en ruby", 3, htd
-create_week 4, "Objetos en ruby + HTTP", 4, htd
-create_week 5, "BD + Rails", 5, htd
-create_week 6, "Rails + ActiveRecord", 6, htd
-create_week 7, "Controllers + JSON Response", 7, htd
+create_week "Algoritmos en ruby 1", prope_htd
+create_week "Algoritmos en ruby 2", prope_htd
+# ******************** PROPEDEUTICO ***********************
+# ******************** BACKEND ***********************
+create_week "Ruby idiomatico + objetos en ruby", htd
+create_week "Objetos en ruby + HTTP", htd
+create_week "BD + Rails", htd
+create_week "Rails + ActiveRecord", htd
+create_week "Controllers + JSON Response", htd
 # *********************** BACKEND ***********************
 # *********************** FRONTEND ***********************
-create_week 8, "HTML + CSS", 8, htd
-create_week 9, "Bootstrap", 9, htd
-create_week 10, "Javascript", 10, htd
-create_week 11, "jQuery", 11, htd
-create_week 12, "FrontEnd Tools", 12, htd
-create_week 13, "AngularJS", 13, htd
-create_week 14, "Full stack app", 14, htd
+create_week "HTML + CSS", htd
+create_week "Bootstrap", htd
+create_week "Javascript", htd
+create_week "jQuery", htd
+create_week "FrontEnd Tools", htd
+create_week "AngularJS", htd
+create_week "Full stack app", htd
 # *********************** FRONTEND ***********************
 # *********************** FINAL HACK ***********************
-create_week 15, "Proyecto Final", 15, htd
-create_week 16, "Proyecto Final", 16, htd
+create_week "Proyecto Final", htd
+create_week "Proyecto Final", htd
 # *********************** FINAL HACK ***********************
 
 # *********************** SEMANA1 ***********************
-create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], 1, '16.png'
-create_day 2, "Busquedas, vcs, git, github", @weeks[0], 1, '19.png'
-create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], 1, '11.png'
-create_day 4, "Estructuras iterativas, arreglos", @weeks[0], 1, '12.png'
-create_day 5, "Arreglos, ordenamiento basico", @weeks[0], 1, '13.png'
+create_day 1, "Linux, terminal, usuarios, VM", @weeks[0], '16.png'
+create_day 2, "Busquedas, vcs, git, github", @weeks[0], '19.png'
+create_day 3, "Variables, tipos de dato, estructura de control", @weeks[0], '11.png'
+create_day 4, "Estructuras iterativas, arreglos", @weeks[0], '12.png'
+create_day 5, "Arreglos, ordenamiento basico", @weeks[0], '13.png'
 
 # *********************** SEMANA2 ***********************
 
-create_day 6, "Arreglos multidimensionales", @weeks[1], 1, '31.png'
-create_day 7, "Funciones, programacion estructurada", @weeks[1], 1, '6.png'
-create_day 8, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 9, "Practica de algoritmos", @weeks[1], 1, '30.png'
-create_day 10, "Entrega de proyecto y certificación", @weeks[1], 1, '3.png'
+create_day 1, "Arreglos multidimensionales", @weeks[1], '31.png'
+create_day 2, "Funciones, programacion estructurada", @weeks[1], '6.png'
+create_day 3, "Practica de algoritmos", @weeks[1], '30.png'
+create_day 4, "Practica de algoritmos", @weeks[1], '30.png'
+create_day 5, "Entrega de proyecto y certificación", @weeks[1], '3.png'
 
 # *********************** SEMANA3 ***********************
 
-create_day 11, "Ruby idiomatico 1", @weeks[2], 1, '26.png'
-create_day 12, "Ruby idiomatico 2", @weeks[2], 1, '26.png'
-create_day 13, "Clases y objetos en ruby", @weeks[2], 1, '27.png'
-create_day 14, "Self, herencia y modulos", @weeks[2], 1, '27.png'
-create_day 15, "Cardinalidad, diagrama de clase", @weeks[2], 1, '22.png'
+create_day 1, "Ruby idiomatico 1", @weeks[2], '26.png'
+create_day 2, "Ruby idiomatico 2", @weeks[2], '26.png'
+create_day 3, "Clases y objetos en ruby", @weeks[2], '27.png'
+create_day 4, "Self, herencia y modulos", @weeks[2], '27.png'
+create_day 5, "Cardinalidad, diagrama de clase", @weeks[2], '22.png'
 
 # *********************** SEMANA 4 ***********************
 
-create_day 16, "Ruby warriors, ninja vs dinosaurios", @weeks[3], 2, '27.png'
-create_day 17, "Intro a HTTP, REST, JSON", @weeks[3], 2, '40.png'
-create_day 18, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], 2, '17.png'
-create_day 19, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], 2, '17.png'
-create_day 20, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], 2, '17.png'
+create_day 1, "Ruby warriors, ninja vs dinosaurios", @weeks[3], '27.png'
+create_day 2, "Intro a HTTP, REST, JSON", @weeks[3], '40.png'
+create_day 3, "Http Party, Consulta de API tokenless (Spotify).", @weeks[3], '17.png'
+create_day 4, "Http Party, Consulta de API tokenless (OMDB).", @weeks[3], '17.png'
+create_day 5, "Http Party, Consulta de API tokenless (GeoIp).", @weeks[3], '17.png'
 
 # *********************** SEMANA 5 ***********************
 
-create_day 21, "Modelado de datos", @weeks[4], 1, '22.png'
-create_day 22, "SQL 1", @weeks[4], 1, '23.png'
-create_day 23, "SQL 2", @weeks[4], 1, '23.png'
-create_day 24, "MVC, Frameworks, Rails", @weeks[4], 1, '32.png'
-create_day 25, "ORM + ActiveRecord", @weeks[4], 1, '32.png'
+create_day 1, "Modelado de datos", @weeks[4], '22.png'
+create_day 2, "SQL 1", @weeks[4], '23.png'
+create_day 3, "SQL 2", @weeks[4], '23.png'
+create_day 4, "MVC, Frameworks, Rails", @weeks[4], '32.png'
+create_day 5, "ORM + ActiveRecord", @weeks[4], '32.png'
 
 # *********************** SEMANA 6 ***********************
 
-create_day 26, "ActiveRecord relaciones, validaciones", @weeks[5], 0, '32.png'
-create_day 27, "ActiveRecord queries, callbacks", @weeks[5], 0, '3.png'
-create_day 28, "ActiveRecord queries", @weeks[5], 0, '3.png'
-create_day 29, "Modelado + SQL + ORM 1", @weeks[5], 0, '25.png'
-create_day 30, "Modelado + SQL + ORM 2", @weeks[5], 0, '25.png'
+create_day 1, "ActiveRecord relaciones, validaciones", @weeks[5], '32.png'
+create_day 2, "ActiveRecord queries, callbacks", @weeks[5], '3.png'
+create_day 3, "ActiveRecord queries", @weeks[5], '3.png'
+create_day 4, "Modelado + SQL + ORM 1", @weeks[5], '25.png'
+create_day 5, "Modelado + SQL + ORM 2", @weeks[5], '25.png'
 
 # *********************** SEMANA 7 ***********************
 
-create_day 31, "Rails routes + controllers", @weeks[6], 0, '32.png'
-create_day 32, "Rails controllers", @weeks[6], 0, '32.png'
-create_day 33, "Postman + Rails 1", @weeks[6], 0, '18.png'
-create_day 34, "Postman + Rails 2", @weeks[6], 0, '18.png'
-create_day 35, "API Cines", @weeks[6], 0, '2.png'
+create_day 1, "Rails routes + controllers", @weeks[6], '32.png'
+create_day 2, "Rails controllers", @weeks[6], '32.png'
+create_day 3, "Postman + Rails 1", @weeks[6], '18.png'
+create_day 4, "Postman + Rails 2", @weeks[6], '18.png'
+create_day 5, "API Cines", @weeks[6], '2.png'
 
 # *********************** SEMANA 8 ***********************
 
-create_day 36, "Lunes", @weeks[7], 0
-create_day 37, "Martes", @weeks[7], 0
-create_day 38, "Miercoles", @weeks[7], 0
-create_day 39, "Jueves", @weeks[7], 0
-create_day 40, "Viernes", @weeks[7], 0
+create_day 1, "Lunes", @weeks[7]
+create_day 2, "Martes", @weeks[7]
+create_day 3, "Miercoles", @weeks[7]
+create_day 4, "Jueves", @weeks[7]
+create_day 5, "Viernes", @weeks[7]
 
 # *********************** SEMANA 9 ***********************
 
-create_day 41, "Lunes", @weeks[8], 0
-create_day 42, "Martes", @weeks[8], 0
-create_day 43, "Miercoles", @weeks[8], 0
-create_day 44, "Jueves", @weeks[8], 0
-create_day 45, "Viernes", @weeks[8], 0
+create_day 1, "Lunes", @weeks[8]
+create_day 2, "Martes", @weeks[8]
+create_day 3, "Miercoles", @weeks[8]
+create_day 4, "Jueves", @weeks[8]
+create_day 5, "Viernes", @weeks[8]
 
 # *********************** SEMANA 10 ***********************
 
-create_day 46, "Lunes", @weeks[9], 0
-create_day 47, "Martes", @weeks[9], 0
-create_day 48, "Miercoles", @weeks[9], 0
-create_day 49, "Jueves", @weeks[9], 0
-create_day 50, "Viernes", @weeks[9], 0
+create_day 1, "Lunes", @weeks[9]
+create_day 2, "Martes", @weeks[9]
+create_day 3, "Miercoles", @weeks[9]
+create_day 4, "Jueves", @weeks[9]
+create_day 5, "Viernes", @weeks[9]
 
 # *********************** SEMANA 11 ***********************
 
-create_day 51, "Lunes", @weeks[10], 0
-create_day 52, "Martes", @weeks[10], 0
-create_day 53, "Miercoles", @weeks[10], 0
-create_day 54, "Jueves", @weeks[10], 0
-create_day 55, "Viernes", @weeks[10], 0
+create_day 1, "Lunes", @weeks[10]
+create_day 2, "Martes", @weeks[10]
+create_day 3, "Miercoles", @weeks[10]
+create_day 4, "Jueves", @weeks[10]
+create_day 5, "Viernes", @weeks[10]
 
 # *********************** SEMANA 12 ***********************
 
-create_day 56, "Lunes", @weeks[11], 0
-create_day 57, "Martes", @weeks[11], 0
-create_day 58, "Miercoles", @weeks[11], 0
-create_day 59, "Jueves", @weeks[11], 0
-create_day 60, "Viernes", @weeks[11], 0
+create_day 1, "Lunes", @weeks[11]
+create_day 2, "Martes", @weeks[11]
+create_day 3, "Miercoles", @weeks[11]
+create_day 4, "Jueves", @weeks[11]
+create_day 5, "Viernes", @weeks[11]
 
 # *********************** SEMANA 13 ***********************
 
-create_day 61, "Lunes", @weeks[12], 0
-create_day 62, "Martes", @weeks[12], 0
-create_day 63, "Miercoles", @weeks[12], 0
-create_day 64, "Jueves", @weeks[12], 0
-create_day 65, "Viernes", @weeks[12], 0
+create_day 1, "Lunes", @weeks[12]
+create_day 2, "Martes", @weeks[12]
+create_day 3, "Miercoles", @weeks[12]
+create_day 4, "Jueves", @weeks[12]
+create_day 5, "Viernes", @weeks[12]
 
 # *********************** SEMANA 14 ***********************
 
-create_day 66, "Lunes", @weeks[13], 0
-create_day 67, "Martes", @weeks[13], 0
-create_day 68, "Miercoles", @weeks[13], 0
-create_day 69, "Jueves", @weeks[13], 0
-create_day 70, "Viernes", @weeks[13], 0
+create_day 1, "Lunes", @weeks[13]
+create_day 2, "Martes", @weeks[13]
+create_day 3, "Miercoles", @weeks[13]
+create_day 4, "Jueves", @weeks[13]
+create_day 5, "Viernes", @weeks[13]
 
 # *********************** SEMANA 15 ***********************
 
-create_day 71, "Lunes", @weeks[14], 0
-create_day 72, "Martes", @weeks[14], 0
-create_day 73, "Miercoles", @weeks[14], 0
-create_day 74, "Jueves", @weeks[14], 0
-create_day 75, "Viernes", @weeks[14], 0
+create_day 1, "Lunes", @weeks[14]
+create_day 2, "Martes", @weeks[14]
+create_day 3, "Miercoles", @weeks[14]
+create_day 4, "Jueves", @weeks[14]
+create_day 5, "Viernes", @weeks[14]
 
 # *********************** SEMANA 16 ***********************
 
-create_day 76, "Lunes", @weeks[15], 0
-create_day 77, "Martes", @weeks[15], 0
-create_day 78, "Miercoles", @weeks[15], 0
-create_day 79, "Jueves", @weeks[15], 0
-create_day 80, "Viernes", @weeks[15], 0
+create_day 1, "Lunes", @weeks[15]
+create_day 2, "Martes", @weeks[15]
+create_day 3, "Miercoles", @weeks[15]
+create_day 4, "Jueves", @weeks[15]
+create_day 5, "Viernes", @weeks[15]
 
 # *********************************************************
 
@@ -422,7 +432,7 @@ create_category "Bug", 'bug.png'
 create_parameter "current_promo", promo4.number
 
 @weeks.each_with_index do |week, index|
-  AcademicWeekSchedule.generate promo4, week, index+1
+  create_academic_week_schedule promo4, week, index+1
 end
 
 AcademicWeekSchedule.calculate_htd
@@ -432,7 +442,5 @@ create_mentor 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015'
 create_mentor 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015'
 create_mentor 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015'
 create_mentor 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015'
-create_mentor 'Anais', 'Legonia','alegonia@academiahack.com.ve', 'Hack2015'
-create_mentor 'Jorge', 'Fuentes','jfuentes@academiahack.com.ve', 'Hack2015'
 
 create_user 'Hack', 'Admin', 'admin@academiahack.com.ve', 'Hack2015', AdminUser

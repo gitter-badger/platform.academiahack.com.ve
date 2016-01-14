@@ -1,41 +1,42 @@
-.badges
-  .item
-    .row
-      .col-md-12
-        .row.text-center.left-5
-          - @days.each do |day|
-            .day_box{'data-name' => day.name}
-              - if day.active?
-                -if @day.id == day.id
-                  .box-off
-                    = image_tag 'black_hexagon.png', class: 'on'
-                  = image_tag day.image.url
-                - else
-                  = link_to day_path(day.id) do
+- if @academic_days
+  .badges
+    .item
+      .row
+        .col-md-12
+          .row.text-center.left-5
+            - @academic_days.each do |academic_day|
+              .day_box{'data-name' => academic_day.day.name}
+                - if academic_day.active?
+                  -if @academic_day.id == academic_day.day.id
                     .box-off
-                      = image_tag 'black_hexagon.png', class: 'off'
-                    = image_tag day.image.url
-              - elsif day.blocked?
-                .box-off
-                  = image_tag 'black_hexagon.png', class: 'locked'
-                = image_tag day.image.url
-                .day_overlay
-                  = image_tag "locked.png"
-              - elsif day.done?
-                = image_tag day.image.url
-                .day_overlay
+                      = image_tag 'black_hexagon.png', class: 'on'
+                    = image_tag academic_day.day.image.url
+                  - else
+                    = link_to academic_day_path(academic_day.day) do
+                      .box-off
+                        = image_tag 'black_hexagon.png', class: 'off'
+                      = image_tag academic_day.day.image.url
+                - elsif academic_day.blocked?
                   .box-off
                     = image_tag 'black_hexagon.png', class: 'locked'
-                  = image_tag "fullfilled.png", class: 'fullfilled'
-              - else
-                .box-off
-                  = image_tag 'black_hexagon.png', class: 'locked'
-                = image_tag "0.png"
+                  = image_tag academic_day.day.image.url
+                  .day_overlay
+                    = image_tag "locked.png"
+                - elsif academic_day.done?
+                  = image_tag academic_day.day.image.url
+                  .day_overlay
+                    .box-off
+                      = image_tag 'black_hexagon.png', class: 'locked'
+                    = image_tag "fullfilled.png", class: 'fullfilled'
+                - else
+                  .box-off
+                    = image_tag 'black_hexagon.png', class: 'locked'
+                  = image_tag "0.png"
 .content-white
   .container
     %h1.white-title.text-center
       %span.day-title
-        Nuevo reto para:
+        Nuevo reto para el dia:
         = @day.name
     .row
       .col-md-12

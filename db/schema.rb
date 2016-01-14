@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111001659) do
+ActiveRecord::Schema.define(version: 20160114020128) do
 
   create_table "academic_day_schedules", force: true do |t|
-    t.integer "position"
+    t.integer "number"
     t.date    "schedule"
     t.integer "academic_week_schedule_id"
     t.integer "day_id"
+    t.integer "status"
+    t.integer "mentor_id"
   end
 
   add_index "academic_day_schedules", ["academic_week_schedule_id"], name: "index_academic_day_schedules_on_academic_week_schedule_id", using: :btree
   add_index "academic_day_schedules", ["day_id"], name: "index_academic_day_schedules_on_day_id", using: :btree
+  add_index "academic_day_schedules", ["mentor_id"], name: "index_academic_day_schedules_on_mentor_id", using: :btree
 
   create_table "academic_week_schedules", force: true do |t|
     t.integer  "position"
@@ -130,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160111001659) do
     t.text     "cheatsheet"
     t.integer  "product_id"
     t.date     "schedule"
+    t.integer  "position"
   end
 
   add_index "days", ["product_id"], name: "index_days_on_product_id", using: :btree

@@ -17,6 +17,7 @@
 #  cheatsheet         :text
 #  product_id         :integer
 #  schedule           :date
+#  position           :integer
 #
 
 class Day < ActiveRecord::Base

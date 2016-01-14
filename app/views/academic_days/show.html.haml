@@ -1,0 +1,201 @@
+.badges
+  .item
+    .row
+      .col-md-12
+        .row.text-center.left-5
+          - @academic_days.each do |academic_day|
+            .day_box{'data-name' => academic_day.day.name}
+              - if academic_day.active?
+                -if @academic_day.id == academic_day.day.id
+                  .box-off
+                    = image_tag 'black_hexagon.png', class: 'on'
+                  = image_tag academic_day.day.image.url
+                - else
+                  = link_to academic_day_path(academic_day.day) do
+                    .box-off
+                      = image_tag 'black_hexagon.png', class: 'off'
+                    = image_tag academic_day.day.image.url
+              - elsif academic_day.blocked?
+                .box-off
+                  = image_tag 'black_hexagon.png', class: 'locked'
+                = image_tag academic_day.day.image.url
+                .day_overlay
+                  = image_tag "locked.png"
+              - elsif academic_day.done?
+                = image_tag academic_day.day.image.url
+                .day_overlay
+                  .box-off
+                    = image_tag 'black_hexagon.png', class: 'locked'
+                  = image_tag "fullfilled.png", class: 'fullfilled'
+              - else
+                .box-off
+                  = image_tag 'black_hexagon.png', class: 'locked'
+                = image_tag "0.png"
+.content-white
+  .container
+    %h1.white-title.text-center
+      %span.day-title
+        = @academic_day.day.name
+    -#%buton.btn.btn-default.btn-xs.day-name-edit
+    -#  %span.glyphicon.glyphicon-pencil{'aria-hidden'=>'true'}
+    .row
+      .col-md-4
+        .card
+          %h3.blue-text.text-center.video-title
+            Videos Hack
+          %hr
+          %ul.nav.nav-stacked
+            -@academic_day.day.videos.each do |vid|
+              %li
+                -if vid.video_file_name
+                  =link_to(vid.video.url, target: :blank, class:'day-video-link') do
+                    .play-icon
+                      =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                    =vid.name
+                -else
+                  .row
+                    .col-md-8
+                      =link_to(vid.url, target: :blank, class:'day-video-link') do
+                        .play-icon
+                          =content_tag(:i,nil,class: 'glyphicon glyphicon-play')
+                        =vid.name
+                    -if current_user.mentor
+                      .col-md-4
+                        =link_to academic_day_path(@academic_day, video_id:vid.id), class:'btn btn-primary' do
+                          %span{class:"glyphicon glyphicon-pencil", "aria-hidden"=>"true"}
+                        =link_to video_path(vid), method:'delete', data:{confirm:"Desea eliminar el video?"}, class:'btn btn-danger' do
+                          %span{class:"glyphicon glyphicon-trash", "aria-hidden"=>"true"}
+            - if current_user.mentor
+              %li
+                -if @video.id
+                  = form_for @video do |f|
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "link"
+                          = f.url_field("url", class:"form-control")
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "nombre"
+                          = f.text_field("name", class:"form-control")
+                    .row
+                      .col-md-12
+                        = f.submit("Guardar", class: "btn btn-info btn-flat btn-block")
+                  = link_to "Video nuevo", academic_day_path(@academic_day), class: "btn btn-primary btn-flat btn-block"
+                -else
+                  = form_for([@academic_day.day, @video]) do |f|
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "link"
+                          = f.url_field("url", class:"form-control")
+                    .row
+                      .col-md-12
+                        .form-group
+                          = label_tag "nombre"
+                          = f.text_field("name", class:"form-control")
+                    .row
+                      .col-md-12
+                        = f.submit("Guardar", class: "btn btn-info btn-flat btn-block")
+      %div.col-md-8
+        .card
+          %ul.nav.day-content-tabs.nav-justified{role:'tablist'}
+            %li{class: @tab == "requirements" ? "active":""}
+              %a{href:'#requirements', "data-toggle" => 'tab'}
+                Contenido
+            %li{class: @tab == "cheatsheets" ? "active":""}
+              %a{href:'#cheatsheets', "data-toggle" => 'tab'}
+                Resumen y tips
+            %li{class: @tab == "challenge" ? "active":""}
+              %a{href:'#challenge', "data-toggle" => 'tab'}
+                Retos
+          %hr
+          .card-content
+            .tab-content
+              #requirements{role:'tablist', class: @tab == "requirements" ? "tab-pane active" : "tab-pane"}
+                -if current_user.mentor
+                  .container-fluid
+                    .row
+                      .col-md-6
+                        = form_tag(day_path, method: "put", id: 'required_knowledge_form') do
+                          = text_area_tag 'required_knowledge', @academic_day.day.required_knowledge, class: 'no-style-textarea'
+                      .col-md-6
+                        = preserve do
+                          = @academic_day.day.transform_required_knowledge.required_knowledge.html_safe if @academic_day.day.required_knowledge
+                      .col-md-12
+                        = submit_tag("Guardar", class: "btn btn-info btn-flat btn-block", form: 'required_knowledge_form')
+                -elsif @academic_day.day.required_knowledge
+                  -if @academic_day.day.required_knowledge.blank?
+                    %h3.text-center
+                      ¿Estas preparado?
+                      %h4.text-center
+                        Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
+                  -else
+                    = preserve do
+                      = @academic_day.day.transform_required_knowledge.required_knowledge.html_safe
+                -else
+                  %h3.text-center
+                    ¿Estas preparado?
+                    %h4.text-center
+                      Revisa la sección de retos y acaba con ellos. Recuerda que la práctica hace al maestro.
+              #cheatsheets{role:'tablist', class: @tab == "cheatsheets" ? "tab-pane active" : "tab-pane"}
+                -if current_user.mentor
+                  .container-fluid
+                    .row
+                      .col-md-6
+                        = form_tag(day_path, method: "put", id: 'cheatsheet_form') do
+                          = text_area_tag 'cheatsheet', @academic_day.day.cheatsheet, class: 'no-style-textarea'
+                      .col-md-6
+                        = preserve do
+                          = @academic_day.day.transform_cheatsheet.cheatsheet.html_safe if @academic_day.day.cheatsheet
+                      .col-md-12
+                        = submit_tag("Guardar", class: "btn btn-info btn-flat btn-block", form: 'cheatsheet_form')
+                -elsif @academic_day.day.cheatsheet
+                  -if @academic_day.day.cheatsheet.blank?
+                    %h3.text-center
+                      ¿No recuerdas el comando, o la función?
+                      %h4.text-center
+                        Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
+                  -else
+                    = preserve do
+                      =@academic_day.day.transform_cheatsheet.cheatsheet.html_safe if @academic_day.day.cheatsheet
+                -else
+                  %h3.text-center
+                    ¿No recuerdas como se hacía o se escribía?
+                    %h4.text-center
+                      Los mentores están alli para ayudarte! igualmente, no hay nada de malo en apoyarse en el mejor mentor: Google.
+              #challenge{role:'tablist', class: @tab == "challenge" ? "tab-pane active" : "tab-pane"}
+                - if @academic_day.day.challenges.length > 0 || current_user.mentor
+                  .container-fluid
+                    .row
+                      - @academic_day.day.challenges.each do |challenge|
+                        .col-md-4.text-center
+                          = link_to challenge_path(challenge) do
+                            .challenge-box
+                              %h4
+                                = challenge.title.truncate(20)
+                              .image
+                                = image_tag challenge.category.image.url
+                          - if current_user.mentor
+                            = link_to edit_challenge_path(challenge), class: 'btn btn-primary btn-flat btn-block btn-medium' do
+                              %span{class:"glyphicon glyphicon-pencil", "aria-hidden"=>"true"}
+                            = link_to challenge_path(challenge), method: 'delete', data: {:confirm => 'Desea eliminar el reto?'}, class: 'btn btn-danger btn-flat btn-block btn-large' do
+                              %span{class:"glyphicon glyphicon-trash", "aria-hidden"=>"true"}
+                          - else
+                            = link_to challenge_path(challenge), class: 'btn btn-primary btn-block btn-flat btn-large' do
+                              = image_tag 'list-hexagon.png'
+                              ¡Hazlo!
+                      - if current_user.mentor
+                        .col-md-4.text-center
+                          = link_to new_day_challenge_path(@academic_day.day) do
+                            .challenge-box
+                              %h4
+                                Agregar reto
+                              .image
+                                %span{class:"glyphicon glyphicon-plus challenge-icon", "aria-hidden"=>"true"}
+                - else
+                  %h3.text-center
+                    Hoy no hay retos, pero siempre hay mucho que hacer!
+                    %h4.text-center
+                      Aprovecha y haz preguntas claves a los mentores!

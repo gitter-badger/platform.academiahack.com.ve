@@ -26,14 +26,6 @@ class AcademicWeekSchedule < ActiveRecord::Base
     diff < 0 ? 0 : (diff/5).ceil
   end
 
-  def self.generate promo, week, position=nil
-    academic_week_schedule = AcademicWeekSchedule.create({position: position, promo_id: promo.id, week_id: week.id})
-    days = Day.where week: week
-    days.each_with_index do |day, index|
-      AcademicDaySchedule.create({position: index+1, day_id: day.id, academic_week_schedule_id: academic_week_schedule.id})
-    end
-  end
-
   def self.calculate_htd
     #Get current promo
     current_promo = Promo.current

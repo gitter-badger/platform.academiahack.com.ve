@@ -17,6 +17,7 @@
 #  cheatsheet         :text
 #  product_id         :integer
 #  schedule           :date
+#  position           :integer
 #
 
 require 'test_helper'

@@ -9,7 +9,13 @@ class VideosController < ApplicationController
       message = "Error al crear el video"
     end
 
-    redirect_to day_path(day), notice: message
+    #Si existe un dia academico para el video ir a el
+    @academic_day = AcademicDaySchedule.get_academic_day day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   def update
@@ -20,7 +26,13 @@ class VideosController < ApplicationController
       message = "Error al actualizar el video"
     end
 
-    redirect_to day_path(video.day), notice: message
+    #Si existe un dia academico para el video ir a el
+    @academic_day = AcademicDaySchedule.get_academic_day video.day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   def destroy
@@ -31,7 +43,12 @@ class VideosController < ApplicationController
       message = "Error al eliminar el video"
     end
 
-    redirect_to day_path(video.day), notice: message
+    @academic_day = AcademicDaySchedule.get_academic_day video.day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   private

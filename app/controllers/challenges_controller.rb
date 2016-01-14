@@ -5,12 +5,20 @@ class ChallengesController < ApplicationController
   def new
     @challenge = Challenge.new
     @day = Day.find params[:day_id]
-    @days = @day.order_list
+
+    # Esta info es opcional y solo se utiliza para pintar el cronograma academico si este dia tiene relacion a un dia
+    # academico y esta en la promo actual
+    @academic_day = AcademicDaySchedule.get_academic_day @day
+    @academic_days = @academic_day.order_list
   end
 
   def edit
     @challenge = Challenge.find params[:id]
-    @days = @challenge.day.order_list
+
+    # Esta info es opcional y solo se utiliza para pintar el cronograma academico si este reto tiene un dia relacionado
+    # a un dia academico y esta en la promo actual
+    @academic_day = AcademicDaySchedule.get_academic_day @challenge.day
+    @academic_days = @academic_day.order_list
   end
 
   def update
@@ -20,7 +28,14 @@ class ChallengesController < ApplicationController
     else
       message = "Error al actualizar el reto"
     end
-    redirect_to day_path(challenge.day, tab: "challenge"), notice: message
+
+    #Si existe un dia academico para el reto ir a el
+    @academic_day = AcademicDaySchedule.get_academic_day challenge.day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   def create
@@ -35,7 +50,13 @@ class ChallengesController < ApplicationController
       message = "Error al crear el reto"
     end
 
-    redirect_to day_path(day, tab: "challenge"), notice:message
+    #Si existe un dia academico para el reto ir a el
+    @academic_day = AcademicDaySchedule.get_academic_day day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   def destroy
@@ -46,7 +67,13 @@ class ChallengesController < ApplicationController
       message = "Error al eliminar el reto"
     end
 
-    redirect_to day_path(challenge.day, tab:"challenge"), notice: message
+    #Si existe un dia academico para el reto ir a el
+    @academic_day = AcademicDaySchedule.get_academic_day challenge.day
+    if @academic_day
+      redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
+    else
+      redirect_to weeks_path, notice: message
+    end
   end
 
   def show
