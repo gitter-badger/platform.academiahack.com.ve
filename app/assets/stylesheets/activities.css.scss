@@ -26,6 +26,25 @@
 	left: 0;
 }
 
+.mentor-box-off {
+  position: absolute;
+  left: 0;
+  top: 25%;
+  width: 100%;
+  height: 40%;
+  padding: 5%;
+  font-size: 40px;
+}
+.mentor-name-box {
+  opacity: 0.8;
+  background-color: #fff;
+}
+
+.mentor-name {
+  font-size: 30px;
+  color: #555;
+}
+
 .box-off {
 	position: absolute;
 	left: 0;

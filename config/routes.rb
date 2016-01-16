@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   put 'academic_weeks/:id/open' => 'academic_days#open_academic_week', as: :week_open
   put 'academic_weeks/:id/close' => 'academic_days#close_academic_week', as: :week_close
 
+  put 'academic_day/:academic_day_id/mentor/:mentor_id' => 'academic_days#assign_mentor', as: :assign_mentor
+
   resources :weeks, shallow: true do
     resources :days, shallow: true do
       resources :videos

@@ -25,9 +25,9 @@
                           = "#{mentor.user.name} #{mentor.user.last_name}"
                         %td{colspan:2}
                           - if academic_day_schedule.mentor && academic_day_schedule.mentor.id == mentor.id
-                            = link_to "Seleccionado", "#", {class:"btn btn-primary"}
+                            = link_to "Seleccionado", "#", {class:"btn btn-info btn-disabled", disabled:"disabled"}
                           - else
-                            = link_to "Seleccionar", "#", {class:"btn btn-primary"}
+                            = link_to "Seleccionar", assign_mentor_path(academic_day_schedule, mentor), method: 'put', class:"btn btn-primary"
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
             %button.btn.btn-primary{:type => "button"} Guardar
@@ -54,6 +54,13 @@
                   .day_box{'data-name' => academic_day_schedule.day.name}
                     - if academic_day_schedule.active?
                       = link_to academic_day_path(academic_day_schedule, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
+                        - if current_user.mentor && academic_day_schedule.mentor
+                          .mentor-box-off
+                            .mentor-name-box
+                              %span{class:'glyphicon glyphicon-time', 'aria-hidden' => 'true' }
+                            .mentor-name-box
+                              %span{class:'mentor-name'}
+                                = academic_day_schedule.mentor.user.name
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'off'
                         = image_tag academic_day_schedule.day.image.url

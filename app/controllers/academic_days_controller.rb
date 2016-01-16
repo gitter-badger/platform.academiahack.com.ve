@@ -22,7 +22,16 @@ class AcademicDaysController < ApplicationController
   end
 
   def assign_mentor
+    academic_day = AcademicDaySchedule.find params[:academic_day_id]
+    mentor = Mentor.find params[:mentor_id]
 
+    academic_day.mentor = mentor
+    if academic_day.save
+      message = "Mentor asignado exitosamente!"
+    else
+      message = "Error al asignar el mentor!"
+    end
+    redirect_to weeks_path(current_week: academic_day.academic_week_schedule.position), notice: message
   end
 
   def toggle
