@@ -8,6 +8,9 @@
 #  academic_week_schedule_id :integer
 #  day_id                    :integer
 #  status                    :integer
+#  mentor_id                 :integer
+#  mentor_token              :string(255)
+#  mentor_status             :integer
 #
 
 class AcademicDaySchedule < ActiveRecord::Base

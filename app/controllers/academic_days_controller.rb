@@ -25,7 +25,14 @@ class AcademicDaysController < ApplicationController
     academic_day = AcademicDaySchedule.find params[:academic_day_id]
     mentor = Mentor.find params[:mentor_id]
 
+    if academic_day.mentor
+      #Ya existe un mentor asignado previamente! Notificarle que otro mentor fue asignado
+
+    end
+
     academic_day.mentor = mentor
+    academic_day.mentor_token = Digest::SHA1.hexdigest([Time.now, rand].join)
+
     if academic_day.save
       message = "Mentor asignado exitosamente!"
     else

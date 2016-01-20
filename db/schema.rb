@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114020128) do
+ActiveRecord::Schema.define(version: 20160120194447) do
 
   create_table "academic_day_schedules", force: true do |t|
     t.integer "number"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160114020128) do
     t.integer "day_id"
     t.integer "status"
     t.integer "mentor_id"
+    t.string  "mentor_token"
+    t.integer "mentor_status"
   end
 
   add_index "academic_day_schedules", ["academic_week_schedule_id"], name: "index_academic_day_schedules_on_academic_week_schedule_id", using: :btree
