@@ -12,10 +12,10 @@ default: &default
 development:
   adapter: mysql2
   encoding: utf8
-  pool: 5 
+  pool: 5
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASS'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  socket: <%= ENV['DATABASE_SOCKET'] %>
   database: platform_dev
 
 # Warning: The database defined as "test" will be erased and

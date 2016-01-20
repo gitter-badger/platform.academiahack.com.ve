@@ -1,6 +1,7 @@
 development:
  DATABASE_USER: root
  DATABASE_PASS: vagrant
+ DATABASE_SOCKET: /var/run/mysqld/mysqld.sock
 production:
  FOO: 'bar'
 test:
