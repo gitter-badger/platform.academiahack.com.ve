@@ -19,6 +19,7 @@ class AcademicDaySchedule < ActiveRecord::Base
   belongs_to :mentor
 
   enum status: [ :blocked, :active, :done ]
+  enum mentor_status: [ :invited, :confirmed, :in_classroom]
 
   def self.get_academic_day day, promo=nil
     promo = promo ? promo : Promo.current

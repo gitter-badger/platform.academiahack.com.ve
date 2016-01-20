@@ -57,7 +57,10 @@
                         - if current_user.mentor && academic_day_schedule.mentor
                           .mentor-box-off
                             .mentor-name-box
-                              %span{class:'glyphicon glyphicon-time', 'aria-hidden' => 'true' }
+                              - if academic_day_schedule.invited?
+                                %span{class:'glyphicon glyphicon-time', 'aria-hidden' => 'true' }
+                              - elsif academic_day_schedule.confirmed?
+                                %span{class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true' }
                             .mentor-name-box
                               %span{class:'mentor-name'}
                                 = academic_day_schedule.mentor.user.name
@@ -83,7 +86,8 @@
                     - if current_user.mentor
                       = link_to "#", {"data-target" => "#academic-day-#{academic_day_schedule.id}", "data-toggle" => "modal", :type => "button"} do
                         %span{class:"glyphicon glyphicon-user", "aria-hidden"=>"true"}
-                    = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
+                    %span{class: academic_day_schedule.schedule == DateTime.now.to_date ? 'current-day' : 'normal-day'}
+                      = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
                     - if current_user.mentor
                       = link_to academic_days_toggle_path(academic_day_schedule.day), method:'put' do
                         - if academic_day_schedule.active?

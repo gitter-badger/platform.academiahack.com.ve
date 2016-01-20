@@ -21,19 +21,31 @@ class AcademicDaysController < ApplicationController
     end
   end
 
+  def confirm_mentor
+    academic_day = AcademicDaySchedule.find_by mentor_token: params[:token]
+    academic_day.mentor_status = 'confirmed'
+    if academic_day.save
+      message = "Asistencia confirmada!"
+    else
+      message = "Error al confirmar la asistencia!"
+    end
+    redirect_to weeks_path(current_week: academic_day.academic_week_schedule.position), notice: message
+  end
+
   def assign_mentor
     academic_day = AcademicDaySchedule.find params[:academic_day_id]
     mentor = Mentor.find params[:mentor_id]
 
     if academic_day.mentor
       #Ya existe un mentor asignado previamente! Notificarle que otro mentor fue asignado
-
+      AcademicMailer.unconfirm_mentor(academic_day).deliver
     end
 
     academic_day.mentor = mentor
     academic_day.mentor_token = Digest::SHA1.hexdigest([Time.now, rand].join)
-
+    academic_day.mentor_status = 'invited'
     if academic_day.save
+      AcademicMailer.confirm_mentor(academic_day).deliver
       message = "Mentor asignado exitosamente!"
     else
       message = "Error al asignar el mentor!"
@@ -60,7 +72,7 @@ class AcademicDaysController < ApplicationController
       academic_day.status = :active
       academic_day.save
     end
-    redirect_to weeks_path(current_week: academic_week.week.position)
+    redirect_to weeks_path(current_week: academic_week.position)
   end
 
   def close_academic_week
@@ -69,6 +81,6 @@ class AcademicDaysController < ApplicationController
       academic_day.status = :blocked
       academic_day.save
     end
-    redirect_to weeks_path(current_week: academic_week.week.position)
+    redirect_to weeks_path(current_week: academic_week.position)
   end
 end

@@ -1,0 +1,10 @@
+%p
+  = "Hola #{@academic_day.mentor.user.name}:"
+%p
+  = "La clase: '#{@academic_day.day.name}' pautada para el dia #{@academic_day.schedule.strftime("%d/%m/%Y")} ha sido replanificada por lo que"
+  %b
+    no es necesario
+  = "que asistas."
+%p
+  %i
+    = "Si consideras que estas recibiendo este email por error, notificar a admin@platform.academiahack.com.ve"

@@ -1,0 +1,10 @@
+%p
+  = "Hola #{@academic_day.mentor.user.name}:"
+%p
+  = "Haz sido seleccionado para dar la clase: '#{@academic_day.day.name}' pautada para el dia #{@academic_day.schedule.strftime("%d/%m/%Y")} por lo que"
+  %b
+    es necesario
+  = "que confirmes tu asistencia haciendo click en el siguiente link. #{confirm_mentor_url(@academic_day.mentor_token)}"
+%p
+  %i
+    = "Si consideras que estas recibiendo este email por error, notificar a admin@platform.academiahack.com.ve"
