@@ -119,7 +119,7 @@
                     .row
                       .col-md-6
                         = form_tag(day_path, method: "put", id: 'required_knowledge_form') do
-                          = text_area_tag 'required_knowledge', @academic_day.day.required_knowledge, class: 'no-style-textarea'
+                          = text_area_tag 'required_knowledge', @academic_day.day.required_knowledge.blank? ? @required_knowledge_template : @academic_day.day.required_knowledge, class: 'no-style-textarea'
                       .col-md-6
                         = preserve do
                           = @academic_day.day.transform_required_knowledge.required_knowledge.html_safe if @academic_day.day.required_knowledge
@@ -145,7 +145,7 @@
                     .row
                       .col-md-6
                         = form_tag(day_path, method: "put", id: 'cheatsheet_form') do
-                          = text_area_tag 'cheatsheet', @academic_day.day.cheatsheet, class: 'no-style-textarea'
+                          = text_area_tag 'cheatsheet', @academic_day.day.cheatsheet.blank? ? @cheatsheet_template : @academic_day.day.cheatsheet, class: 'no-style-textarea'
                       .col-md-6
                         = preserve do
                           = @academic_day.day.transform_cheatsheet.cheatsheet.html_safe if @academic_day.day.cheatsheet

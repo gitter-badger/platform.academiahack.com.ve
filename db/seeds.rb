@@ -79,7 +79,7 @@ def create_week name, product=nil
   @weeks.push week
 end
 
-def create_day position, name, week, image = '0.png', product=nil, required_knowledge=@required_knowledge_template, cheatsheet=@cheatsheet_template
+def create_day position, name, week, image = '0.png', product=nil, required_knowledge=nil, cheatsheet=nil
   day = Day.new
   day.name = name
   day.position = position
@@ -430,6 +430,9 @@ create_category "Bug", 'bug.png'
 # *********************** PARAMETERS ***********************
 
 create_parameter "current_promo", promo4.number
+
+create_parameter "requirements_template", @required_knowledge_template
+create_parameter "cheatsheet_template", @cheatsheet_template
 
 @weeks.each_with_index do |week, index|
   create_academic_week_schedule promo4, week, index+1

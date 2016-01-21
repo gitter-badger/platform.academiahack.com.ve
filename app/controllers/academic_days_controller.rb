@@ -14,6 +14,14 @@ class AcademicDaysController < ApplicationController
 
     @tab = params[:tab] ? params[:tab] : "requirements"
 
+    if @academic_day.day.cheatsheet.blank?
+      @cheatsheet_template = Parameter.find_by(key: 'cheatsheet_template').value
+    end
+
+    if @academic_day.day.required_knowledge.blank?
+      @required_knowledge_template = Parameter.find_by(key: 'requirements_template').value
+    end
+
     if @academic_days
       session[:academic_day_id] = params[:id]
     else

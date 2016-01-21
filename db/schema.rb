@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120230216) do
+ActiveRecord::Schema.define(version: 20160121044209) do
 
   create_table "academic_day_schedules", force: true do |t|
     t.integer "number"
@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20160120230216) do
 
   create_table "parameters", force: true do |t|
     t.string   "key"
-    t.string   "value"
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
