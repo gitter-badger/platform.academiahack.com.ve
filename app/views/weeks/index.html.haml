@@ -17,17 +17,21 @@
                       %th{colspan:6}
                         Nombre y apellido
                       %th{colspan:2}
-                        Acciones
+                        Accion
                   %tbody
-                    - @mentors.each do |mentor|
+                    - @mentors_typed.each do |type, mentors|
                       %tr
-                        %td{colspan:6}
-                          = "#{mentor.user.name} #{mentor.user.last_name}"
-                        %td{colspan:2}
-                          - if academic_day_schedule.mentor && academic_day_schedule.mentor.id == mentor.id
-                            = link_to "Seleccionado", "#", {class:"btn btn-info btn-disabled", disabled:"disabled"}
-                          - else
-                            = link_to "Seleccionar", assign_mentor_path(academic_day_schedule, mentor), method: 'put', class:"btn btn-primary"
+                        %th.text-center{colspan:8}
+                          = Mentor.humanize_type type
+                      - mentors.each do |mentor|
+                        %tr
+                          %td{colspan:6}
+                            = "#{mentor.user.name} #{mentor.user.last_name}"
+                          %td{colspan:2}
+                            - if academic_day_schedule.mentor && academic_day_schedule.mentor.id == mentor.id
+                              = link_to "Seleccionado", "#", {class:"btn btn-info btn-disabled", disabled:"disabled"}
+                            - else
+                              = link_to "Seleccionar", assign_mentor_path(academic_day_schedule, mentor), method: 'put', class:"btn btn-primary"
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
             %button.btn.btn-primary{:type => "button"} Guardar
@@ -63,7 +67,7 @@
                                 %span{class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true' }
                             .mentor-name-box
                               %span{class:'mentor-name'}
-                                = academic_day_schedule.mentor.user.name
+                                = "#{academic_day_schedule.mentor.user.name} #{academic_day_schedule.mentor.user.last_name}".truncate(12)
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'off'
                         = image_tag academic_day_schedule.day.image.url

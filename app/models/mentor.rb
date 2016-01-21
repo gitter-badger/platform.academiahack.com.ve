@@ -14,4 +14,19 @@ class Mentor < ActiveRecord::Base
   belongs_to :user
   has_many :academic_day_schedules
   enum type_of: [ :regular, :freelancer, :student_teaching, :leader]
+
+  def self.humanize_type type
+    case type
+      when "regular"
+       "Fijos"
+      when "freelancer"
+       "Invitados"
+      when "student_teaching"
+       "Preparadores"
+      when "leader"
+       "Administrador"
+      else
+        "?"
+      end
+  end
 end
