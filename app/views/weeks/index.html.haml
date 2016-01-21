@@ -48,7 +48,7 @@
             .col-md-12
               %h1.text-center
                 = academic_week_schedule.week.name
-                - if current_user.mentor
+                - if current_user.mentor && current_user.mentor.leader?
                   = link_to week_open_path(academic_week_schedule), method:'put' do
                     %span{class:"glyphicon glyphicon-ok-sign", "aria-hidden"=>"true"}
                   = link_to week_close_path(academic_week_schedule), method:'put' do
@@ -87,12 +87,12 @@
                       .box-off
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
-                    - if current_user.mentor
+                    - if current_user.mentor && current_user.mentor.leader?
                       = link_to "#", {"data-target" => "#academic-day-#{academic_day_schedule.id}", "data-toggle" => "modal", :type => "button"} do
                         %span{class:"glyphicon glyphicon-user", "aria-hidden"=>"true"}
                     %span{class: academic_day_schedule.schedule == DateTime.now.to_date ? 'current-day' : 'normal-day'}
                       = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
-                    - if current_user.mentor
+                    - if current_user.mentor && current_user.mentor.leader?
                       = link_to academic_days_toggle_path(academic_day_schedule.day), method:'put' do
                         - if academic_day_schedule.active?
                           %span{class:"glyphicon glyphicon-remove-sign", "aria-hidden"=>"true"}
