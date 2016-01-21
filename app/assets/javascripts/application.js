@@ -21,13 +21,71 @@
 //= require components
 //= require chosen-jquery
 //= require weeks
+//= require marked
+//= require highlight.pack
 
 $(function(){
     var $feedback;
     var $repo_preview;
 
+    var $requiredKnowledge;
+    var $requiredKnowledgeMarked;
+
+    var $cheatSheetMarked;
+    var $cheatSheet;
+
+    var $challengeMarked;
+    var $challenge;
+    var $challengeTitle;
+
     var promo_group;
     var challenge_repo;
+
+    function markItem($el, value) {
+        if(value) {
+            $el.html(marked(value,{
+                highlight : function(code){
+                    return hljs.highlightAuto(code).value;
+                }
+            }));
+        } else {
+            console.log("No hay valor a marcar!");
+        }
+    }
+
+    if($challenge = $(".challenge")) {
+        $challengeMarked = $(".challenge-marked");
+        $challengeTitle = $(".challenge-title");
+        markItem($challengeMarked,$challenge.val());
+
+        $challengeTitle.keyup(function(){
+            var $challengeTitlePreview;
+
+            $challengeTitlePreview = $(".challenge-title-preview");
+            $challengeTitlePreview.html($(this).val());
+        });
+
+        $challenge.keyup(function(){
+            markItem($challengeMarked,$(this).val());
+        });
+    }
+
+    if($requiredKnowledge = $(".required-knowledge")) {
+        $requiredKnowledgeMarked = $(".required-knowledge-marked");
+        markItem($requiredKnowledgeMarked,$requiredKnowledge.val());
+
+        $requiredKnowledge.keyup(function(){
+            markItem($requiredKnowledgeMarked,$(this).val());
+        });
+    }
+
+    if($cheatSheet = $(".cheatsheet")) {
+        $cheatSheetMarked = $(".cheatsheet-marked");
+        markItem($cheatSheetMarked,$cheatSheet.val());
+        $cheatSheet.keyup(function(){
+            markItem($cheatSheetMarked,$(this).val());
+        });
+    }
 
     if($feedback = $(".feedback-alert") ) {
         $feedback.delay(5000).slideUp(1000, function(){
@@ -41,4 +99,5 @@ $(function(){
 
         $repo_preview.repo({ user: promo_group, name: challenge_repo });
     }
+
 });

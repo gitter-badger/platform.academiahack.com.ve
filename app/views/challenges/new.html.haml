@@ -43,14 +43,22 @@
         = form_for [@day, @challenge] do |f|
           .form-group
             = f.label :title
-            = f.text_field :title, class: 'form-control'
+            = f.text_field :title, class: 'form-control challenge-title'
           .form-group
             = f.label :category
             = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
           .row
-            .col-md-12
+            .col-md-6
               .form-group
-                = f.label "Description (markdown)"
-                = f.text_area :description, class: 'no-style-textarea'
+                = f.label :description
+                = f.text_area :description, class: 'no-style-textarea challenge'
+            .col-md-6
+              .form-group
+                = f.label :preview
+              .row
+                .col-md-12
+                  %h1.text-center.challenge-title-preview
+              .row
+                .col-md-12.challenge-marked
           .form-group
             = f.submit :create, class: 'form-control btn btn-info'

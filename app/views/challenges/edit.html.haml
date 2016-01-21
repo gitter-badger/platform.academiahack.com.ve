@@ -51,7 +51,7 @@
             .col-md-6
               .form-group
                 = f.label :description
-                = f.text_area :description, class: 'no-style-textarea'
+                = f.text_area :description, class: 'no-style-textarea challenge'
             .col-md-6
               .form-group
                 = f.label :preview
@@ -60,8 +60,6 @@
                   %h1.text-center
                     = @challenge.title
               .row
-                .col-md-12
-                  = preserve do
-                    = @challenge.transform_description.description.html_safe if @challenge.description
+                .col-md-12.challenge-marked
           .form-group
             = f.submit :create, class: 'form-control btn btn-info'
