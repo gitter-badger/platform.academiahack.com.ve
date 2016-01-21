@@ -53,37 +53,62 @@ $(function(){
         }
     }
 
+    function textAreaAdjust(el) {
+        if(el) {
+            el.style.height = "1px";
+            el.style.height = (25+el.scrollHeight)+"px";
+        } else {
+            console.log("No hay elemento a ajustar!");
+        }
+    }
+
     if($challenge = $(".challenge")) {
         $challengeMarked = $(".challenge-marked");
         $challengeTitle = $(".challenge-title");
+
         markItem($challengeMarked,$challenge.val());
+        textAreaAdjust($challenge[0]);
 
         $challengeTitle.keyup(function(){
             var $challengeTitlePreview;
 
             $challengeTitlePreview = $(".challenge-title-preview");
             $challengeTitlePreview.html($(this).val());
+            textAreaAdjust(this);
         });
 
         $challenge.keyup(function(){
             markItem($challengeMarked,$(this).val());
+        });
+        $challenge.keypress(function(){
+            textAreaAdjust(this);
         });
     }
 
     if($requiredKnowledge = $(".required-knowledge")) {
         $requiredKnowledgeMarked = $(".required-knowledge-marked");
         markItem($requiredKnowledgeMarked,$requiredKnowledge.val());
+        textAreaAdjust($requiredKnowledge[0]);
 
         $requiredKnowledge.keyup(function(){
             markItem($requiredKnowledgeMarked,$(this).val());
+        });
+        $requiredKnowledge.keypress(function(){
+            textAreaAdjust(this);
         });
     }
 
     if($cheatSheet = $(".cheatsheet")) {
         $cheatSheetMarked = $(".cheatsheet-marked");
         markItem($cheatSheetMarked,$cheatSheet.val());
+        textAreaAdjust($cheatSheet[0]);
+
         $cheatSheet.keyup(function(){
             markItem($cheatSheetMarked,$(this).val());
+            textAreaAdjust(this);
+        });
+        $cheatSheet.keypress(function(){
+            textAreaAdjust(this);
         });
     }
 
