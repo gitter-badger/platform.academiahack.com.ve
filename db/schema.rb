@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121044209) do
+ActiveRecord::Schema.define(version: 20160121163116) do
 
   create_table "academic_day_schedules", force: true do |t|
     t.integer "number"
@@ -216,10 +216,11 @@ ActiveRecord::Schema.define(version: 20160121044209) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "gitlab_user"
     t.string   "name"
     t.string   "name_space_id"
     t.string   "last_name"
+    t.string   "identity"
+    t.string   "gitlab_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

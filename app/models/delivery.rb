@@ -34,11 +34,15 @@ class Delivery < ActiveRecord::Base
       week = challenge.week
     end
 
-    "w#{week.number}_d#{day.number}_ch#{challenge.id}_#{self.user.gitlab_user}"
+    "w#{week.id}_d#{day.id}_ch#{challenge.id}_#{self.user.gitlab_user}"
   end
   
   def create_project
-    Gitlab.create_project(repo_name, {:description => self.challenge.description.truncate(1900), :namespace_id => self.user.name_space_id})
+    begin
+      Gitlab.create_project(repo_name, {:description => self.challenge.description.truncate(1900), :namespace_id => self.user.name_space_id})
+    rescue
+      return nil
+    end
   end
 
   def challenge_url
@@ -50,7 +54,12 @@ class Delivery < ActiveRecord::Base
   end
   
   def commits
-    Gitlab.commits(self.project_id)
+    begin
+      Gitlab.commits(self.project_id)
+    rescue Gitlab::Error::Parsing => error
+      return nil
+    end
+
   end
 
   def commit_url

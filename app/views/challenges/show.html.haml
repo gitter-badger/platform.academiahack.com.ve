@@ -22,7 +22,7 @@
     - unless current_user.mentor
       .row
         .col-md-12
-          - if @delivery && @delivery.project_id && @delivery.commits.length < 1
+          - if @delivery && @delivery.project_id && @delivery.commits && @delivery.commits.length < 1
             %h3.text-center
               Instrucciones de la linea de comando
             %h4
@@ -65,34 +65,38 @@
                   %th.text-center
                     Entrega
               %tbody
-                - @delivery.commits.each do |commit|
-                  %tr
-                    %td.text-center
-                      %a{href: @delivery.commit_url}
-                        = commit.short_id
-                    %td.text-center
-                      = commit.author_email
-                    %td.text-center
-                      = Time.parse(commit.created_at).localtime("-04:30").strftime("%d/%m/%Y %-l:%M %P")
-                    %td.text-center{colspan: 2}
-                      = commit.message.truncate 100
-                    %td.text-center
-                      
-                      - if @delivery.commit == commit.id 
-                        .btn.btn-primary.btn-flat.btn-block Seleccionado
-                      - elsif @challenge.active?
-                        = link_to 'Entregar', delivery_path(@delivery, commit:commit.id, challenge_id: @challenge.id), class: 'btn btn-info btn-flat btn-block', method: :put
+                - if @delivery.commits
+                  - @delivery.commits.each do |commit|
+                    %tr
+                      %td.text-center
+                        %a{href: @delivery.commit_url}
+                          = commit.short_id
+                      %td.text-center
+                        = commit.author_email
+                      %td.text-center
+                        = Time.parse(commit.created_at).localtime("-04:30").strftime("%d/%m/%Y %-l:%M %P")
+                      %td.text-center{colspan: 2}
+                        = commit.message.truncate 100
+                      %td.text-center
+                        - if @delivery.commit == commit.id
+                          .btn.btn-primary.btn-flat.btn-block Seleccionado
+                        - elsif @challenge.active?
+                          = link_to 'Entregar', delivery_path(@delivery, commit:commit.id, challenge_id: @challenge.id), class: 'btn btn-info btn-flat btn-block', method: :put
           - else
             = link_to 'Crear repositorio en gitlab', deliveries_path(challenge_id: @challenge.id), class: 'btn btn-primary btn-flat btn-block', method: 'post'
         .col-md-12.text-right
-          - if current_user.gitlab_user && @delivery && @delivery.repo_name && @delivery.challenge_url
-            %span.github-url
-              El nombre del repositorio a entregar es:
-              %a{href: @delivery.challenge_url, target:"blank"}
-                = @delivery.repo_name
+          - if current_user.name_space_id
+            - if current_user.gitlab_user && @delivery && @delivery.repo_name && @delivery.challenge_url
+              %span.github-url
+                El nombre del repositorio a entregar es:
+                %a{href: @delivery.challenge_url, target:"blank"}
+                  = @delivery.repo_name
+            - else
+              %span.github-url
+                Para entregar deben agregar tu usuario de gitlab a tu perfil.
           - else
             %span.github-url
-              Para entregar deben agregar tu usuario de gitlab a tu perfil.
+              Aun no se ha generado tu grupo en gitlab, al generar tu primer repositorio el grupo se creara automaticamente.
     - else 
       .row.mentor-zone
         .col-md-12

@@ -44,6 +44,7 @@ class ChallengesController < ApplicationController
 
     challenge.day = day
     challenge.time = "classroom"
+    challenge.status ="active"
     if challenge.save
       message = "Reto creado exitosamente"
     else
@@ -79,13 +80,24 @@ class ChallengesController < ApplicationController
   def show
     @challenge = Challenge.find params[:id]
     @promo_group = Parameter.find_by_key 'promo_group'
+    gitlab_user = current_user.get_gitlab_user
 
-    # @delivery = Delivery.where(challenge_id: params[:id], user_id: current_user.id).first
-    @delivery = @challenge.deliver_by_user current_user
-    
-    if current_user.mentor
-      @deliveries = Delivery.where challenge_id: params[:id]
+    if gitlab_user && gitlab_user.length > 0 && !current_user.gitlab_user_id
+      current_user.gitlab_user_id = gitlab_user[0].id
+      current_user.save
     end
+
+    if current_user.gitlab_user_id || current_user.mentor
+      @delivery = @challenge.deliver_by_user current_user
+
+      if current_user.mentor
+        @deliveries = Delivery.where challenge_id: params[:id]
+      end
+    else
+      redirect_to weeks_path, notice: "Cuenta en gitlab no existente (revisa si el API esta funcional), debes crearla con el username: '#{current_user.gitlab_user}'"
+    end
+    # @delivery = Delivery.where(challenge_id: params[:id], user_id: current_user.id).first
+
   end
   
    def deploy

@@ -15,10 +15,11 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  gitlab_user            :string(255)
 #  name                   :string(255)
 #  name_space_id          :string(255)
 #  last_name              :string(255)
+#  identity               :string(255)
+#  gitlab_user_id         :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

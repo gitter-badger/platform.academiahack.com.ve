@@ -3,15 +3,28 @@ class DeliveriesController < ApplicationController
     @challenge = Challenge.find params[:challenge_id]
     @delivery = Delivery.new @challenge
     @delivery.user = current_user
-    
-    project = @delivery.create_project
-    if project && (project = project.to_hash) && (git_ssh_url = project['ssh_url_to_repo']) && git_ssh_url
-      @delivery.project_id = project['id']
-      @delivery.git_ssh_url = git_ssh_url
-      @delivery.save
-      redirect_to challenge_path(@challenge), notice: 'Repositorio creado'
+
+    unless @delivery.user.name_space_id
+      if @delivery.user.create_gitlab_group!
+        @delivery.user.assign_gitlab_user
+      end
+    end
+
+    if @delivery.user.name_space_id
+      project = @delivery.create_project
+      if project && (project = project.to_hash) && (git_ssh_url = project['ssh_url_to_repo']) && git_ssh_url
+        @delivery.project_id = project['id']
+        @delivery.git_ssh_url = git_ssh_url
+        if @delivery.save
+          redirect_to challenge_path(@challenge), notice: 'Repositorio creado'
+        else
+          redirect_to challenge_path(@challenge), notice: 'Error al crear el repositorio'
+        end
+      else
+        redirect_to challenge_path(@challenge), notice: 'Error al generar el repositorio en gitlab! Si ya existe, eliminalo e intenta de nuevo.'
+      end
     else
-      redirect_to challenge_path(@challenge), notice: 'Error al crear el repositorio!'
+      redirect_to challenge_path(@challenge), notice: 'Error al generar/accesar el grupo en gitlab! Si ya existe, eliminalo e intenta de nuevo.'
     end
   end
 
