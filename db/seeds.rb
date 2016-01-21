@@ -111,7 +111,7 @@ def create_challenge time, title, description, category, day
   @challenges.push challenge
 end
 
-def create_mentor name, last_name, email, password, identity=nil, type_of=nil
+def create_mentor name, last_name, email, password, type_of=nil, identity=nil
   mentor = Mentor.new
   mentor.identity = identity
   mentor.type_of = type_of
@@ -437,10 +437,16 @@ end
 
 AcademicWeekSchedule.calculate_htd
 
-create_mentor 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', '18020036'
-create_mentor 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015'
-create_mentor 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015'
-create_mentor 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015'
-create_mentor 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015'
+create_mentor 'Romer', 'Ramos','rramos@academiahack.com.ve', 'Hack2015', 'leader', '18020036'
+
+create_mentor 'Daniel', 'Espinoza','despinoza@academiahack.com.ve', 'Hack2015', 'regular'
+create_mentor 'Abraham', 'Gonzalez','agonzalez@academiahack.com.ve', 'Hack2015', 'regular'
+
+create_mentor 'Oscar', 'Arocha','oarocha@academiahack.com.ve', 'Hack2015', 'freelancer'
+create_mentor 'Juan', 'Manrique','jmanrique@academiahack.com.ve', 'Hack2015', 'freelancer'
+create_mentor 'Angel', 'Alarcon','angelalarcon.aa@gmail.com', 'Hack2015', 'freelancer'
+
+create_mentor 'Johana', 'Salazar','jsalazar@academiahack.com.ve', 'Hack2016', 'student_teaching'
+create_mentor 'Daniel', 'Guzzo','dguzzo@academiahack.com.ve', 'Hack2016', 'student_teaching'
 
 create_user 'Hack', 'Admin', 'admin@academiahack.com.ve', 'Hack2015', AdminUser

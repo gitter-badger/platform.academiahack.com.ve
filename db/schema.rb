@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120194447) do
+ActiveRecord::Schema.define(version: 20160120230216) do
 
   create_table "academic_day_schedules", force: true do |t|
     t.integer "number"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20160120194447) do
   add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
 
   create_table "mentors", force: true do |t|
-    t.string   "type_of"
+    t.integer  "type_of"
     t.integer  "identity"
     t.integer  "user_id"
     t.datetime "created_at"
