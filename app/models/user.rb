@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   def get_gitlab_user
     begin
-      Gitlab.users(username:'romerramos')
+      Gitlab.users(username:gitlab_user)
     rescue Gitlab::Error::Parsing => error
       return nil
     end

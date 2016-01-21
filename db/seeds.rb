@@ -236,25 +236,25 @@ end
 # *********************** PROMO 4 ***********************
 promo4 = create_promo 4, "gitlab.com/HackPromo4", "HackPromo4", Date.new(2015, 10, 19), "Promo 4"
 
-create_user 'Emanuel', 'Gomez' ,'emanuel.gomez.9@gmail.com', '19163292', User, '332654'
-create_user 'Jose', 'De Leon' ,'josedeleon_k@hotmail.com', '26194045', User, '332683'
-create_user 'Jose', 'Rodriguez' ,'darkniguit@gmail.com', '20802029', User, '332689'
-create_user 'Luis', 'Machillanda','nikko1801@gmail.com', '25206591', User, '332692'
-create_user 'Niolberth', 'Rodriguez','rycerickz@hotmail.es', '24089142', User, '332695'
-create_user 'Oscar', 'Martinez','oscar_martinez1992@live.com', '20616210', User, '332697'
-create_user 'Roman', 'Fuentes','romangof@gmail.com', '20701132', User, '332699'
-create_user 'Jose', 'Arismendi','a.2_19@hotmail.com', '20595385', User, '332905'
+create_user 'Emanuel', 'Gomez' ,'emanuel.gomez.9@gmail.com', '19163292', User
+create_user 'Jose', 'De Leon' ,'josedeleon_k@hotmail.com', '26194045', User
+create_user 'Jose', 'Rodriguez' ,'darkniguit@gmail.com', '20802029', User
+create_user 'Luis', 'Machillanda','nikko1801@gmail.com', '25206591', User
+create_user 'Niolberth', 'Rodriguez','rycerickz@hotmail.es', '24089142', User
+create_user 'Oscar', 'Martinez','oscar_martinez1992@live.com', '20616210', User
+create_user 'Roman', 'Fuentes','romangof@gmail.com', '20701132', User
+create_user 'Jose', 'Arismendi','a.2_19@hotmail.com', '20595385', User
 
-create_user 'Jorge', 'Moreno','jolumodu@outlook.com', '19690779', User, '332783'
-create_user 'Jose', 'Rangel','josea.rangelg@gmail.com', '20921454', User, '332788'
-create_user 'Juan', 'Calcagno','negro32@gmail.com', '20748827', User, '332909'
-create_user 'Juilius', 'Indirago','julius_1008@hotmail.com', '21495021', User, '332915'
-create_user 'Letty', 'Villamizar','leettyvillamizar@gmail.com', '20616607', User, '332917'
-create_user 'Rosa', 'Garcia','rosairenegarcia@live.com', '06844879', User, '332924'
-create_user 'Erick', 'Gonzalez','erick_fat@hotmail.com', '24272055', User, '332941'
-create_user 'Carlos', 'Gonzalez','carloseduardogonzalezmendoza@gmail.com', '26597013', User, '410046'
-create_user 'Gabriel', 'Brazzoduro','brazzoduro_14@hotmail.com', '25947926', User, '332943'
-create_user 'Miguel', 'Brazzoduro','brazzoduro26@gmail.com ', '16543115', User, '332945'
+create_user 'Jorge', 'Moreno','jolumodu@outlook.com', '19690779', User
+create_user 'Jose', 'Rangel','josea.rangelg@gmail.com', '20921454', User
+create_user 'Juan', 'Calcagno','negro32@gmail.com', '20748827', User
+create_user 'Juilius', 'Indirago','julius_1008@hotmail.com', '21495021', User
+create_user 'Letty', 'Villamizar','leettyvillamizar@gmail.com', '20616607', User
+create_user 'Rosa', 'Garcia','rosairenegarcia@live.com', '06844879', User
+create_user 'Erick', 'Gonzalez','erick_fat@hotmail.com', '24272055', User
+create_user 'Carlos', 'Gonzalez','carloseduardogonzalezmendoza@gmail.com', '26597013', User
+create_user 'Gabriel', 'Brazzoduro','brazzoduro_14@hotmail.com', '25947926', User
+create_user 'Miguel', 'Brazzoduro','brazzoduro26@gmail.com ', '16543115', User
 # *********************** PROMO 4 ***********************
 
 # *********************** ENROLLMENT PROMO 4 ***********************
