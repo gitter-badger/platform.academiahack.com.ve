@@ -19,8 +19,13 @@
                 .box-off
                   = image_tag 'black_hexagon.png', class: 'locked'
                 = image_tag academic_day.day.image.url
-                .day_overlay
-                  = image_tag "locked.png"
+                - if current_user.mentor
+                  = link_to academic_day_path(academic_day, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
+                    .day_overlay
+                      = image_tag "locked.png"
+                - else
+                  .day_overlay
+                    = image_tag "locked.png"
               - elsif academic_day.done?
                 = image_tag academic_day.day.image.url
                 .day_overlay

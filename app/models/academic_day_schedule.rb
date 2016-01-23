@@ -37,21 +37,20 @@ class AcademicDaySchedule < ActiveRecord::Base
     academic_days = AcademicDaySchedule.promo_academic_days promo
     count = academic_days.count
 
-    if self.active?
-      academic_day_number = self.number
+    academic_day_number = self.number
 
-      if academic_day_number == 1
-        academic_days = complete(academic_day_number, 2, 'top', promo)
-      elsif academic_day_number == 2
-        academic_days = complete(academic_day_number, 1, 'top', promo)
-      elsif academic_day_number == count - 1
-        academic_days = complete(academic_day_number, 1, 'bottom', promo)
-      elsif academic_day_number == count
-        academic_days = complete(academic_day_number, 2, 'bottom', promo)
-      else
-        academic_days = complete(academic_day_number, 0, 'none', promo)
-      end
+    if academic_day_number == 1
+      academic_days = complete(academic_day_number, 2, 'top', promo)
+    elsif academic_day_number == 2
+      academic_days = complete(academic_day_number, 1, 'top', promo)
+    elsif academic_day_number == count - 1
+      academic_days = complete(academic_day_number, 1, 'bottom', promo)
+    elsif academic_day_number == count
+      academic_days = complete(academic_day_number, 2, 'bottom', promo)
+    else
+      academic_days = complete(academic_day_number, 0, 'none', promo)
     end
+
     academic_days
   end
 
