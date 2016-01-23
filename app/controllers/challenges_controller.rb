@@ -94,10 +94,8 @@ class ChallengesController < ApplicationController
         @deliveries = Delivery.where challenge_id: params[:id]
       end
     else
-      redirect_to weeks_path, notice: "Cuenta en gitlab no existente (revisa si el API esta funcional), debes crearla con el username: '#{current_user.gitlab_user}'"
+      redirect_to weeks_path, notice: "Debes crear una cuenta en gitlab con el username: '#{current_user.gitlab_user}'"
     end
-    # @delivery = Delivery.where(challenge_id: params[:id], user_id: current_user.id).first
-
   end
   
    def deploy

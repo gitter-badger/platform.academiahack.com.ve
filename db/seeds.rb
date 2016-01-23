@@ -227,7 +227,7 @@ Date.new(2015, 11, 26).upto(Date.new(2015, 12, 7)) do |date|
 end
 
 # Pausa navidenia
-Date.new(2015, 12, 8).upto(Date.new(2016, 1, 9)) do |date|
+Date.new(2015, 12, 10).upto(Date.new(2016, 1, 9)) do |date|
   create_black_day "Pausa navidenia", "navidad", nil, nil, date
 end
 
