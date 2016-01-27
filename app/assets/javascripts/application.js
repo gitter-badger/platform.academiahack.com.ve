@@ -23,6 +23,7 @@
 //= require weeks
 //= require marked
 //= require highlight.pack
+//= require projects
 
 $(function(){
     var $feedback;

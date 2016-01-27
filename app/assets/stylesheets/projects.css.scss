@@ -1,3 +1,62 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face {
+  font-family: 'Proxima';
+  src: asset-url('proxima_nova_light.otf');
+}
+
+.project-author {
+  position: absolute;
+  left: 100px;
+  top: 35px;
+}
+
+.project-author-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.project-header {
+  position: absolute;
+  padding: 10px;
+  width: 100%;
+  height: 100px;
+}
+.project-image {
+  width: 70px;
+  height: 80px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.video {
+  border-radius: 10px;
+}
+
+.project-widget {
+  width:308px;
+  height:382px;
+  position: relative;
+  font-family: 'Proxima';
+  margin-bottom: 40px;
+}
+
+.project-bg {
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.45;
+}
+
+.project-title {
+  position: absolute;
+  bottom: 0px;
+  font-size: 45px;
+  width: 100%;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  font-weight: bold;
+}

@@ -1,5 +1,58 @@
 .container
   .row
-    .col-md-12
-      %h1
-        Listado de proyectos!
+    .col-md-4
+      .project-widget
+        .project-bg
+        .project-header
+          = image_tag '12.png', class: 'project-image'
+          .project-author
+            .project-author-name
+              Anais Legonia
+            .project-author-rol
+              Operadora lider del proyecto
+        .project-video
+          = video_tag(["anais.mp4"], size:"308x382", class:'video')
+        .project-title
+          Reticulando Materas
+    .col-md-4
+      .project-widget
+        .project-bg
+        .project-header
+          = image_tag '10.png', class: 'project-image'
+          .project-author
+            .project-author-name
+              Juan Manrique
+            .project-author-rol
+              Mentor lider del proyecto
+        .project-video
+          = video_tag(["juca.mp4"], size:"308x382", class:'video')
+        .project-title
+          Juego de vagos
+    .col-md-4
+      .project-widget
+        .project-bg
+        .project-header
+          = image_tag '13.png', class: 'project-image'
+          .project-author
+            .project-author-name
+              Jorge Fuentes
+            .project-author-rol
+              NO Mentor lider de proyecto
+        .project-video
+          = video_tag(["george.mp4"], size:"308x382", class:'video')
+        .project-title
+          Referencias time!
+    .col-md-4
+      .project-widget
+        .project-bg
+        .project-header
+          = image_tag '2.png', class: 'project-image'
+          .project-author
+            .project-author-name
+              Angel Alarcon
+            .project-author-rol
+              Mentor lider de proyecto
+        .project-video
+          = video_tag(["angel.mp4"], size:"308x382", class:'video')
+        .project-title
+          Frontend express.
