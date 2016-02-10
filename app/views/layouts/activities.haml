@@ -6,11 +6,15 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
-  %body{class: [current_user.mentor ? 'mosaic1' : 'mosaic', controller_name, action_name]}
+  %body{class: [current_user.mentor ? 'mosaic1' : (current_user.operation ? 'mosaic2' : 'mosaic'), controller_name, action_name]}
     -if current_user.mentor
       .ribbon
         %span
           MENTOR
+    -elsif current_user.operation
+      .ribbon
+        %span
+          OPERATIONS
     %header
       %nav.navbar.navbar-default.navbar-hack.navbar-fixed-top
         .container

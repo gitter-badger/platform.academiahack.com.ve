@@ -19,7 +19,17 @@ Date.new(2015, 11, 26).upto(Date.new(2015, 12, 7)) do |date|
   create_black_day "Retraso academico", "Debido a ser la ultima semana del anio se decidio no dar clase de rails sino dejarlo para el anio que viene", nil, nil, date
 end
 
-# Pausa navidenia
+# Pausa navidenia 2015
 Date.new(2015, 12, 10).upto(Date.new(2016, 1, 9)) do |date|
   create_black_day "Pausa navidenia", "navidad", nil, nil, date
+end
+
+# Carnaval 2016
+Date.new(2016, 2, 8).upto(Date.new(2016, 2, 9)) do |date|
+  create_black_day "Carnaval", "carnaval", nil, nil, date
+end
+
+# Semana Santa 2016
+Date.new(2016, 3, 21).upto(Date.new(2016, 3, 25)) do |date|
+  create_black_day "Semana Santa", "Semana Santa", nil, nil, date
 end

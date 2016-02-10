@@ -58,7 +58,7 @@
                   .day_box{'data-name' => academic_day_schedule.day.name}
                     - if academic_day_schedule.active?
                       = link_to academic_day_path(academic_day_schedule, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
-                        - if current_user.mentor && academic_day_schedule.mentor
+                        - if (current_user.mentor || current_user.operation) && academic_day_schedule.mentor
                           .mentor-box-off
                             .mentor-name-box
                               - if academic_day_schedule.invited?

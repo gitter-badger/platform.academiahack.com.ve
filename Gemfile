@@ -53,3 +53,4 @@ gem 'kramdown'
 gem 'rouge'
 gem 'telegram-bot-ruby'
 gem 'active_skin'
+gem 'rack-mini-profiler', require: false
