@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 3.4.1'
 gem 'haml', '~> 4.0.6'
 gem 'formtastic', '~> 3.1.3'
+gem 'therubyracer', platforms: :ruby
 
 #gem 'spring'
 #gem 'spring-commands-rspec'
