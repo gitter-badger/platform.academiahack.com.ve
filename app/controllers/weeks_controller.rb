@@ -1,6 +1,7 @@
 class WeeksController < ApplicationController
   before_action :authenticate_user!
   layout 'activities'
+  
 
   def index
     @academic_week_schedules = AcademicWeekSchedule.order(:position).where(promo: Promo.current)
