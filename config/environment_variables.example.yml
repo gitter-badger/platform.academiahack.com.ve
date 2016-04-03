@@ -2,6 +2,8 @@ development:
  DATABASE_USER: root
  DATABASE_PASS: vagrant
  DATABASE_SOCKET: /var/run/mysqld/mysqld.sock
+ GITLAB_ENDPOINT: https://gitlab.com/api/v3
+ GITLAB_TOKEN: INSERT TOKEN HERE!
 production:
  FOO: 'bar'
 test:
