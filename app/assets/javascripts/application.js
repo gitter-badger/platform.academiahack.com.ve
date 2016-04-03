@@ -24,6 +24,7 @@
 //= require marked
 //= require highlight.pack
 //= require projects
+//= require sortable
 
 $(function(){
     var $feedback;
@@ -124,6 +125,21 @@ $(function(){
         challenge_repo = $repo_preview.attr('data-repo');
 
         $repo_preview.repo({ user: promo_group, name: challenge_repo });
+    }
+
+    var weekList = document.getElementById('weekList');
+    Sortable.create(weekList, {
+        handle: '.glyphicon-move',
+        animation: 150
+    });
+
+    var $daylist = $(".day-list");
+    for(var i = 0; i< $daylist.length; i++) {
+        Sortable.create($daylist[i], {
+            handle: '.glyphicon-move',
+            filter: '.disabled',
+            animation: 150
+        });
     }
 
 });

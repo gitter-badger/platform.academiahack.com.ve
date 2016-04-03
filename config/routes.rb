@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   put 'academic_day/:academic_day_id/mentor/:mentor_id' => 'academic_days#assign_mentor', as: :assign_mentor
   get 'mentor/confirm/:token' => 'academic_days#confirm_mentor', as: :confirm_mentor
 
+  get 'promo/:id/manage' => 'promos#manage', as: :manage_promo
+  get 'academic_week/new/:promo_id' => 'academic_weeks#new', as: :academic_week_new
+
   resources :weeks, shallow: true do
     resources :days, shallow: true do
       resources :videos

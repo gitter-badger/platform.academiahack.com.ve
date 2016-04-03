@@ -1,0 +1,44 @@
+.container
+  .row
+    .col-md-12.text-center
+      %h1
+        = "Manejo de la promo #{@promo.number}"
+  .row
+    .col-md-3.col-md-offset-9
+      PANEL DE CONTROL FIXED!
+  .row
+    .col-md-7
+      %h2.text-center
+        Planificacion academica
+      .panel-group.list-group#weekList{role:"tablist", "aria-multiselectable"=>"true"}
+        - @promo.academic_week_schedules.ordered.each do |academic_week_schedule|
+          .panel.panel-default
+            .row.panel-heading{role:"tab", id:"week-heading-#{academic_week_schedule.id}"}
+              %h3.panel-title
+                %span.glyphicon.glyphicon-move{"aria-hidden"=>"true"}
+                %a{role:"button", "data-toggle"=>"collapse", "data-parent"=>"#weekList", href:"#week-#{academic_week_schedule.id}", "aria-expanded"=>"true", "aria-controls"=>"week-#{academic_week_schedule.id}"}
+                  = "Semana #{academic_week_schedule.position}. #{academic_week_schedule.week.name}"
+            .panel-collapse.collapse{id:"week-#{academic_week_schedule.id}", role:"tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12.list-group.day-list
+                    - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
+                      .row
+                        .col-md-10.list-group-item.day-item
+                          .row
+                            .col-md-1
+                              %span.glyphicon.glyphicon-move{"aria-hidden"=>"true"}
+                            .col-md-7
+                              =  academic_day_schedule.day.name
+                            .col-md-4.text-right
+                              = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
+                .row
+                  .col-md-10.col-md-offset-1.text-center
+                    = link_to "Agregar día", academic_week_new_path(@promo)
+                %hr
+      .row
+        .col-md-12
+          = link_to "Agregar semana", academic_week_new_path(@promo), class:"btn btn-info btn-block"
+    .col-md-5.list-group
+      %h2.text-center
+        No laborales y/o Feriados

@@ -1,0 +1,2 @@
+module AcademicWeeksHelper
+end

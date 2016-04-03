@@ -14,6 +14,7 @@ class AcademicWeekSchedule < ActiveRecord::Base
   belongs_to :promo
   belongs_to :week
   has_many :academic_day_schedules, dependent: :destroy
+  scope :ordered,      -> { order('position ASC') }
 
   def self.current_week_number
     black_days = 0
