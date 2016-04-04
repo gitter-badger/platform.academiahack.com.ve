@@ -16,7 +16,7 @@ class AcademicWeek < ActiveRecord::Base
   has_many :academic_days, dependent: :destroy
   scope :ordered,      -> { order('position ASC') }
 
-  acts_as_list :position
+  acts_as_list scope: :promo
 
   def self.current_week_number
     black_days = 0
@@ -29,9 +29,9 @@ class AcademicWeek < ActiveRecord::Base
     diff < 0 ? 0 : (diff/5).ceil
   end
 
-  def self.calculate_htd
+  def self.calculate_htd promo=nil
     #Get current promo
-    current_promo = Promo.current
+    current_promo = promo ? promo : Promo.current
     academic_weeks = AcademicWeek.where promo: current_promo
     AcademicWeek.schedule current_promo.start_date, academic_weeks
   end
@@ -74,7 +74,10 @@ class AcademicWeek < ActiveRecord::Base
   def self.create_all promo, week, position=nil
     current_promo_day = 1
     academic_week = AcademicWeek.new({position: position, promo_id: promo.id, week_id: week.id})
-    academic_week.move_to_bottom unless position
+    unless position
+      academic_week.move_to_bottom
+      position = 1
+    end
     academic_week.save
 
     days = Day.where(week: week).order(:number)

@@ -20,7 +20,7 @@
                   %a{role:"button", "data-toggle"=>"collapse", "data-parent"=>"#weekList", href:"#week-#{academic_week.id}", "aria-expanded"=>"true", "aria-controls"=>"week-#{academic_week.id}"}
                     = "Semana #{academic_week.position}. #{academic_week.week.name}"
               .col-md-2
-                = link_to "Eliminar", academic_weeks_path(@promo), method: :delete, class:'btn btn-danger btn-flat'
+                = link_to "Eliminar", promo_academic_week_path(promo_id: @promo, id: academic_week), method: :delete, class:'btn btn-danger btn-flat'
             .panel-collapse.collapse{id:"week-#{academic_week.id}", role:"tabpanel"}
               .panel-body
                 .row
@@ -37,11 +37,11 @@
                               = l(academic_day.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day.schedule
                 .row
                   .col-md-10.col-md-offset-1.text-center
-                    = link_to "Agregar día", academic_week_new_path(@promo)
+                    = link_to "Agregar día", "#"
                 %hr
       .row
         .col-md-12
-          = link_to "Agregar semana", academic_week_new_path(@promo), class:"btn btn-info btn-flat btn-block"
+          = link_to "Agregar semana", new_promo_academic_week_path(promo_id: @promo), class:"btn btn-info btn-flat btn-block"
     .col-md-5.col-md-offset-1.list-group
       .row
         .col-md-12
@@ -49,7 +49,7 @@
             No laborales y/o Feriados
       .row
         .col-md-12
-          = link_to "Agregar black day", academic_week_new_path(@promo), class:"btn btn-info btn-flat btn-block"
+          = link_to "Agregar black day", "#", class:"btn btn-info btn-flat btn-block"
       .row
         .col-md-12
           - @black_days.each do |name, black_days|

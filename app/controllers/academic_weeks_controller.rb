@@ -9,7 +9,7 @@ class AcademicWeeksController < ApplicationController
     promo = Promo.find params[:promo_id]
     week = Week.find params[:academic_week][:week_id]
     AcademicWeek.create_all promo, week
-    redirect_to manage_promo_path(promo)
+    redirect_to promo_manage_path(promo_id: promo)
   end
 
   def destroy
@@ -20,6 +20,6 @@ class AcademicWeeksController < ApplicationController
     else
       message = 'ERROR!'
     end
-    redirect_to manage_promo_path(promo), alert: message
+    redirect_to promo_manage_path(promo_id: promo), alert: message
   end
 end

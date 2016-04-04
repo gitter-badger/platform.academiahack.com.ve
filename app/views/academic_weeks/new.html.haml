@@ -5,7 +5,7 @@
         = "Agregar una semana para la promo #{@promo.number}"
   .row
     .col-md-12
-      = form_for @academic_week do |f|
+      = form_for [@promo, @academic_week] do |f|
         = hidden_field_tag :promo_id, @promo.id
         .form-group
           = f.label "Selecciona un tema semanal"
