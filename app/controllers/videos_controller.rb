@@ -10,7 +10,7 @@ class VideosController < ApplicationController
     end
 
     #Si existe un dia academico para el video ir a el
-    @academic_day = AcademicDaySchedule.get_academic_day day
+    @academic_day = AcademicDay.get_academic_day day
     if @academic_day
       redirect_to academic_day_path(@academic_day), notice: message
     else
@@ -27,7 +27,7 @@ class VideosController < ApplicationController
     end
 
     #Si existe un dia academico para el video ir a el
-    @academic_day = AcademicDaySchedule.get_academic_day video.day
+    @academic_day = AcademicDay.get_academic_day video.day
     if @academic_day
       redirect_to academic_day_path(@academic_day), notice: message
     else
@@ -43,7 +43,7 @@ class VideosController < ApplicationController
       message = "Error al eliminar el video"
     end
 
-    @academic_day = AcademicDaySchedule.get_academic_day video.day
+    @academic_day = AcademicDay.get_academic_day video.day
     if @academic_day
       redirect_to academic_day_path(@academic_day), notice: message
     else

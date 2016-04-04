@@ -3,7 +3,7 @@ class AcademicDaysController < ApplicationController
   layout 'activities'
 
   def show
-    @academic_day = AcademicDaySchedule.find(params[:id])
+    @academic_day = AcademicDay.find(params[:id])
     @academic_days = @academic_day.order_list
 
     if params[:video_id]
@@ -30,18 +30,18 @@ class AcademicDaysController < ApplicationController
   end
 
   def confirm_mentor
-    academic_day = AcademicDaySchedule.find_by mentor_token: params[:token]
+    academic_day = AcademicDay.find_by mentor_token: params[:token]
     academic_day.mentor_status = 'confirmed'
     if academic_day.save
       message = "Asistencia confirmada!"
     else
       message = "Error al confirmar la asistencia!"
     end
-    redirect_to weeks_path(current_week: academic_day.academic_week_schedule.position), notice: message
+    redirect_to weeks_path(current_week: academic_day.academic_week.position), notice: message
   end
 
   def assign_mentor
-    academic_day = AcademicDaySchedule.find params[:academic_day_id]
+    academic_day = AcademicDay.find params[:academic_day_id]
     mentor = Mentor.find params[:mentor_id]
 
     if academic_day.mentor
@@ -58,11 +58,11 @@ class AcademicDaysController < ApplicationController
     else
       message = "Error al asignar el mentor!"
     end
-    redirect_to weeks_path(current_week: academic_day.academic_week_schedule.position), notice: message
+    redirect_to weeks_path(current_week: academic_day.academic_week.position), notice: message
   end
 
   def toggle
-    academic_day = AcademicDaySchedule.find(params[:id])
+    academic_day = AcademicDay.find(params[:id])
     academic_day.status = academic_day.active? ? :blocked : :active
 
     if academic_day.save
@@ -71,12 +71,12 @@ class AcademicDaysController < ApplicationController
       message = 'No se pudo actualizar el dia academico!'
     end
 
-    redirect_to weeks_path(current_week: academic_day.academic_week_schedule.position), notice: message
+    redirect_to weeks_path(current_week: academic_day.academic_week.position), notice: message
   end
 
   def open_academic_week
-    academic_week = AcademicWeekSchedule.find params[:id]
-    academic_week.academic_day_schedules.each do |academic_day|
+    academic_week = AcademicWeek.find params[:id]
+    academic_week.academic_days.each do |academic_day|
       academic_day.status = :active
       academic_day.save
     end
@@ -84,8 +84,8 @@ class AcademicDaysController < ApplicationController
   end
 
   def close_academic_week
-    academic_week = AcademicWeekSchedule.find params[:id]
-    academic_week.academic_day_schedules.each do |academic_day|
+    academic_week = AcademicWeek.find params[:id]
+    academic_week.academic_days.each do |academic_day|
       academic_day.status = :blocked
       academic_day.save
     end

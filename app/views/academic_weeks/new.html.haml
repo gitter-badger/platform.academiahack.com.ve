@@ -3,3 +3,12 @@
     .col-md-12
       %h1
         = "Agregar una semana para la promo #{@promo.number}"
+  .row
+    .col-md-12
+      = form_for @academic_week do |f|
+        = hidden_field_tag :promo_id, @promo.id
+        .form-group
+          = f.label "Selecciona un tema semanal"
+          = f.collection_select :week_id, Week.all, :id, :name, {}, class: 'form-control'
+        .form-group
+          = f.submit :create, class: 'form-control btn btn-info'

@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: academic_day_schedules
+# Table name: academic_days
 #
 #  id                        :integer          not null, primary key
 #  number                    :integer
 #  schedule                  :date
-#  academic_week_schedule_id :integer
+#  academic_week_id :integer
 #  day_id                    :integer
 #  status                    :integer
 #  mentor_id                 :integer
@@ -13,8 +13,8 @@
 #  mentor_status             :integer
 #
 
-class AcademicDaySchedule < ActiveRecord::Base
-  belongs_to :academic_week_schedule
+class AcademicDay < ActiveRecord::Base
+  belongs_to :academic_week
   belongs_to :day
   belongs_to :mentor
 
@@ -28,13 +28,13 @@ class AcademicDaySchedule < ActiveRecord::Base
 
   def self.promo_academic_days promo=nil
     promo = promo ? promo : Promo.current
-    AcademicDaySchedule.joins(:academic_week_schedule).where('academic_week_schedules.promo_id' => promo)
+    AcademicDay.joins(:academic_week).where('academic_weeks.promo_id' => promo)
   end
 
   def order_list promo=nil
     promo = promo ? promo : Promo.current
 
-    academic_days = AcademicDaySchedule.promo_academic_days promo
+    academic_days = AcademicDay.promo_academic_days promo
     count = academic_days.count
 
     academic_day_number = self.number
@@ -58,13 +58,13 @@ class AcademicDaySchedule < ActiveRecord::Base
     day_min = academic_day_number - 2
     day_max = academic_day_number + 2
 
-    academic_days = AcademicDaySchedule.joins(:academic_week_schedule).where('academic_week_schedules.promo_id' => promo).where('number >= ? AND number <= ?', day_min, day_max).order(:number)
+    academic_days = AcademicDay.joins(:academic_week).where('academic_weeks.promo_id' => promo).where('number >= ? AND number <= ?', day_min, day_max).order(:number)
     add(academic_days, repeat, position)
   end
 
   def add(academic_days, repeat, position)
     repeat.times do
-      aux_academic_day = AcademicDaySchedule.new
+      aux_academic_day = AcademicDay.new
       aux_academic_day.number = -1
       aux_academic_day.status = nil
       aux_academic_day.day = Day.new

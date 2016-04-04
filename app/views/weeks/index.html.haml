@@ -1,13 +1,13 @@
-- @academic_week_schedules.each do |academic_week_schedule|
-  - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
-    .modal.fade{id: "academic-day-#{academic_day_schedule.id}", "aria-labelledby" => "mentor-assigment", :role => "dialog", :tabindex => "-1", class: "mentor-assigment"}
+- @academic_weeks.each do |academic_week|
+  - academic_week.academic_days.each do |academic_day|
+    .modal.fade{id: "academic-day-#{academic_day.id}", "aria-labelledby" => "mentor-assigment", :role => "dialog", :tabindex => "-1", class: "mentor-assigment"}
       .modal-dialog{:role => "document"}
         .modal-content
           .modal-header
             %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
               %span{"aria-hidden" => "true"} &times;
             %h4#myModalLabel.modal-title
-              = "Mentor para: '#{academic_day_schedule.day.name}'"
+              = "Mentor para: '#{academic_day.day.name}'"
           .modal-body
             .row
               .col-md-10.col-md-offset-1
@@ -28,62 +28,62 @@
                           %td{colspan:6}
                             = "#{mentor.user.name} #{mentor.user.last_name}"
                           %td{colspan:2}
-                            - if academic_day_schedule.mentor && academic_day_schedule.mentor.id == mentor.id
+                            - if academic_day.mentor && academic_day.mentor.id == mentor.id
                               = link_to "Seleccionado", "#", {class:"btn btn-info btn-disabled", disabled:"disabled"}
                             - else
-                              = link_to "Seleccionar", assign_mentor_path(academic_day_schedule, mentor), method: 'put', class:"btn btn-primary"
+                              = link_to "Seleccionar", assign_mentor_path(academic_day, mentor), method: 'put', class:"btn btn-primary"
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
             %button.btn.btn-primary{:type => "button"} Guardar
 .badges
   #badges_carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "false"}
     .carousel-inner
-      - @academic_week_schedules.each_with_index do |academic_week_schedule, i|
+      - @academic_weeks.each_with_index do |academic_week, i|
         .item{class: ("active" if i == @current_week_index)}
-          - if academic_week_schedule.week.challenge
+          - if academic_week.week.challenge
             .row
               .col-md-12
-                = link_to "Proyecto: #{academic_week_schedule.week.challenge.title}", challenge_path(academic_week_schedule.week.challenge), class: 'btn btn-info btn-flat btn-block btn-project'
+                = link_to "Proyecto: #{academic_week.week.challenge.title}", challenge_path(academic_week.week.challenge), class: 'btn btn-info btn-flat btn-block btn-project'
           .row.week-info
             .col-md-12
               %h1.text-center
-                = academic_week_schedule.week.name
+                = academic_week.week.name
                 - if current_user.mentor && current_user.mentor.leader?
-                  = link_to week_open_path(academic_week_schedule), method:'put' do
+                  = link_to week_open_path(academic_week), method:'put' do
                     %span{class:"glyphicon glyphicon-ok-sign", "aria-hidden"=>"true"}
-                  = link_to week_close_path(academic_week_schedule), method:'put' do
+                  = link_to week_close_path(academic_week), method:'put' do
                     %span{class:"glyphicon glyphicon-remove-sign", "aria-hidden"=>"true"}
               .row.text-center.left-5
-                - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
-                  .day_box{'data-name' => academic_day_schedule.day.name}
-                    - if academic_day_schedule.active?
-                      = link_to academic_day_path(academic_day_schedule, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
-                        - if (current_user.mentor || current_user.operation) && academic_day_schedule.mentor
+                - academic_week.academic_days.each do |academic_day|
+                  .day_box{'data-name' => academic_day.day.name}
+                    - if academic_day.active?
+                      = link_to academic_day_path(academic_day, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
+                        - if (current_user.mentor || current_user.operation) && academic_day.mentor
                           .mentor-box-off
                             .mentor-name-box
-                              - if academic_day_schedule.invited?
+                              - if academic_day.invited?
                                 %span{class:'glyphicon glyphicon-time', 'aria-hidden' => 'true' }
-                              - elsif academic_day_schedule.confirmed?
+                              - elsif academic_day.confirmed?
                                 %span{class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true' }
                             .mentor-name-box
                               %span{class:'mentor-name'}
-                                = "#{academic_day_schedule.mentor.user.name} #{academic_day_schedule.mentor.user.last_name}".truncate(12)
+                                = "#{academic_day.mentor.user.name} #{academic_day.mentor.user.last_name}".truncate(12)
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'off'
-                        = image_tag academic_day_schedule.day.image.url
-                    - elsif academic_day_schedule.blocked?
+                        = image_tag academic_day.day.image.url
+                    - elsif academic_day.blocked?
                       .box-off
                         = image_tag 'black_hexagon.png', class: 'locked'
-                      = image_tag academic_day_schedule.day.image.url
+                      = image_tag academic_day.day.image.url
                       - if current_user.mentor
-                        = link_to academic_day_path(academic_day_schedule, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
+                        = link_to academic_day_path(academic_day, current_user.mentor ? {tab:"challenge"} : {tab:"requirements"}) do
                           .day_overlay
                             = image_tag "locked.png"
                       - else
                         .day_overlay
                           = image_tag "locked.png"
-                    - elsif academic_day_schedule.done?
-                      = image_tag academic_day_schedule.day.image.url
+                    - elsif academic_day.done?
+                      = image_tag academic_day.day.image.url
                       .day_overlay
                         .box-off
                           = image_tag 'black_hexagon.png', class: 'locked'
@@ -93,15 +93,15 @@
                         = image_tag 'black_hexagon.png', class: 'locked'
                       = image_tag "0.png"
                     - if current_user.mentor && current_user.mentor.leader?
-                      = link_to "#", {"data-target" => "#academic-day-#{academic_day_schedule.id}", "data-toggle" => "modal", :type => "button"} do
+                      = link_to "#", {"data-target" => "#academic-day-#{academic_day.id}", "data-toggle" => "modal", :type => "button"} do
                         %span{class:"glyphicon glyphicon-user", "aria-hidden"=>"true"}
-                    %span{class: academic_day_schedule.schedule == DateTime.now.to_date ? 'current-day' : 'normal-day'}
-                      = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
+                    %span{class: academic_day.schedule == DateTime.now.to_date ? 'current-day' : 'normal-day'}
+                      = l(academic_day.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day.schedule
                     - if current_user.mentor && current_user.mentor.leader?
-                      = link_to academic_days_toggle_path(academic_day_schedule.day), method:'put' do
-                        - if academic_day_schedule.active?
+                      = link_to academic_days_toggle_path(academic_day.day), method:'put' do
+                        - if academic_day.active?
                           %span{class:"glyphicon glyphicon-remove-sign", "aria-hidden"=>"true"}
-                        - elsif academic_day_schedule.blocked?
+                        - elsif academic_day.blocked?
                           %span{class:"glyphicon glyphicon-ok-sign", "aria-hidden"=>"true"}
     .text-center
       .badge-title
@@ -109,7 +109,7 @@
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "prev"}
         .arrow-left
       %ol.carousel-indicators
-        - @academic_week_schedules.each_with_index do |academic_week_schedule, i|
+        - @academic_weeks.each_with_index do |academic_week, i|
           %li{"data-target" => "#badges_carousel", "data-slide-to" => i, class: ("active" if i == @current_week_index)}
             = i + 1
       %a.next-prev{"data-target" => "#badges_carousel", "data-slide" => "next"}

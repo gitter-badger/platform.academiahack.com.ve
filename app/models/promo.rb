@@ -14,7 +14,7 @@
 
 class Promo < ActiveRecord::Base
   has_many :enrollments
-  has_many :academic_week_schedules
+  has_many :academic_weeks
 
   def self.current
     Promo.find_by(number: Parameter.find_by(key:"current_promo").value)

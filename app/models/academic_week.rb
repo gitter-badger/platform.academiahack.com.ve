@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: academic_week_schedules
+# Table name: academic_weeks
 #
 #  id         :integer          not null, primary key
 #  position   :integer
@@ -10,11 +10,13 @@
 #  updated_at :datetime
 #
 
-class AcademicWeekSchedule < ActiveRecord::Base
+class AcademicWeek < ActiveRecord::Base
   belongs_to :promo
   belongs_to :week
-  has_many :academic_day_schedules, dependent: :destroy
+  has_many :academic_days, dependent: :destroy
   scope :ordered,      -> { order('position ASC') }
+
+  acts_as_list :position
 
   def self.current_week_number
     black_days = 0
@@ -30,8 +32,8 @@ class AcademicWeekSchedule < ActiveRecord::Base
   def self.calculate_htd
     #Get current promo
     current_promo = Promo.current
-    academic_week_schedules = AcademicWeekSchedule.where promo: current_promo
-    AcademicWeekSchedule.schedule current_promo.start_date, academic_week_schedules
+    academic_weeks = AcademicWeek.where promo: current_promo
+    AcademicWeek.schedule current_promo.start_date, academic_weeks
   end
 
   private
@@ -55,17 +57,31 @@ class AcademicWeekSchedule < ActiveRecord::Base
     false
   end
 
-  def self.schedule start_date, academic_week_schedules
+  def self.schedule start_date, academic_weeks
     current_calendar_day = start_date
-    academic_week_schedules.each do |academic_week_schedule|
-      academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
-        while AcademicWeekSchedule.day_unavailable?(current_calendar_day)
+    academic_weeks.each do |academic_week|
+      academic_week.academic_days.each do |academic_day|
+        while AcademicWeek.day_unavailable?(current_calendar_day)
           current_calendar_day += 1
         end
-        academic_day_schedule.schedule = current_calendar_day
-        academic_day_schedule.save
+        academic_day.schedule = current_calendar_day
+        academic_day.save
         current_calendar_day += 1
       end
+    end
+  end
+
+  def self.create_all promo, week, position=nil
+    current_promo_day = 1
+    academic_week = AcademicWeek.new({position: position, promo_id: promo.id, week_id: week.id})
+    academic_week.move_to_bottom unless position
+    academic_week.save
+
+    days = Day.where(week: week).order(:number)
+
+    days.each do |day|
+      AcademicDay.create({position: day.position, number: ((position-1) * 5) + current_promo_day, day_id: day.id, academic_week_id: academic_week.id, status: 1})
+      current_promo_day += 1
     end
   end
 end

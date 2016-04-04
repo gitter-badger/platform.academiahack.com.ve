@@ -1,4 +1,4 @@
-ActiveAdmin.register AcademicDaySchedule do
+ActiveAdmin.register AcademicDay do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,11 +15,12 @@ config.sort_order = 'schedule_asc'
 #   permitted
 # end
   index do
-    column 'Promo' do |academic_day_schedule|
-      link_to "#{academic_day_schedule.academic_week_schedule.promo.name}", admin_user_path(academic_day_schedule.academic_week_schedule.promo)
+    column :number
+    column 'Promo' do |academic_day|
+      link_to "#{academic_day.academic_week.promo.name}", admin_user_path(academic_day.academic_week.promo)
     end
-    column 'Week' do |academic_day_schedule|
-      link_to "#{academic_day_schedule.academic_week_schedule.week.name}", admin_user_path(academic_day_schedule.academic_week_schedule.week)
+    column 'Week' do |academic_day|
+      link_to "#{academic_day.academic_week.week.name}", admin_user_path(academic_day.academic_week.week)
     end
     column :day
     column :schedule

@@ -13,4 +13,7 @@
 #
 
 class BlackDay < ActiveRecord::Base
+  def self.from_date date
+    self.where("black_date > ?", date)
+  end
 end

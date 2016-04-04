@@ -12,7 +12,7 @@
 
 class Mentor < ActiveRecord::Base
   belongs_to :user
-  has_many :academic_day_schedules
+  has_many :academic_days
   enum type_of: [ :regular, :freelancer, :student_teaching, :leader]
 
   def self.humanize_type type

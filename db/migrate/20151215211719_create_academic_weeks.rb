@@ -1,6 +1,6 @@
-class CreateAcademicWeekSchedules < ActiveRecord::Migration
+class CreateAcademicWeeks < ActiveRecord::Migration
   def change
-    create_table :academic_week_schedules do |t|
+    create_table :academic_weeks do |t|
       t.integer :position
       t.references :promo, index: true
       t.references :week, index: true

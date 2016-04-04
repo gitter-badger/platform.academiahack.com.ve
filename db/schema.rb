@@ -13,22 +13,23 @@
 
 ActiveRecord::Schema.define(version: 20160210180828) do
 
-  create_table "academic_day_schedules", force: true do |t|
+  create_table "academic_days", force: true do |t|
     t.integer "number"
-    t.date    "schedule"
-    t.integer "academic_week_schedule_id"
-    t.integer "day_id"
+    t.integer "position"
     t.integer "status"
-    t.integer "mentor_id"
+    t.date    "schedule"
     t.string  "mentor_token"
-    t.integer "mentor_status"
+    t.string  "mentor_status"
+    t.integer "academic_week_id"
+    t.integer "day_id"
+    t.integer "mentor_id"
   end
 
-  add_index "academic_day_schedules", ["academic_week_schedule_id"], name: "index_academic_day_schedules_on_academic_week_schedule_id", using: :btree
-  add_index "academic_day_schedules", ["day_id"], name: "index_academic_day_schedules_on_day_id", using: :btree
-  add_index "academic_day_schedules", ["mentor_id"], name: "index_academic_day_schedules_on_mentor_id", using: :btree
+  add_index "academic_days", ["academic_week_id"], name: "index_academic_days_on_academic_week_id", using: :btree
+  add_index "academic_days", ["day_id"], name: "index_academic_days_on_day_id", using: :btree
+  add_index "academic_days", ["mentor_id"], name: "index_academic_days_on_mentor_id", using: :btree
 
-  create_table "academic_week_schedules", force: true do |t|
+  create_table "academic_weeks", force: true do |t|
     t.integer  "position"
     t.integer  "promo_id"
     t.integer  "week_id"
@@ -36,8 +37,8 @@ ActiveRecord::Schema.define(version: 20160210180828) do
     t.datetime "updated_at"
   end
 
-  add_index "academic_week_schedules", ["promo_id"], name: "index_academic_week_schedules_on_promo_id", using: :btree
-  add_index "academic_week_schedules", ["week_id"], name: "index_academic_week_schedules_on_week_id", using: :btree
+  add_index "academic_weeks", ["promo_id"], name: "index_academic_weeks_on_promo_id", using: :btree
+  add_index "academic_weeks", ["week_id"], name: "index_academic_weeks_on_week_id", using: :btree
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"

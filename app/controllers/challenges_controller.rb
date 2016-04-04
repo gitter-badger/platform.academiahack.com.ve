@@ -8,7 +8,7 @@ class ChallengesController < ApplicationController
 
     # Esta info es opcional y solo se utiliza para pintar el cronograma academico si este dia tiene relacion a un dia
     # academico y esta en la promo actual
-    @academic_day = AcademicDaySchedule.get_academic_day @day
+    @academic_day = AcademicDay.get_academic_day @day
     @academic_days = @academic_day.order_list
   end
 
@@ -17,7 +17,7 @@ class ChallengesController < ApplicationController
 
     # Esta info es opcional y solo se utiliza para pintar el cronograma academico si este reto tiene un dia relacionado
     # a un dia academico y esta en la promo actual
-    @academic_day = AcademicDaySchedule.get_academic_day @challenge.day
+    @academic_day = AcademicDay.get_academic_day @challenge.day
     @academic_days = @academic_day.order_list
   end
 
@@ -30,7 +30,7 @@ class ChallengesController < ApplicationController
     end
 
     #Si existe un dia academico para el reto ir a el
-    @academic_day = AcademicDaySchedule.get_academic_day challenge.day
+    @academic_day = AcademicDay.get_academic_day challenge.day
     if @academic_day
       redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
     else
@@ -52,7 +52,7 @@ class ChallengesController < ApplicationController
     end
 
     #Si existe un dia academico para el reto ir a el
-    @academic_day = AcademicDaySchedule.get_academic_day day
+    @academic_day = AcademicDay.get_academic_day day
     if @academic_day
       redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
     else
@@ -69,7 +69,7 @@ class ChallengesController < ApplicationController
     end
 
     #Si existe un dia academico para el reto ir a el
-    @academic_day = AcademicDaySchedule.get_academic_day challenge.day
+    @academic_day = AcademicDay.get_academic_day challenge.day
     if @academic_day
       redirect_to academic_day_path(@academic_day, tab: "challenge"), notice: message
     else

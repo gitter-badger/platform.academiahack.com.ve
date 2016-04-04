@@ -7,38 +7,60 @@
     .col-md-3.col-md-offset-9
       PANEL DE CONTROL FIXED!
   .row
-    .col-md-7
+    .col-md-6
       %h2.text-center
         Planificacion academica
       .panel-group.list-group#weekList{role:"tablist", "aria-multiselectable"=>"true"}
-        - @promo.academic_week_schedules.ordered.each do |academic_week_schedule|
+        - @promo.academic_weeks.ordered.each do |academic_week|
           .panel.panel-default
-            .row.panel-heading{role:"tab", id:"week-heading-#{academic_week_schedule.id}"}
-              %h3.panel-title
-                %span.glyphicon.glyphicon-move{"aria-hidden"=>"true"}
-                %a{role:"button", "data-toggle"=>"collapse", "data-parent"=>"#weekList", href:"#week-#{academic_week_schedule.id}", "aria-expanded"=>"true", "aria-controls"=>"week-#{academic_week_schedule.id}"}
-                  = "Semana #{academic_week_schedule.position}. #{academic_week_schedule.week.name}"
-            .panel-collapse.collapse{id:"week-#{academic_week_schedule.id}", role:"tabpanel"}
+            .row.panel-heading{role:"tab", id:"week-heading-#{academic_week.id}"}
+              .col-md-10
+                %h3.panel-title
+                  %span.glyphicon.glyphicon-move{"aria-hidden"=>"true"}
+                  %a{role:"button", "data-toggle"=>"collapse", "data-parent"=>"#weekList", href:"#week-#{academic_week.id}", "aria-expanded"=>"true", "aria-controls"=>"week-#{academic_week.id}"}
+                    = "Semana #{academic_week.position}. #{academic_week.week.name}"
+              .col-md-2
+                = link_to "Eliminar", academic_weeks_path(@promo), method: :delete, class:'btn btn-danger btn-flat'
+            .panel-collapse.collapse{id:"week-#{academic_week.id}", role:"tabpanel"}
               .panel-body
                 .row
                   .col-md-12.list-group.day-list
-                    - academic_week_schedule.academic_day_schedules.each do |academic_day_schedule|
+                    - academic_week.academic_days.each do |academic_day|
                       .row
                         .col-md-10.list-group-item.day-item
                           .row
                             .col-md-1
                               %span.glyphicon.glyphicon-move{"aria-hidden"=>"true"}
                             .col-md-7
-                              =  academic_day_schedule.day.name
+                              =  academic_day.day.name
                             .col-md-4.text-right
-                              = l(academic_day_schedule.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day_schedule.schedule
+                              = l(academic_day.schedule, format: '%A %-d %b', locale: 'es').humanize if academic_day.schedule
                 .row
                   .col-md-10.col-md-offset-1.text-center
                     = link_to "Agregar día", academic_week_new_path(@promo)
                 %hr
       .row
         .col-md-12
-          = link_to "Agregar semana", academic_week_new_path(@promo), class:"btn btn-info btn-block"
-    .col-md-5.list-group
-      %h2.text-center
-        No laborales y/o Feriados
+          = link_to "Agregar semana", academic_week_new_path(@promo), class:"btn btn-info btn-flat btn-block"
+    .col-md-5.col-md-offset-1.list-group
+      .row
+        .col-md-12
+          %h2.text-center
+            No laborales y/o Feriados
+      .row
+        .col-md-12
+          = link_to "Agregar black day", academic_week_new_path(@promo), class:"btn btn-info btn-flat btn-block"
+      .row
+        .col-md-12
+          - @black_days.each do |name, black_days|
+            .row
+              %h4
+                = name
+              %hr
+            - black_days.each do |black_day|
+              .row.black-day-row
+                .col-md-7
+                  = l(black_day.black_date, format: '%d %B %Y', locale: 'es').humanize if black_day.black_date
+                .col-md-3.col-md-offset-2
+                  %a{href:"#", class:'btn btn-danger btn-flat'}
+                    Eliminar

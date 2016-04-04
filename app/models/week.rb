@@ -16,7 +16,7 @@ class Week < ActiveRecord::Base
     belongs_to :product
     has_one :challenge
     has_many :days, -> { order(:number) }
-    has_many :academic_week_schedules
+    has_many :academic_weeks
 
     enum status: [ :blocked, :active, :done ]
 end
