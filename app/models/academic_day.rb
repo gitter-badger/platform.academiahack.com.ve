@@ -21,6 +21,8 @@ class AcademicDay < ActiveRecord::Base
   enum status: [ :blocked, :active, :done ]
   enum mentor_status: [ :invited, :confirmed, :in_classroom]
 
+  acts_as_list scope: :promo
+
   def self.get_academic_day day, promo=nil
     promo = promo ? promo : Promo.current
     self.promo_academic_days(promo).where(day_id: day.id).take
@@ -75,5 +77,9 @@ class AcademicDay < ActiveRecord::Base
       end
     end
     academic_days
+  end
+
+  def self.last_promo_position promo
+    AcademicDay.where(promo_id: promo).maximum :position
   end
 end

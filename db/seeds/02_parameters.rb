@@ -1,4 +1,4 @@
-promo4 = Promo.all.take
+promo5 = Promo.find_by number: 5
 
 required_knowledge_template= "
 Conocimientos previos
@@ -72,6 +72,6 @@ def create_parameter key, value
   param.save
 end
 
-create_parameter "current_promo", promo4.number
+create_parameter "current_promo", promo5.number
 create_parameter "requirements_template", required_knowledge_template
 create_parameter "cheatsheet_template", cheatsheet_template

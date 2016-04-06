@@ -4,15 +4,15 @@
       %h1
         = "Manejo de la promo #{@promo.number}"
   .row
-    .col-md-3.col-md-offset-9
-      PANEL DE CONTROL FIXED!
+    .col-md-2.col-md-offset-10
+      = link_to "Procesar promo", promo_calculate_path(promo_id: @promo), method: :post, class:'btn btn-default btn-flat btn-block'
   .row
     .col-md-6
       %h2.text-center
         Planificacion academica
       .panel-group.list-group#weekList{role:"tablist", "aria-multiselectable"=>"true"}
         - @promo.academic_weeks.ordered.each do |academic_week|
-          .panel.panel-default
+          .panel.panel-default{"data-id"=>academic_week.id, "data-position"=>academic_week.position}
             .row.panel-heading{role:"tab", id:"week-heading-#{academic_week.id}"}
               .col-md-10
                 %h3.panel-title

@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20160210180828) do
     t.integer "academic_week_id"
     t.integer "day_id"
     t.integer "mentor_id"
+    t.integer "promo_id"
   end
 
   add_index "academic_days", ["academic_week_id"], name: "index_academic_days_on_academic_week_id", using: :btree
   add_index "academic_days", ["day_id"], name: "index_academic_days_on_day_id", using: :btree
   add_index "academic_days", ["mentor_id"], name: "index_academic_days_on_mentor_id", using: :btree
+  add_index "academic_days", ["promo_id"], name: "index_academic_days_on_promo_id", using: :btree
 
   create_table "academic_weeks", force: true do |t|
     t.integer  "position"

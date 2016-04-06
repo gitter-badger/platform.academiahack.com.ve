@@ -47,8 +47,7 @@ class AcademicWeek < ActiveRecord::Base
     black_days.each do |black_day|
       unless black_day.black_date
         #Armar la fecha si es recurrente con el ano actual
-        current_year = Date.today.strftime("%Y")
-        black_day.black_date = DateTime.new(current_year, black_day.month, black_day.day)
+        black_day.construct_date
       end
       if black_day.black_date == day
         return true
@@ -76,14 +75,14 @@ class AcademicWeek < ActiveRecord::Base
     academic_week = AcademicWeek.new({position: position, promo_id: promo.id, week_id: week.id})
     unless position
       academic_week.move_to_bottom
-      position = 1
     end
     academic_week.save
 
     days = Day.where(week: week).order(:number)
+    position = AcademicDay.last_promo_position(promo).to_i
 
     days.each do |day|
-      AcademicDay.create({position: day.position, number: ((position-1) * 5) + current_promo_day, day_id: day.id, academic_week_id: academic_week.id, status: 1})
+      AcademicDay.create({position: day.position, number: position + current_promo_day, day_id: day.id, academic_week_id: academic_week.id, promo_id: promo.id,status: 1})
       current_promo_day += 1
     end
   end

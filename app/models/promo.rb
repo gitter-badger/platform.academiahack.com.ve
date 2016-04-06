@@ -20,4 +20,7 @@ class Promo < ActiveRecord::Base
     Promo.find_by(number: Parameter.find_by(key:"current_promo").value)
   end
 
+  def finish_date
+    AcademicDay.where(promo_id: self.id).maximum :schedule
+  end
 end

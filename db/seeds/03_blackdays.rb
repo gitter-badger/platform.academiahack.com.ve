@@ -33,3 +33,7 @@ end
 Date.new(2016, 3, 21).upto(Date.new(2016, 3, 25)) do |date|
   create_black_day "Semana Santa", "Semana Santa", nil, nil, date
 end
+
+create_black_day "Firma acta independencia", "Firma acta independencia", nil, nil, Date.new(2016, 4, 19)
+create_black_day "Batalla Carabobo", "Batalla Carabobo", nil, nil, Date.new(2016, 6, 24)
+create_black_day "Dia independencia", "Dia independencia", nil, nil, Date.new(2016, 7, 5)

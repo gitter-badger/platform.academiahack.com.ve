@@ -10,3 +10,4 @@ def create_promo number, git_url, git_group, start_date, name=nil
 end
 
 create_promo 4, "gitlab.com/HackPromo4", "HackPromo4", Date.new(2015, 10, 19), "Promo 4"
+create_promo 5, "gitlab.com/HackPromo5", "HackPromo5", Date.new(2016, 4, 4), "Promo 5"

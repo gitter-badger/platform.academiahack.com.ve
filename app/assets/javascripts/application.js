@@ -130,7 +130,18 @@ $(function(){
     var weekList = document.getElementById('weekList');
     Sortable.create(weekList, {
         handle: '.glyphicon-move',
-        animation: 150
+        animation: 150,
+        dataIdAttr: 'data-id',
+        onEnd: function (evt) {
+            var $item = $(evt.item);
+
+            console.log("ID FROM ACADEMIC_WEEK: " + $item.attr('data-id'));
+            console.log("POS FROM ACADEMIC_WEEK: " + $item.attr('data-position'));
+            console.log("OLD POS FROM JS: " + (evt.oldIndex + 1));
+            console.log("NEW POS FROM JS: " + (evt.newIndex +1));
+
+            console.log(evt.item);
+        }
     });
 
     var $daylist = $(".day-list");

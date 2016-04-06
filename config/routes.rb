@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :promos do
     get '/manage' => 'promos#manage'
+    post '/calculate' => 'promos#calculate'
     resources :academic_weeks
   end
   # get 'promo/:id/manage' => 'promos#manage', as: :manage_promo

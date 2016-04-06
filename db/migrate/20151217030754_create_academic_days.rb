@@ -8,8 +8,9 @@ class CreateAcademicDays < ActiveRecord::Migration
       t.string :mentor_token
       t.string :mentor_status
       t.references :academic_week, index: true
-      t.references :day, index:true
-      t.references :mentor, index:true
+      t.references :day, index: true
+      t.references :mentor, index: true
+      t.references :promo, index: true
     end
   end
 end

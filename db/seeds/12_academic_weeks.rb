@@ -1,5 +1,6 @@
 weeks = Week.all
-current_promo = Promo.current
+promo4 = Promo.find_by number: 4
+promo5 = Promo.find_by number: 5
 
 # def create_academic_week promo, week, position=nil
 #   current_promo_day = 1
@@ -13,7 +14,7 @@ current_promo = Promo.current
 # end
 
 weeks.each_with_index do |week, index|
-  AcademicWeek.create_all current_promo, week, index+1
+  AcademicWeek.create_all promo4, week, index+1
 end
 
-AcademicWeek.calculate_htd
+AcademicWeek.calculate_htd promo4
