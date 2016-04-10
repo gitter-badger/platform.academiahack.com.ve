@@ -1,5 +1,7 @@
 == README
 
+{<img src="https://badges.gitter.im/HackAcademy/platform.academiahack.com.ve.svg" alt="Join the chat at https://gitter.im/HackAcademy/platform.academiahack.com.ve">}[https://gitter.im/HackAcademy/platform.academiahack.com.ve?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
